@@ -1,0 +1,12 @@
+/api/v1/categories (categories CRUD REST API)
+    name,
+    imageUri
+
+/api/v1/products (products CRUD REST API)
+    name
+    price
+    description
+    imageUri
+    quantity (how many items are available in stock)
+    categoryIds (list of categories)
+

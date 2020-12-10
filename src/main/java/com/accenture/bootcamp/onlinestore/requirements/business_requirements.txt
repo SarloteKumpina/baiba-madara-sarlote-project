@@ -1,0 +1,18 @@
+    No subcategories.
+    For categories we want to save only:
+        name
+        imageUri (link to image)
+    For products we want to save:
+        name
+        price
+        description
+        imageUri
+        quantity
+    Shop won't have any registered users.
+    Order can include a multiple products with multiple counts.
+
+
+orders:
+    adresi
+    Vārds, Uzvārds,
+    telefons, epasts
