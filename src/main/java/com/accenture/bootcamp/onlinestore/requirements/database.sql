@@ -29,7 +29,7 @@ create TABLE customers (
     PRIMARY KEY (id)
 );
 
-create TABLE orders (
+create TABLE orders(
     id bigint(20) NOT NULL AUTO_INCREMENT,
     customer_id bigint(20) NOT NULL,
     order_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -37,7 +37,7 @@ create TABLE orders (
     FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
-create TABLE order_content (
+create TABLE order_content(
     id bigint(20) NOT NULL AUTO_INCREMENT,
     product_id bigint(20) NOT NULL,
     quantity int (11) NOT NULL,
