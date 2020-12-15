@@ -37,7 +37,7 @@ create TABLE orders(
     FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
-create TABLE order_content(
+create TABLE orders_products(
     id bigint(20) NOT NULL AUTO_INCREMENT,
     product_id bigint(20) NOT NULL,
     quantity int (11) NOT NULL,
