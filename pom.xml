@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>groupId</groupId>
-    <artifactId>baiba-madara-sarlote-project</artifactId>
+    <artifactId>online-shop</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
