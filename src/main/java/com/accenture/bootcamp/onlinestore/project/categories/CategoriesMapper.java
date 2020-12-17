@@ -14,16 +14,16 @@ public interface CategoriesMapper {
     List<Categories> findAll();
 
     @Update("update categories set imageUri=#{imageUri} where id=#{id}")
-    void update(Categories categorie);
+    void update(Categories categories);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
     @Insert("insert into categories(name, imageUri)" +
             " values(#{name},#{imageUri})")
-    void insert(Categories categorie);
+    void insert(Categories categories);
 
     @Delete("delete from categories where id=#{id}")
-    void delete(Categories categorie);
+    void delete(Categories categories);
 
 }

@@ -3,35 +3,35 @@ package com.accenture.bootcamp.onlinestore.project.products;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Products {
+public class Product {
 
     private long id;
     private String name;
-    private long category_id;
+    private long CategoryId;
     private BigDecimal price;
     private String description;
     private int stock;
     private String imageUri;
 
-    public Products() {
+    public Product() {
 
     }
 
-    public Products(long id, String name, long category_id,
-                    BigDecimal price, String description, int stock, String imageUri) {
+    public Product(long id, String name, long CategoryId,
+                   BigDecimal price, String description, int stock, String imageUri) {
         this.id = id;
         this.name = name;
-        this.category_id = category_id;
+        this.CategoryId = CategoryId;
         this.price = price;
         this.description = description;
         this.stock = stock;
         this.imageUri = imageUri;
     }
 
-    public Products(ProductRequest request) {
+    public Product(ProductRequest request) {
         this.id = id;
         this.name = request.getName();
-        this.category_id = request.getCategory_id();
+        this.CategoryId = request.getCategoryId();
         this.price = request.getPrice();
         this.description = request.getDescription();
         this.stock = request.getStock();
@@ -54,12 +54,12 @@ public class Products {
         this.name = name;
     }
 
-    public long getCategory_id() {
-        return category_id;
+    public long getCategoryId() {
+        return CategoryId;
     }
 
-    public void setCategory_id(long category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(long categoryId) {
+        this.CategoryId = categoryId;
     }
 
     public BigDecimal getPrice() { return price; }
@@ -94,9 +94,9 @@ public class Products {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Products products = (Products) o;
+        Product products = (Product) o;
         return id == products.id &&
-                category_id == products.category_id &&
+                CategoryId == products.CategoryId &&
                 stock == products.stock &&
                 name.equals(products.name) &&
                 price.equals(products.price) &&
@@ -106,6 +106,6 @@ public class Products {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, category_id, price, description, stock, imageUri);
+        return Objects.hash(id, name, CategoryId, price, description, stock, imageUri);
     }
 }

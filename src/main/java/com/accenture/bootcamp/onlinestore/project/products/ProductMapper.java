@@ -8,22 +8,22 @@ import java.util.List;
 public interface ProductMapper {
 
     @Select("select id, name, category_id, price, description, stock from products where id = #{id}")
-    Products findOne(long id);
+    Product findOne(long id);
 
     @Select("select id, name, category_id, price, description, stock from products")
-    List<Products> findAll();
+    List<Product> findAll();
 
     @Update("update products set stock=#{stock} where id=#{id}")
-    void update(Products product);
+    void update(Product product);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
     @Insert("insert into products(name, price, category_id, description, stock, imageUri)" +
             " values(#{name},#{price},#{category_id},#{description},#{stock},#{imageUri})")
-    void insert(Products product);
+    void insert(Product product);
 
     @Delete("delete from products where id=#{id}")
-    void delete(Products product);
+    void delete(Product product);
 
 }

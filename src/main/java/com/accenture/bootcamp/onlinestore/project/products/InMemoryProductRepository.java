@@ -14,25 +14,25 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public Products findOne(long id) {
+    public Product findOne(long id) {
         return mapper.findOne(id);
     }
 
     @Override
-    public List<Products> findAll() {
+    public List<Product> findAll() {
         return mapper.findAll();
     }
 
     @Override
-    public Products insert(ProductRequest request) {
-        Products product = new Products(request);
+    public Product insert(ProductRequest request) {
+        Product product = new Product(request);
         mapper.insert(product);
         return product;
     }
 
     @Override
-    public Products update(long id, ProductRequest product) {
-        Products existing = findOne(id);
+    public Product update(long id, ProductRequest product) {
+        Product existing = findOne(id);
         existing.setName(product.getName());
         existing.setPrice(product.getPrice());
         existing.setDescription(product.getDescription());

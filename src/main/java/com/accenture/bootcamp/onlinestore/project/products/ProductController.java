@@ -17,23 +17,23 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Products findOne(@PathVariable long id) {
+    public Product findOne(@PathVariable long id) {
         return repository.findOne(id);
     }
 
     @GetMapping
-    public List<Products> getProducts() {
+    public List<Product> getProducts() {
         return repository.findAll();
     }
 
     @PostMapping
-    public Products create(@RequestBody ProductRequest product) {
+    public Product create(@RequestBody ProductRequest product) {
         return repository.insert(product);
     }
 
     @PutMapping("/{id}")
-    public Products update(@PathVariable long id,
-                           @RequestBody ProductRequest product) {
+    public Product update(@PathVariable long id,
+                          @RequestBody ProductRequest product) {
         return repository.update(id, product);
     }
 
