@@ -54,7 +54,7 @@ public class Product {
         this.name = name;
     }
 
-    public long getCategoryId() {
+    public long getCategory_id() {
         return categoryId;
     }
 
@@ -82,7 +82,7 @@ public class Product {
         this.stock = stock;
     }
 
-    public String getImageUri() {
+    public String getImageURI() {
         return imageUri;
     }
 
