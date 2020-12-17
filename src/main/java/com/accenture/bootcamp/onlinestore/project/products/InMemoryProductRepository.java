@@ -34,6 +34,7 @@ public class InMemoryProductRepository implements ProductRepository {
     public Product update(long id, ProductRequest product) {
         Product existing = findOne(id);
         existing.setName(product.getName());
+        existing.setCategoryId(product.getCategoryId());
         existing.setPrice(product.getPrice());
         existing.setDescription(product.getDescription());
         existing.setStock(product.getStock());
