@@ -13,8 +13,10 @@ public interface ProductMapper {
     @Select("select id, name, category_id, price, description, stock from products")
     List<Product> findAll();
 
-    @Update("update products set stock=#{stock} where id=#{id}")
-    void update(Product product);
+    @Update("UPDATE products SET name = #{name}, category_id = #{category_id}, price = #{price}," +
+            "description = #{description}, stock = #{stock}, imageUri = #{imageURI}" +
+            " WHERE id = #{id}")
+    boolean update(Product product);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
