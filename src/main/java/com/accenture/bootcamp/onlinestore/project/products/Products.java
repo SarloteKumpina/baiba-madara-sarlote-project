@@ -1,5 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.products;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Products {
@@ -7,7 +8,7 @@ public class Products {
     private long id;
     private String name;
     private long category_id;
-    private double price;
+    private BigDecimal price;
     private String description;
     private int stock;
     private String imageUri;
@@ -17,7 +18,7 @@ public class Products {
     }
 
     public Products(long id, String name, long category_id,
-                    double price, String description, int stock, String imageUri) {
+                    BigDecimal price, String description, int stock, String imageUri) {
         this.id = id;
         this.name = name;
         this.category_id = category_id;
@@ -61,13 +62,9 @@ public class Products {
         this.category_id = category_id;
     }
 
-    public double getPrice() {
-        return price;
-    }
+    public BigDecimal getPrice() { return price; }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+    public void setPrice(BigDecimal price) { this.price = price; }
 
     public String getDescription() {
         return description;
@@ -100,9 +97,9 @@ public class Products {
         Products products = (Products) o;
         return id == products.id &&
                 category_id == products.category_id &&
-                Double.compare(products.price, price) == 0 &&
                 stock == products.stock &&
                 name.equals(products.name) &&
+                price.equals(products.price) &&
                 description.equals(products.description) &&
                 imageUri.equals(products.imageUri);
     }
