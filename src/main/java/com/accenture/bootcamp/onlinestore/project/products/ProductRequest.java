@@ -1,10 +1,12 @@
 package com.accenture.bootcamp.onlinestore.project.products;
 
+import java.math.BigDecimal;
+
 public class ProductRequest {
 
     private String name;
     private long category_id;
-    private double price;
+    private BigDecimal price;
     private String description;
     private int stock;
     private String imageUri;
@@ -25,11 +27,11 @@ public class ProductRequest {
         this.category_id = category_id;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
