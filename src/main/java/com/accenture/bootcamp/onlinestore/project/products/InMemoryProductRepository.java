@@ -24,10 +24,15 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public Product insert(ProductRequest request) {
+    public Product insertProduct(ProductRequest request) {
         Product product = new Product(request);
-        mapper.insert(product);
+        mapper.insertProduct(product);
         return product;
+    }
+
+    @Override
+    public Product insertProductCategory(List<Long> categoryIds) {
+        return null;
     }
 
     @Override
