@@ -31,7 +31,12 @@ public class ProductService implements ProductRepository {
     @Override
     public Product insertProduct(ProductRequest request) {
         Product product = new Product(request);
+
         mapper.insertProduct(product);
+        for (int i = 0; i < product.getCategoryIds().size(); i++){
+            Long categoryId = product.getCategoryIds().get(i);
+            mapper.insertProductCategory(product.getId(), categoryId);
+        }
         return product;
     }
 
