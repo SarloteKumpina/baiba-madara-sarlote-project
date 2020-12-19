@@ -1,12 +1,13 @@
 package com.accenture.bootcamp.onlinestore.project.products;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRequest {
 
     private String name;
-    private long categoryId;
+    private List<Long> categoryId = new ArrayList<>();
     private BigDecimal price;
     private String description;
     private int stock;
@@ -24,7 +25,7 @@ public class ProductRequest {
         return categoryId;
     }
 
-    public void setCategoryId(long categoryId) {
+    public void setCategoryId(List<Long> categoryId) {
         this.categoryId = categoryId;
     }
 
