@@ -13,7 +13,7 @@ public interface CategoriesMapper {
     @Select("select id, name, imageUri from categories")
     List<Categories> findAll();
 
-    @Update("update categories set name = #{name} imageUri=#{imageUri} where id=#{id}")
+    @Update("update categories set name = #{name}, imageUri=#{imageUri} where id=#{id}")
     void update(Categories categories);
 
     @Options(useGeneratedKeys = true,
