@@ -1,21 +1,26 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
+import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class InMemoryCategoriesRepository implements CategoriesRepository {
+public class CategoryService implements CategoriesRepository {
 
     private final CategoriesMapper mapper;
 
-    public InMemoryCategoriesRepository(CategoriesMapper mapper) {
+    public CategoryService(CategoriesMapper mapper) {
         this.mapper = mapper;
     }
 
     @Override
     public Categories findOne(long id) {
-        return mapper.findOne(id);
+        Categories category = mapper.findOne(id);
+        if (category == null){
+            throw new NotFoundException("Category with id " + id + " doesn't exist");
+        }
+        return category;
     }
 
     @Override

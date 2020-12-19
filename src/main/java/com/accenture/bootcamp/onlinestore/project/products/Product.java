@@ -9,7 +9,7 @@ public class Product {
 
     private long id;
     private String name;
-    private List<Long> categoryId = new ArrayList<>();
+    private List<Long> categoryIds = new ArrayList<>();
     private BigDecimal price;
     private String description;
     private int stock;
@@ -18,11 +18,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, List<Long> categoryId, BigDecimal price,
+    public Product(long id, String name, List<Long> categoryIds, BigDecimal price,
                    String description, int stock, String imageUri) {
         this.id = id;
         this.name = name;
-        this.categoryId = categoryId;
+        this.categoryIds = categoryIds;
         this.price = price;
         this.description = description;
         this.stock = stock;
@@ -32,7 +32,7 @@ public class Product {
     public Product(ProductRequest request) {
         this.id = id;
         this.name = request.getName();
-        this.categoryId = request.getCategoryId();
+        this.categoryIds = request.getCategoryIds();
         this.price = request.getPrice();
         this.description = request.getDescription();
         this.stock = request.getStock();
@@ -55,12 +55,12 @@ public class Product {
         this.name = name;
     }
 
-    public List<Long> getCategoryId() {
-        return categoryId;
+    public List<Long> getCategoryIds() {
+        return categoryIds;
     }
 
-    public void setCategoryId(List<Long> categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryIds(List<Long> categoryIds) {
+        this.categoryIds = categoryIds;
     }
 
     public BigDecimal getPrice() {
@@ -102,7 +102,7 @@ public class Product {
         if (o == null || getClass() != o.getClass()) return false;
         Product products = (Product) o;
         return id == products.id &&
-                categoryId == products.categoryId &&
+                categoryIds == products.categoryIds &&
                 stock == products.stock &&
                 name.equals(products.name) &&
                 price.equals(products.price) &&
@@ -112,6 +112,6 @@ public class Product {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, categoryId, price, description, stock, imageUri);
+        return Objects.hash(id, name, categoryIds, price, description, stock, imageUri);
     }
 }

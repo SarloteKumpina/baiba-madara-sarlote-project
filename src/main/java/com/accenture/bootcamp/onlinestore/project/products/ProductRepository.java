@@ -9,7 +9,7 @@ public interface ProductRepository {
 
     Product insertProduct(ProductRequest product);
 
-    Product insertProductCategory(List<Long> categoryIds);
+//    Product insertProductCategory(List<Long> categoryIds);
 
     Product update(long id, ProductRequest product);
 

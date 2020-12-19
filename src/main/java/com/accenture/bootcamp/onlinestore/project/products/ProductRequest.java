@@ -7,7 +7,7 @@ import java.util.List;
 public class ProductRequest {
 
     private String name;
-    private List<Long> categoryId = new ArrayList<>();
+    private List<Long> categoryIds = new ArrayList<>();
     private BigDecimal price;
     private String description;
     private int stock;
@@ -21,12 +21,12 @@ public class ProductRequest {
         this.name = name;
     }
 
-    public List<Long> getCategoryId() {
-        return categoryId;
+    public List<Long> getCategoryIds() {
+        return categoryIds;
     }
 
-    public void setCategoryId(List<Long> categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryIds(List<Long> categoryIds) {
+        this.categoryIds = categoryIds;
     }
 
     public BigDecimal getPrice() {

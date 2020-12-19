@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/categories")
+@RequestMapping("/online-shop/category")
 @RestController
 public class CategoriesController {
 
@@ -27,8 +27,8 @@ public class CategoriesController {
     }
 
     @PostMapping
-    public Categories create(@RequestBody CategorieRequest categorie) {
-        return repository.insert(categorie);
+    public Categories create(@RequestBody CategorieRequest category) {
+        return repository.insert(category);
     }
 
     @PutMapping("/{id}")

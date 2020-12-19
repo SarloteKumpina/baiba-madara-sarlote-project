@@ -13,6 +13,9 @@ public interface CategoriesMapper {
     @Select("select id, name, imageUri from categories")
     List<Categories> findAll();
 
+    @Select("select * from categories where id in (#{id}, #{id})")
+    List<Categories> findAllSelected(List<Categories> categories);
+
     @Update("update categories set name = #{name}, imageUri=#{imageUri} where id=#{id}")
     void update(Categories categories);
 
