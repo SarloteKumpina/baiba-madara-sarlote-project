@@ -1,24 +1,25 @@
 package com.accenture.bootcamp.onlinestore.project.products;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Product {
 
     private long id;
     private String name;
-    private long categoryId;
+    private List<Long> categoryId = new ArrayList<>();
     private BigDecimal price;
     private String description;
     private int stock;
     private String imageUri;
 
     public Product() {
-
     }
 
-    public Product(long id, String name, long categoryId,
-                   BigDecimal price, String description, int stock, String imageUri) {
+    public Product(long id, String name, List<Long> categoryId, BigDecimal price,
+                   String description, int stock, String imageUri) {
         this.id = id;
         this.name = name;
         this.categoryId = categoryId;
@@ -54,17 +55,21 @@ public class Product {
         this.name = name;
     }
 
-    public long getCategory_id() {
+    public List<Long> getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(long categoryId) {
+    public void setCategoryId(List<Long> categoryId) {
         this.categoryId = categoryId;
     }
 
-    public BigDecimal getPrice() { return price; }
+    public BigDecimal getPrice() {
+        return price;
+    }
 
-    public void setPrice(BigDecimal price) { this.price = price; }
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
     public String getDescription() {
         return description;
@@ -82,13 +87,14 @@ public class Product {
         this.stock = stock;
     }
 
-    public String getImageURI() {
+    public String getImageUri() {
         return imageUri;
     }
 
     public void setImageUri(String imageUri) {
         this.imageUri = imageUri;
     }
+
 
     @Override
     public boolean equals(Object o) {

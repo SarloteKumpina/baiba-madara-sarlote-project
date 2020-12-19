@@ -1,6 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.products;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ProductRequest {
 
@@ -19,7 +20,7 @@ public class ProductRequest {
         this.name = name;
     }
 
-    public long getCategoryId() {
+    public List<Long> getCategoryId() {
         return categoryId;
     }
 
