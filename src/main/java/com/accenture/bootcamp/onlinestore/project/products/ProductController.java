@@ -31,6 +31,11 @@ public class ProductController {
         return repository.insertProduct(product);
     }
 
+//    @PostMapping("/category")
+//    public void insertCategoryIds(@RequestBody long productId, List<Long> categoryIds) {
+//        repository.insertProductCategory(productId, categoryIds);
+//    }
+
     @PutMapping("/{id}")
     public Product update(@PathVariable long id,
                           @RequestBody ProductRequest product) {

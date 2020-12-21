@@ -1,6 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
-public class CategorieRequest {
+public class CategoryRequest {
 
     private String name;
     private String imageUri;

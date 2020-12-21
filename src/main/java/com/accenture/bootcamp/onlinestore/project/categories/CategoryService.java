@@ -6,38 +6,38 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class CategoryService implements CategoriesRepository {
+public class CategoryService implements CategoryRepository {
 
-    private final CategoriesMapper mapper;
+    private final CategoryMapper mapper;
 
-    public CategoryService(CategoriesMapper mapper) {
+    public CategoryService(CategoryMapper mapper) {
         this.mapper = mapper;
     }
 
     @Override
-    public Categories findOne(long id) {
-        Categories category = mapper.findOne(id);
-        if (category == null){
+    public Category findOne(long id) {
+        Category category = mapper.findOne(id);
+        if (category == null) {
             throw new NotFoundException("Category with id " + id + " doesn't exist");
         }
         return category;
     }
 
     @Override
-    public List<Categories> findAll() {
+    public List<Category> findAll() {
         return mapper.findAll();
     }
 
     @Override
-    public Categories insert(CategorieRequest request) {
-        Categories categorie = new Categories(request);
+    public Category insert(CategoryRequest request) {
+        Category categorie = new Category(request);
         mapper.insert(categorie);
         return categorie;
     }
 
     @Override
-    public Categories update(long id, CategorieRequest categorie) {
-        Categories existing = findOne(id);
+    public Category update(long id, CategoryRequest categorie) {
+        Category existing = findOne(id);
         existing.setName(categorie.getName());
         existing.setImageUri(categorie.getImageUri());
         mapper.update(existing);

@@ -7,33 +7,33 @@ import java.util.List;
 
 @RequestMapping("/online-shop/category")
 @RestController
-public class CategoriesController {
+public class CategoryController {
 
-    private final CategoriesRepository repository;
+    private final CategoryRepository repository;
 
     @Autowired
-    public CategoriesController(CategoriesRepository repository) {
+    public CategoryController(CategoryRepository repository) {
         this.repository = repository;
     }
 
     @GetMapping("/{id}")
-    public Categories findOne(@PathVariable long id) {
+    public Category findOne(@PathVariable long id) {
         return repository.findOne(id);
     }
 
     @GetMapping
-    public List<Categories> getCategories() {
+    public List<Category> getCategories() {
         return repository.findAll();
     }
 
     @PostMapping
-    public Categories create(@RequestBody CategorieRequest category) {
+    public Category create(@RequestBody CategoryRequest category) {
         return repository.insert(category);
     }
 
     @PutMapping("/{id}")
-    public Categories update(@PathVariable long id,
-                             @RequestBody CategorieRequest categorie) {
+    public Category update(@PathVariable long id,
+                           @RequestBody CategoryRequest categorie) {
         return repository.update(id, categorie);
     }
 

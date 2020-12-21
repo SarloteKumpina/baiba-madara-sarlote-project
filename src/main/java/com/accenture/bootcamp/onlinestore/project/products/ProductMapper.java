@@ -13,22 +13,34 @@ public interface ProductMapper {
     @Select("select id, name, price, description, stock from products")
     List<Product> findAll();
 
+    @Select("SELECT * FROM categories WHERE id IN (#{id})")
+    long findSelectedCategoryId(long categoryId);
+
     @Update("UPDATE products SET name = #{name}, price = #{price}," +
             "description = #{description}, stock = #{stock}, imageUri = #{imageURI}" +
             " WHERE id = #{id}")
-    boolean update(Product product);
+    void update(Product product);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
     @Insert("insert into products(name, price, description, stock, imageUri)" +
-            " values(#{name},#{price},#{description},#{stock},#{imageUri});")
+            " values(#{name},#{price},#{description},#{stock},#{imageUri})")
     void insertProduct(Product product);
 
-    @Options(useGeneratedKeys = true)
+    @Options(useGeneratedKeys = true,
+            keyProperty = "id",
+            keyColumn = "id")
     @Insert("insert into products_categories(product_id, category_id)" +
             " values(#{product_id},#{category_id})")
-    void insertProductCategory(long product_id, long category_id);
+    void insertProductCategory(long productId, long categoryId);
+
+//    @Options(useGeneratedKeys = true,
+//            keyProperty = "id",
+//            keyColumn = "id")
+//    @Insert("insert into products_categories(product_id, category_id)" +
+//            " values(#{product_id},#{category_id})")
+//    void insertProductCategory(long productId, List<Long> categoryIds);
 
 
     @Delete("delete from products where id=#{id}")
