@@ -1,9 +1,12 @@
 package com.accenture.bootcamp.onlinestore.project.products;
 
+import com.accenture.bootcamp.onlinestore.project.categories.Category;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Product {
 
@@ -95,6 +98,12 @@ public class Product {
         this.imageUri = imageUri;
     }
 
+    @ManyToMany
+    @JoinTable(
+            name = "product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

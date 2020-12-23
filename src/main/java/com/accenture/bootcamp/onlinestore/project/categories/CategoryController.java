@@ -1,5 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
+import com.accenture.bootcamp.onlinestore.project.products.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,37 +10,39 @@ import java.util.List;
 @RestController
 public class CategoryController {
 
-    private final CategoryRepository repository;
+    private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public CategoryController(CategoryRepository repository) {
-        this.repository = repository;
+    public CategoryController(CategoryRepository repository, ProductRepository productRepository) {
+        this.categoryRepository = repository;
+        this.productRepository = productRepository;
     }
 
     @GetMapping("/{id}")
     public Category findOne(@PathVariable long id) {
-        return repository.findOne(id);
+        return categoryRepository.findOne(id);
     }
 
     @GetMapping
     public List<Category> getCategories() {
-        return repository.findAll();
+        return categoryRepository.findAll();
     }
 
+    //todo do not allow to add, if category by name already exists
     @PostMapping
     public Category create(@RequestBody CategoryRequest category) {
-        return repository.insert(category);
+        return categoryRepository.insert(category);
     }
 
     @PutMapping("/{id}")
     public Category update(@PathVariable long id,
-                           @RequestBody CategoryRequest categorie) {
-        return repository.update(id, categorie);
+                           @RequestBody CategoryRequest category) {
+        return categoryRepository.update(id, category);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        repository.delete(id);
+        categoryRepository.delete(id);
     }
-
 }

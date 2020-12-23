@@ -1,6 +1,11 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
+import com.accenture.bootcamp.onlinestore.project.products.Product;
+
+import javax.persistence.ManyToMany;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Category {
 
@@ -46,6 +51,9 @@ public class Category {
     public void setImageUri(String imageUri) {
         this.imageUri = imageUri;
     }
+
+    @ManyToMany
+    private Set<Product> products = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
