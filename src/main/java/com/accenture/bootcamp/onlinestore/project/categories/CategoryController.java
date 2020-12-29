@@ -2,10 +2,15 @@ package com.accenture.bootcamp.onlinestore.project.categories;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CategoryController {
@@ -23,6 +28,29 @@ public class CategoryController {
         model.addAttribute("allCategories", allCategories);
         return "cms/categories/categories";
     }
+
+    @GetMapping("admin/categories/new")
+    public String displayCategoryForm(Category category){
+        return "cms/categories/create-edit-category";
+    }
+
+    @PostMapping("/admin/categories/new")
+    public String addNewCategory(@Valid CategoryRequest category, BindingResult result){
+        if (result.hasErrors()) {
+            return "categories/create-category";
+        } else {
+            categoryRepository.insert(category);
+            return "redirect:/admin/categories";
+        }
+    }
+
+
+
+//    @GetMapping(path = {"/admin/categories", "/admin"})
+//    public String getAllCategories(Model model){
+//        model.addAttribute("allCategories", categoryRepository.findAll());
+//        return "cms/categories/categories";
+//    }
 
 }
 
