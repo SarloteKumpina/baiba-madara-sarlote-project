@@ -24,6 +24,12 @@ public class CategoryController {
         return "cms/categories/categories";
     }
 
+//    @GetMapping(path = {"/admin/categories", "/admin"})
+//    public String getAllCategories(Model model){
+//        model.addAttribute("allCategories", categoryRepository.findAll());
+//        return "cms/categories/categories";
+//    }
+
 }
 
 //    @GetMapping("/{id}")
