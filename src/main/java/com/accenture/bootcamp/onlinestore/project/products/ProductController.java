@@ -2,12 +2,14 @@ package com.accenture.bootcamp.onlinestore.project.products;
 
 import com.accenture.bootcamp.onlinestore.project.categories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/online-shop/product")
-@RestController
+//@RequestMapping("/online-shop/product")
+@Controller
 public class ProductController {
 
     private final ProductRepository productRepository;
@@ -24,9 +26,11 @@ public class ProductController {
         return productRepository.findOne(id);
     }
 
-    @GetMapping
-    public List<Product> getProducts() {
-        return productRepository.findAll();
+    @GetMapping (path = {"/admin/products", "/admin"})
+    public String getProducts(Model model) {
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
+        return "cms/products/products";
     }
 
     @PostMapping
