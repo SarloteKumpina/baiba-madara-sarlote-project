@@ -98,6 +98,10 @@ public class Product {
         this.imageUri = imageUri;
     }
 
+    public Set<Category> getCategories(){
+        return categories;
+    }
+
     @ManyToMany
     @JoinTable(
             name = "product_category",
