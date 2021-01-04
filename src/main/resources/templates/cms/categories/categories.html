@@ -19,27 +19,14 @@
                 <th>Action</th>
             </tr>
             <tr th:each="category: ${allCategories}">
-                <td th:text="${category.id}">1</td>
-                <td th:text="${category.imageUri}"><img height="100"
-                         src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4e894c2b76dd4c8e9013aafc016047af_9366/Superstar_Shoes_White_FV3284_01_standard.jpg"/>
-                </td>
-                <td th:text="${category.name}">Shoes</td>
+                <td th:text="${category.id}"></td>
+                <td><img height="100" th:src="${category.imageUri}"/></td>
+                <td th:text="${category.name}"></td>
                 <td>
-                    <a href="create-edit-category.html">Edit</a>
-                    <a href="#delete">Delete</a>
+                    <a th:href=@{/admin/categories/update{id}(id=${category.id})}">Edit</a>
+                    <a th:href="@{/admin/categories/delete/{id}(id=${category.id})}">Delete</a>
                 </td>
             </tr>
-<!--            <tr>-->
-<!--                <td>2</td>-->
-<!--                <td><img height="100"-->
-<!--                         src="https://lv1.pigugroup.eu/colours/843/620/5/8436205/eleganta-isa-tilla-kleita_xbig.jpg"/>-->
-<!--                </td>-->
-<!--                <td>Dresses</td>-->
-<!--                <td>-->
-<!--                    <a href="create-edit-category.html">Edit</a>-->
-<!--                    <a href="#delete">Delete</a>-->
-<!--                </td>-->
-<!--            </tr>-->
         </table>
     </div>
 </main>
