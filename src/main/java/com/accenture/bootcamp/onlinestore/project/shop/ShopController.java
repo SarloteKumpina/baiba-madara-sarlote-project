@@ -17,9 +17,19 @@ public class ShopController {
         this.productRepository = productRepository;
     }
 
-    @GetMapping
+    @GetMapping(path = {"", "/index.html"})
     public String ShopHome(){
         return "shop/index";
+    }
+
+    @GetMapping("/about.html")
+    public String ShopAbout() {
+        return "shop/about";
+    }
+
+    @GetMapping("/all")
+    public String ShopAll() {
+        return "shop/shop";
     }
 
 }
