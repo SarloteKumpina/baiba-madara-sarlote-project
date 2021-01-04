@@ -9,7 +9,9 @@ public interface CategoryRepository {
 
     Category insert(CategoryRequest category);
 
-    Category update(long id, CategoryRequest category);
+//    Category update(long id, CategoryRequest category);
+
+    Category update(long id, Category category);
 
     void delete(long id);
 }

@@ -17,7 +17,7 @@ public interface CategoryMapper {
 //    List<Categories> findAllSelected(List<Categories> categories);
 
     @Update("update categories set name = #{name}, imageUri=#{imageUri} where id=#{id}")
-    void update(Category categories);
+    void update(Category category);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",

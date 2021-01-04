@@ -35,8 +35,17 @@ public class CategoryService implements CategoryRepository {
         return category;
     }
 
+//    @Override
+//    public Category update(long id, CategoryRequest category) {
+//        Category existing = findOne(id);
+//        existing.setName(category.getName());
+//        existing.setImageUri(category.getImageUri());
+//        mapper.update(existing);
+//        return existing;
+//    }
+
     @Override
-    public Category update(long id, CategoryRequest category) {
+    public Category update(long id, Category category) {
         Category existing = findOne(id);
         existing.setName(category.getName());
         existing.setImageUri(category.getImageUri());

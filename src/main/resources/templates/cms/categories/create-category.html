@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{cms/layout/head :: head}"></div>
+<body>
+
+<div th:replace="~{cms/layout/navigation :: navigation}"></div>
+
+<main class="container">
+    <div class="starter-template py-5 px-3">
+        <h1 class="main-heading">Create category</h1>
+        <form>
+            <div class="form-group">
+                <label for="id">ID</label>
+                <input readonly type="number" class="form-control" id="id" placeholder="id" value="1"/>
+            </div>
+            <div class="form-group">
+                <label for="categoryName">Name</label>
+                <input type="text" class="form-control" id="categoryName" placeholder="name">
+            </div>
+            <div class="form-group">
+                <label for="imageUri">Image URI</label>
+                <input type="text" class="form-control" id="imageUri" placeholder="Image URI">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">Products</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                    <option>[ID: 1] Product X</option>
+                    <option>[ID: 2] Product y</option>
+                    <option>[ID: 3] Product Z</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary category-create-btn">Save</button>
+            <button type="button" class="btn btn-secondary">Cancel</button>
+        </form>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+</body>
+</html>
