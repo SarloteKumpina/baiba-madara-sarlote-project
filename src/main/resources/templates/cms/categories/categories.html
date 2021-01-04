@@ -23,7 +23,7 @@
                 <td><img height="100" th:src="${category.imageUri}"/></td>
                 <td th:text="${category.name}"></td>
                 <td>
-                    <a th:href="@{/admin/categories/update{id}(id=${category.id})}">Edit</a>
+                    <a th:href="@{/admin/categories/update/{id}(id=${category.id})}">Edit</a>
                     <a th:href="@{/admin/categories/delete/{id}(id=${category.id})}">Delete</a>
                 </td>
             </tr>

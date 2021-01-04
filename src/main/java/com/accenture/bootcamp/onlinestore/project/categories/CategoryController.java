@@ -37,8 +37,8 @@ public class CategoryController {
         return "cms/categories/update-category";
     }
 
-    @PostMapping("/admin/categories/update/{id}")
-    public String updateCategory(@PathVariable("id") long id, Category category) {
+    @PostMapping("/admin/categories/update/{categoryId}")
+    public String updateCategory(@PathVariable("categoryId") long id, Category category) {
         categoryRepository.update(id, category);
         return "redirect:/admin/categories";
     }
