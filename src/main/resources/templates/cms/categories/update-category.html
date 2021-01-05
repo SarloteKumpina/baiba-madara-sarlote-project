@@ -8,8 +8,8 @@
 <main class="container">
     <div class="starter-template py-5 px-3">
         <h1 class="main-heading">Update category</h1>
-        <form th:action="@{/admin/categories/update/{id}(id=${id})}"
-              th:object="${categoryForUpdate}" method="post">
+        <form method="post"
+              th:object="${categoryForUpdate}">
             <div class="form-group">
                 <label for="id">ID</label>
                 <input readonly type="number" th:field="*{id}" class="form-control" id="id" placeholder="id" value="1"/>
@@ -31,7 +31,7 @@
                 </select>
             </div>
             <button type="submit" class="btn btn-primary category-create-btn">Save</button>
-            <button type="button" class="btn btn-secondary">Cancel</button>
+            <a class="btn btn-secondary" href="/admin/categories" role="button">Cancel</a>
         </form>
     </div>
 </main>

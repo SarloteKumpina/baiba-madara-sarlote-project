@@ -7,7 +7,9 @@ public interface CategoryRepository {
 
     List<Category> findAll();
 
-    Category insert(CategoryRequest category);
+//    Category insert(CategoryRequest category);
+
+    Category create(Category category);
 
 //    Category update(long id, CategoryRequest category);
 
