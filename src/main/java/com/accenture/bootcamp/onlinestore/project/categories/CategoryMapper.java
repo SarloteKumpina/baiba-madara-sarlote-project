@@ -13,6 +13,13 @@ public interface CategoryMapper {
     @Select("select id, name, imageUri from categories")
     List<Category> findAll();
 
+    @Select("select categories.id, categories.name, categories.imageUri\n" +
+            "from categories\n" +
+            "inner join products_categories\n" +
+            "on products_categories.category_id = categories.id\n" +
+            "where products_categories.product_id = #{productId}")
+    List<Category> getCategoriesForProduct(long productId);
+
 //    @Select("select * from categories where id in (#{id}, #{id})")
 //    List<Categories> findAllSelected(List<Categories> categories);
 

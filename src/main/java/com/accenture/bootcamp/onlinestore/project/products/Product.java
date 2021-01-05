@@ -18,6 +18,8 @@ public class Product {
     private int stock;
     private String imageUri;
 
+    private List<Category> categories = new ArrayList<>();
+
     public Product() {
     }
 
@@ -98,16 +100,13 @@ public class Product {
         this.imageUri = imageUri;
     }
 
-    public Set<Category> getCategories(){
+    public List<Category> getCategories(){
         return categories;
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_category",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories = new HashSet<>();
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -10,7 +10,7 @@ public interface ProductMapper {
     @Select("select id, name, price, description, stock from products where id = #{id}")
     Product findOne(long id);
 
-    @Select("select id, name, price, description, stock from products")
+    @Select("select id, name, price, description, stock, imageUri from products")
     List<Product> findAll();
 
     @Select("SELECT * FROM categories WHERE id IN (#{id})")
@@ -35,6 +35,8 @@ public interface ProductMapper {
             " values(#{product_id},#{category_id})")
     void insertProductCategory(long productId, long categoryId);
 
+
+
 //    @Options(useGeneratedKeys = true,
 //            keyProperty = "id",
 //            keyColumn = "id")
@@ -43,7 +45,9 @@ public interface ProductMapper {
 //    void insertProductCategory(long productId, List<Long> categoryIds);
 
 
-    @Delete("delete from products where id=#{id}")
-    void delete(Product product);
+    @Delete("delete from products where id=#{product_id}")
+    void delete(long productId);
 
+    @Delete("delete from products_categories where product_id=#{product_id}")
+    void deleteProductCategories(long productId);
 }
