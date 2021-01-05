@@ -1,39 +1,72 @@
 package com.accenture.bootcamp.onlinestore.project.orders.op;
 
-import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-
-@Data
-@Table(name = "orders_products")
 public class OrderProduct {
 
-    //create TABLE orders_products(
-    //    id bigint(20) NOT NULL AUTO_INCREMENT,
-    //    product_id bigint(20) NOT NULL,
-    //    quantity int (11) NOT NULL,
-    //    order_id bigint(20) NOT NULL,
-    //    PRIMARY KEY (id),
-    //    FOREIGN KEY (product_id) REFERENCES products(id),
-    //    FOREIGN KEY (order_id) REFERENCES orders(id)
-    //);
-
-    @NotEmpty
-    @Column(name = "id")
     private long id;
-
-    @NotEmpty
-    @Column(name = "product_id")
-    private long productId;
-
-    @NotEmpty
-    @Column(name = "quantity")
+    private List<Long> productIds = new ArrayList<>();
     private int quantity;
-
-    @NotEmpty
-    @Column(name = "order_id")
     private long orderId;
 
+    public OrderProduct(){
+    }
+
+    public OrderProduct(long id, List<Long> productIds,
+                        int quantity, long orderId) {
+        this.id = id;
+        this.productIds = productIds;
+        this.quantity = quantity;
+        this.orderId = orderId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Long> getProductIds() {
+        return productIds;
+    }
+
+    public void setProductIds(List<Long> productIds) {
+        this.productIds = productIds;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderProduct that = (OrderProduct) o;
+        return id == that.id &&
+                quantity == that.quantity &&
+                orderId == that.orderId &&
+                Objects.equals(productIds, that.productIds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, productIds, quantity, orderId);
+    }
 }

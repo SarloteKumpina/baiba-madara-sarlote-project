@@ -1,33 +1,60 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-import lombok.Data;
-import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
+import java.util.Objects;
 
-@Data
-@Table(name = "orders")
+
 public class Order {
 
-    //create TABLE orders(
-    //    id bigint(20) NOT NULL AUTO_INCREMENT,
-    //    customer_id bigint(20) NOT NULL,
-    //    order_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    //    PRIMARY KEY (id),
-    //    FOREIGN KEY (customer_id) REFERENCES customers(id)
-    //);
-
-    @NotEmpty
-    @Column(name = "id")
     private long id;
-
-    @NotEmpty
-    @Column(name = "customer_id")
     private long customerId;
-
-    @NotEmpty
-    @Column(name = "order_time")
     private Timestamp orderTime;
 
+    public Order() {
+
+    }
+
+    public Order(long id, long customerId, Timestamp orderTime) {
+        this.id = id;
+        this.customerId = customerId;
+        this.orderTime = orderTime;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
+    }
+
+    public Timestamp getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Timestamp orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id == order.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
+
