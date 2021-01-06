@@ -1,1 +1,1 @@
-# baiba-madara-sarlote-project
+# baiba-madara-sarlote-zigrida-project
