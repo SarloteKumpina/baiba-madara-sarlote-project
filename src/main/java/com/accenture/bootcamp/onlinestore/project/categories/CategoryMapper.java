@@ -23,17 +23,24 @@ public interface CategoryMapper {
 //    @Select("select * from categories where id in (#{id}, #{id})")
 //    List<Categories> findAllSelected(List<Categories> categories);
 
-    @Update("update categories set name = #{name}, imageUri=#{imageUri} where id=#{id}")
-    void update(Category category);
+//    @Options(useGeneratedKeys = true,
+//            keyProperty = "id",
+//            keyColumn = "id")
+//    @Insert("insert into categories(name, imageUri)" +
+//            " values(#{name},#{imageUri})")
+//    void create(Category category);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
-    @Insert("insert into categories(name, imageUri)" +
-            " values(#{name},#{imageUri})")
-    void insert(Category categories);
+    @Insert("insert into categories(id, name, imageUri)" +
+            " values(#{id}, #{name},#{imageUri})")
+    void create(Category category);
+
+    @Update("update categories set name = #{name}, imageUri=#{imageUri} where id=#{id}")
+    void update(Category category);
 
     @Delete("delete from categories where id=#{id}")
-    void delete(Category categories);
+    void delete(Category category);
 
 }

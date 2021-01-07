@@ -22,11 +22,11 @@ public class Category {
         this.imageUri = imageUri;
     }
 
-    public Category(CategoryRequest request) {
-        this.id = id;
-        this.name = request.getName();
-        this.imageUri = request.getImageUri();
-    }
+//    public Category(CategoryRequest request) {
+//        this.id = id;
+//        this.name = request.getName();
+//        this.imageUri = request.getImageUri();
+//    }
 
     public long getId() {
         return id;

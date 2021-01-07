@@ -29,10 +29,10 @@ public class CategoryService implements CategoryRepository {
     }
 
     @Override
-    public Category insert(CategoryRequest request) {
-        Category category = new Category(request);
-        mapper.insert(category);
-        return category;
+    public Category create(Category newCategory) {
+//        Category category = new Category(newCategory);
+        mapper.create(newCategory);
+        return newCategory;
     }
 
 //    @Override
