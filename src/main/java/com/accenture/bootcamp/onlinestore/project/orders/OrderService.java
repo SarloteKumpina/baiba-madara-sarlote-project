@@ -21,6 +21,9 @@ public class OrderService {
         return mapper.getOrderDetails();
     }
 
+    public void delete(long id) {
+        mapper.delete(id);
+    }
 
     /*@Override
     public Order findOrderById(long id) {
@@ -52,9 +55,5 @@ public class OrderService {
     @Override
     public List<OrderProduct> findProductListByOrderId() {
         return mapper.findProductListByOrderId();
-    }
-
-    @Override
-    public void delete(long id) {
     }*/
 }

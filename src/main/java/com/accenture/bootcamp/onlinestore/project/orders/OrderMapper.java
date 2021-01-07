@@ -21,18 +21,20 @@ public interface OrderMapper {
             " on c.id=o.customer_id;")
     List<Customer> getOrderDetails();
 
+    @Delete("delete from orders where id=#{id}")
+    void delete(long id);
 
-   /* @Select("select id, customer_id, order_time from orders where id = #{id}")
-    Order findOrderById(long id);
+       /* @Select("select o.id, o.order_time, c.id, c.first_name, c.last_name, c.address, c.phone_number from\n" +
+                " customers as c\n" +
+                " inner join orders as o\n" +
+                " on c.id=o.customer_id where o.id = #{id}")
+    Order findOrderById(long id);*/
 
-    @Select("select id, customer_id, order_time from orders where customer_id = #{customer_id}")
+   /* @Select("select id, customer_id, order_time from orders where customer_id = #{customer_id}")
     Order findOrderByCustomerId(long customerId);
 
     @Select("select id, customer_id, order_time from orders where order_time = #{order_time}")
     Order findOrderByTime(Timestamp orderTime);
-
-    @Delete("delete from orders where id=#{id}")
-    void delete(Order order);*/
 
     //select products.id, products.imageUri, products.name,
     // orders_products.quantity, products.price
@@ -46,5 +48,5 @@ public interface OrderMapper {
     //         + "INNER JOIN orders_products  "
     //        + "ON (products.id=orders_products.product_id) "
     //        + "WHERE (orders_products.order_id LIKE %:order_id%) ")
-    //List<OrderProduct> findProductListByOrderId();
+    //List<OrderProduct> findProductListByOrderId();*/
 }

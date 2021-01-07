@@ -13,6 +13,7 @@
                 <th>ID</th>
                 <th>Datetime</th>
                 <th>Customer details</th>
+                <th>Action</th>
                 </thead>
                 <tbody>
                 <tr th:each="order : ${allOrders}">
@@ -20,6 +21,9 @@
                     <td th:text="${order.orderTime}"></td>
                     <td th:text="${order.firstName + ' ' + order.lastName + ', ' +
                      order.address + ', ' + 'Tel. ' + order.phoneNumber}"></td>
+                    <td>
+                        <a th:href="@{/admin/orders/cancel/{id}(id=${order.id})}">Cancel</a>
+                    </td>
                 </tr>
                 </tbody>
             </tr>
@@ -40,6 +44,7 @@
                     </table>
 
         </table>-->
+        </table>
 
     </div>
 </main>
