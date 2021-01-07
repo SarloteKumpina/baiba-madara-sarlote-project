@@ -1,5 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
+import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
 import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Service
-public class OrderService implements OrderRepository{
+public class OrderService {
 
     private final OrderMapper mapper;
 
@@ -16,7 +17,12 @@ public class OrderService implements OrderRepository{
         this.mapper = mapper;
     }
 
-    @Override
+    public List<Customer> getOrderDetails() {
+        return mapper.getOrderDetails();
+    }
+
+
+    /*@Override
     public Order findOrderById(long id) {
         Order order = mapper.findOrderById(id);
         if (order == null) {
@@ -44,16 +50,11 @@ public class OrderService implements OrderRepository{
     }
 
     @Override
-    public List<Order> findAll() {
-        return mapper.findAll();
-    }
-
-    @Override
     public List<OrderProduct> findProductListByOrderId() {
-        return null;
+        return mapper.findProductListByOrderId();
     }
 
     @Override
     public void delete(long id) {
-    }
+    }*/
 }

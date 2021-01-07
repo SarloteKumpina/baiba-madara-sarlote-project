@@ -14,14 +14,6 @@ public class OrderProduct {
     public OrderProduct(){
     }
 
-    public OrderProduct(long id, List<Long> productIds,
-                        int quantity, long orderId) {
-        this.id = id;
-        this.productIds = productIds;
-        this.quantity = quantity;
-        this.orderId = orderId;
-    }
-
     public long getId() {
         return id;
     }

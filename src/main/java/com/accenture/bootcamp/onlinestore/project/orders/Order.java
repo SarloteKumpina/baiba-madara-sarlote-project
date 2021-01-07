@@ -3,7 +3,6 @@ package com.accenture.bootcamp.onlinestore.project.orders;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-
 public class Order {
 
     private long id;
@@ -12,12 +11,6 @@ public class Order {
 
     public Order() {
 
-    }
-
-    public Order(long id, long customerId, Timestamp orderTime) {
-        this.id = id;
-        this.customerId = customerId;
-        this.orderTime = orderTime;
     }
 
     public long getId() {

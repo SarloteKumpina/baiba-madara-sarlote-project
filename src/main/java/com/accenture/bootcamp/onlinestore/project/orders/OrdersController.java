@@ -1,5 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
+import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,22 +19,21 @@ import java.util.List;
 @RequestMapping("/admin/orders")
 public class OrdersController {
 
-    private final OrderRepository orderRepository;
     private final OrderService orderService;
 
     @GetMapping
-    public String findAll(Model model){
-        List<Order> allOrders = orderRepository.findAll();
+    public String getOrderDetails(Model model){
+        List<Customer> allOrders = orderService.getOrderDetails();
         model.addAttribute("allOrders", allOrders);
         return "cms/orders/orders-table";
     }
 
-   /* @GetMapping
+    /*@GetMapping
     public String findProductListByOrderId(Model model) {
-        List<OrderProduct> products = orderRepository.findProductListByOrderId();
-        model.addAttribute("products", products);
+        List<OrderProduct> productsForEachOrder = orderRepository.findProductListByOrderId();
+        model.addAttribute("productsForEachOrder", productsForEachOrder);
         return "cms/orders/orders-table";
-    }*/
+    }
 
     @GetMapping("/{id}")
     public String findOrderById(@PathVariable Long id, Model model) {
@@ -53,12 +53,10 @@ public class OrdersController {
         return "cms/order/??";
     }
 
-
-
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable long id) {
         orderRepository.delete(id);
         return "cms/order/??";
-    }
+    }*/
 
 }

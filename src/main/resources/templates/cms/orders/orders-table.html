@@ -18,12 +18,12 @@
                 <tr th:each="order : ${allOrders}">
                     <td th:text="${order.id}"></td>
                     <td th:text="${order.orderTime}"></td>
-                    <td th:text="${order.customerId}"></td>
-                    <!--Need to figure out how to add all information about customers-->
+                    <td th:text="${order.firstName + ' ' + order.lastName + ', ' +
+                     order.address + ', ' + 'Tel. ' + order.phoneNumber}"></td>
                 </tr>
                 </tbody>
             </tr>
-            <tr>
+            <!--<tr>
                 <td colspan="6">
                     <table class="table mb-0">
                         <tr>
@@ -32,14 +32,14 @@
                             <th>Name</th>
                             <th>Count</th>
                             <th>Price</th>
-                            <!--working on how to add ordered products for each customer-->
+                            working on how to add ordered products for each customer
                         </tr>
                         <tr>
                             <td></td>
                         </tr>
                     </table>
 
-        </table>
+        </table>-->
 
     </div>
 </main>
