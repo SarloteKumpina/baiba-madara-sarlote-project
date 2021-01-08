@@ -8,17 +8,16 @@
 <main class="container">
     <div class="starter-template py-5 px-3">
         <h1 class="main-heading">Create category</h1>
-<!--        th:action="@{admin/categories/create}"-->
         <form method="post"
               th:object="${categoryToCreate}">
-            <div class="form-group">
-                <label for="id">ID</label>
-                <input readonly id="id"
-                       placeholder="id"
-                       class="form-control"
-                       type="number"
-                       th:field="*{id}"/>
-            </div>
+<!--            <div th:if="" class="form-group">-->
+<!--                <label for="id">ID</label>-->
+<!--                <input readonly id="id"-->
+<!--                       placeholder="id"-->
+<!--                       class="form-control"-->
+<!--                       type="number"-->
+<!--                       th:field="*{id}"/>-->
+<!--            </div>-->
             <div class="form-group">
                 <label for="categoryName">Name</label>
                 <input type="text" th:field="*{name}" class="form-control" id="categoryName" placeholder="name">
@@ -27,14 +26,14 @@
                 <label for="imageUri">Image URI</label>
                 <input type="text" th:field="*{imageUri}" class="form-control" id="imageUri" placeholder="Image URI">
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect2">Products</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-                    <option>[ID: 1] Product X</option>
-                    <option>[ID: 2] Product y</option>
-                    <option>[ID: 3] Product Z</option>
-                </select>
-            </div>
+<!--            <div class="form-group">-->
+<!--                <label for="exampleFormControlSelect2">Products</label>-->
+<!--                <select multiple class="form-control" id="exampleFormControlSelect2">-->
+<!--                    <option>[ID: 1] Product X</option>-->
+<!--                    <option>[ID: 2] Product y</option>-->
+<!--                    <option>[ID: 3] Product Z</option>-->
+<!--                </select>-->
+<!--            </div>-->
             <button type="submit" class="btn btn-primary category-create-btn">Save</button>
             <a class="btn btn-secondary" href="/admin/categories" role="button">Cancel</a>
         </form>

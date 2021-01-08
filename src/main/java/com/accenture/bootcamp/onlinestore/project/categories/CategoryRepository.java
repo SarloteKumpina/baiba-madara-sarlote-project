@@ -1,11 +1,15 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
+import com.accenture.bootcamp.onlinestore.project.products.Product;
+
 import java.util.List;
 
 public interface CategoryRepository {
     Category findOne(long id);
 
     List<Category> findAll();
+
+//    List<Product> getProductsForCategory(long productd);
 
 //    Category insert(CategoryRequest category);
 

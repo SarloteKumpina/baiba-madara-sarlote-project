@@ -1,6 +1,8 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
+import com.accenture.bootcamp.onlinestore.project.products.Product;
+import com.accenture.bootcamp.onlinestore.project.products.ProductMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,9 +11,11 @@ import java.util.List;
 public class CategoryService implements CategoryRepository {
 
     private final CategoryMapper mapper;
+    private final ProductMapper productMapper;
 
-    public CategoryService(CategoryMapper mapper) {
+    public CategoryService(CategoryMapper mapper, ProductMapper productMapper) {
         this.mapper = mapper;
+        this.productMapper = productMapper;
     }
 
     @Override
@@ -26,6 +30,10 @@ public class CategoryService implements CategoryRepository {
     @Override
     public List<Category> findAll() {
         return mapper.findAll();
+    }
+
+    List<Product> getProductsForCategory(long id) {
+        return productMapper.getProductsForCategory(id);
     }
 
     @Override

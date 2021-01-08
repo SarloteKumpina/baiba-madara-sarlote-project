@@ -1,5 +1,9 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
+import com.accenture.bootcamp.onlinestore.project.products.Product;
+import com.accenture.bootcamp.onlinestore.project.products.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -8,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,10 +22,12 @@ import java.util.Optional;
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public CategoryController(CategoryRepository repository) {
+    public CategoryController(CategoryRepository repository, ProductRepository productRepository) {
         this.categoryRepository = repository;
+        this.productRepository = productRepository;
     }
 
     @GetMapping(path = {"/admin/categories", "/admin"})
@@ -61,5 +68,17 @@ public class CategoryController {
         categoryRepository.delete(id);
         return "redirect:/admin/categories";
     }
+
+    @GetMapping("/admin/categories/{categoryId}")
+    public String showCategory(@PathVariable("categoryId") Long id,
+                               Model model) {
+        Category category = categoryRepository.findOne(id);
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("category", category);
+        model.addAttribute("products", products);
+        return "categories/category-details";
+    }
+
+
 
 }

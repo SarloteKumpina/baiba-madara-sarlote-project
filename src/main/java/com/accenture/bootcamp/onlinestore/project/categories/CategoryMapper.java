@@ -20,16 +20,6 @@ public interface CategoryMapper {
             "where products_categories.product_id = #{productId}")
     List<Category> getCategoriesForProduct(long productId);
 
-//    @Select("select * from categories where id in (#{id}, #{id})")
-//    List<Categories> findAllSelected(List<Categories> categories);
-
-//    @Options(useGeneratedKeys = true,
-//            keyProperty = "id",
-//            keyColumn = "id")
-//    @Insert("insert into categories(name, imageUri)" +
-//            " values(#{name},#{imageUri})")
-//    void create(Category category);
-
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")

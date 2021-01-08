@@ -3,15 +3,15 @@ package com.accenture.bootcamp.onlinestore.project.categories;
 import com.accenture.bootcamp.onlinestore.project.products.Product;
 
 import javax.persistence.ManyToMany;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Category {
 
     private long id;
     private String name;
     private String imageUri;
+
+    private List<Product> products = new ArrayList<>();
 
     public Category() {
     }
@@ -52,8 +52,13 @@ public class Category {
         this.imageUri = imageUri;
     }
 
-    @ManyToMany
-    private Set<Product> products = new HashSet<>();
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     @Override
     public boolean equals(Object o) {
