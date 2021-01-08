@@ -20,7 +20,7 @@
             </tr>
             <tr th:each="category: ${allCategories}">
                 <td th:text="${category.id}"></td>
-                <td><img height="100" th:src="${category.imageUri}"/></td>
+                <td><img width="100" th:src="${category.imageUri}"/></td>
                 <td th:text="${category.name}"></td>
                 <td>
                     <a th:href="@{/admin/categories/update/{id}(id=${category.id})}">Edit</a>
