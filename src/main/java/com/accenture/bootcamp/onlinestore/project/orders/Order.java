@@ -5,9 +5,10 @@ import java.util.Objects;
 
 public class Order {
 
-    private long id;
-    private long customerId;
+    private Long id;
+    private Long customerId;
     private Timestamp orderTime;
+    private String statusId;
 
     public Order() {
 
@@ -35,6 +36,14 @@ public class Order {
 
     public void setOrderTime(Timestamp orderTime) {
         this.orderTime = orderTime;
+    }
+
+    public String getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(String statusId) {
+        this.statusId = statusId;
     }
 
     @Override
