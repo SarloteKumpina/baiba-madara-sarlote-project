@@ -40,3 +40,26 @@ insert into products_categories values
     (null, 9, 4),
     (null, 10, 4),
     (null, 11, 4);
+
+insert into customers (first_name, last_name, phone_number, email, address) values
+('Dace', 'Bogdāne', 26667203, 'dacebogdane@gmail.com', 'Madona, Vaboļu iela 11'),
+('Linda', 'Gaiļuma', 28483901, 'lindagailuma@gmail.com', 'Rīga, Stabu iela 48'),
+('Veronika', 'Krastiņa', 26322207, 'veronikakrastina@gmail.com', 'Liepāja, Bindes iela 9'),
+('Brigita', 'Zaķe', 20078283, 'brigitazake@gmail.com', 'Rīga, Brīvības iela 125');
+
+insert into orders (customer_id) values
+(4),
+(2),
+(1),
+(3);
+
+insert into orders_products (product_id, quantity, order_id) values
+(2, 1, 2),
+(3, 1, 1),
+(4, 1, 4),
+(1, 1, 3);
+
+insert into status (name) values
+('PENDING'),
+('APPROVED'),
+('CANCELLED');
