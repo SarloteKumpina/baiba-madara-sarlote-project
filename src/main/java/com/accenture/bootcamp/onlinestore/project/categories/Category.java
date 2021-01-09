@@ -2,7 +2,6 @@ package com.accenture.bootcamp.onlinestore.project.categories;
 
 import com.accenture.bootcamp.onlinestore.project.products.Product;
 
-import javax.persistence.ManyToMany;
 import java.util.*;
 
 public class Category {
@@ -21,12 +20,6 @@ public class Category {
         this.name = name;
         this.imageUri = imageUri;
     }
-
-//    public Category(CategoryRequest request) {
-//        this.id = id;
-//        this.name = request.getName();
-//        this.imageUri = request.getImageUri();
-//    }
 
     public Long getId() {
         return id;
@@ -63,11 +56,12 @@ public class Category {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Category that = (Category) o;
-        return id == that.id &&
-                name.equals(that.name) &&
-                imageUri.equals(that.imageUri);
+        if (!(o instanceof Category)) return false;
+        Category category = (Category) o;
+        return Objects.equals(id, category.id) &&
+                Objects.equals(name, category.name) &&
+                Objects.equals(imageUri, category.imageUri) &&
+                Objects.equals(products, category.products);
     }
 
     @Override

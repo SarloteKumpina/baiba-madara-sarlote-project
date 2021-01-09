@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Product {
 
-    private long id;
+    private Long id;
     private String name;
     private List<Long> categoryIds = new ArrayList<>();
     private BigDecimal price;

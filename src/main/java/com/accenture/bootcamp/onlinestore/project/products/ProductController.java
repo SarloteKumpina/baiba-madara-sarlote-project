@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 //@RequestMapping("/online-shop/product")
@@ -26,11 +27,21 @@ public class ProductController {
         return productRepository.findOne(id);
     }
 
-    @GetMapping ("/admin/products")
-    public String getProducts(Model model) {
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "cms/products/products";
+    @GetMapping(path = {"/admin/products", "/admin/products/by-category/{categoryId}"})
+    public String getProducts(@PathVariable(required = false) Long categoryId, Model model) {
+        List<Product> products;
+        Category category;
+        if (categoryId == null) {
+            products = productRepository.findAll();
+            model.addAttribute("products", products);
+            return "cms/products/products";
+        } else {
+            category = categoryRepository.findOne(categoryId);
+            products = productRepository.getProductsForCategory(categoryId);
+            model.addAttribute("category", category);
+            model.addAttribute("products", products);
+            return "cms/products/products-by-category";
+        }
     }
 
     @GetMapping("/admin/products/new")

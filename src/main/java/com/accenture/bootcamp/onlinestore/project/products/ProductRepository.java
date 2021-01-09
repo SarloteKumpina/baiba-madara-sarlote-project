@@ -7,9 +7,11 @@ public interface ProductRepository {
 
     List<Product> findAll();
 
+    List<Product> getProductsForCategory(Long productId);
+
     Product insertProduct(Product product);
 
-//    void insertProductCategory(long productId, List<Long> categoryIds);
+//    void insertProductCategory(Long productId, List<Long> categoryIds);
 
     Product update(Product product);
 

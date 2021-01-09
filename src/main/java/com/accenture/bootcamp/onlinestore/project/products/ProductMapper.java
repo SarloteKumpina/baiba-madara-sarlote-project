@@ -14,15 +14,15 @@ public interface ProductMapper {
     List<Product> findAll();
 
     @Select("SELECT * FROM categories WHERE id IN (#{id})")
-    long findSelectedCategoryId(long categoryId);
+    Long findSelectedCategoryId(long categoryId);
 
     @Select("select products.id, products.name, products.price, products.description," +
             "products.stock, products.imageUri\n" +
             "from products\n" +
             "inner join products_categories\n" +
             "on products_categories.product_id = products.id\n" +
-            "where products_categories.category_id = #{category_id}")
-    List<Product> getProductsForCategory(long categoryId);
+            "where #{category_id} IS NULL OR (products_categories.category_id = #{category_id})")
+    List<Product> getProductsForCategory(Long categoryId);
 
     @Update("UPDATE products SET name = #{name}, price = #{price}," +
             "description = #{description}, stock = #{stock}, imageUri = #{imageUri}" +
