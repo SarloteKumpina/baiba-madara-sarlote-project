@@ -5,19 +5,19 @@ import com.accenture.bootcamp.onlinestore.project.products.Product;
 import java.util.List;
 
 public interface CategoryRepository {
-    Category findOne(long id);
+    Category findOne(Long id);
 
     List<Category> findAll();
 
-//    List<Product> getProductsForCategory(long productd);
+    List<Product> getProductsForCategory(Long productId);
 
 //    Category insert(CategoryRequest category);
 
     Category create(Category category);
 
-//    Category update(long id, CategoryRequest category);
+//    Category update(Long id, CategoryRequest category);
 
-    Category update(long id, Category category);
+    Category update(Long id, Category category);
 
-    void delete(long id);
+    void delete(Long id);
 }

@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Category {
 
-    private long id;
+    private Long id;
     private String name;
     private String imageUri;
 
@@ -16,7 +16,7 @@ public class Category {
     public Category() {
     }
 
-    public Category(long id, String name, String imageUri) {
+    public Category(Long id, String name, String imageUri) {
         this.id = id;
         this.name = name;
         this.imageUri = imageUri;
@@ -28,11 +28,11 @@ public class Category {
 //        this.imageUri = request.getImageUri();
 //    }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

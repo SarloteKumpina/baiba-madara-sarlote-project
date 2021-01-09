@@ -7,10 +7,10 @@
 
 <main class="container">
     <div class="starter-template py-5 px-3">
-        <h1 th:text="${categoryById.name}" class="main-heading">Products</h1>
+        <h1 th:text="${category.name}" class="main-heading">Products</h1>
 <!--        <button type="button" class="btn btn-primary category-create-btn"-->
 <!--                onclick="location.href = 'products/new'">Create product</button>-->
-        <h2 th:text="'Products ' + '(' + ${#lists.size(category.products)} + ')'">Products</h2>
+<!--        <h2 th:text="'Products ' + '(' + ${#lists.size(category.products)} + ')'">Products</h2>-->
         <table class="table table-striped table-bordered table-hover table-responsive">
             <tr>
                 <th>ID</th>

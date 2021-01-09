@@ -19,7 +19,7 @@ public class CategoryService implements CategoryRepository {
     }
 
     @Override
-    public Category findOne(long id) {
+    public Category findOne(Long id) {
         Category category = mapper.findOne(id);
         if (category == null) {
             throw new NotFoundException("Category with id " + id + " doesn't exist");
@@ -32,7 +32,7 @@ public class CategoryService implements CategoryRepository {
         return mapper.findAll();
     }
 
-    List<Product> getProductsForCategory(long id) {
+    public List<Product> getProductsForCategory(Long id) {
         return productMapper.getProductsForCategory(id);
     }
 
@@ -44,7 +44,7 @@ public class CategoryService implements CategoryRepository {
     }
 
 //    @Override
-//    public Category update(long id, CategoryRequest category) {
+//    public Category update(Long id, CategoryRequest category) {
 //        Category existing = findOne(id);
 //        existing.setName(category.getName());
 //        existing.setImageUri(category.getImageUri());
@@ -53,7 +53,7 @@ public class CategoryService implements CategoryRepository {
 //    }
 
     @Override
-    public Category update(long id, Category category) {
+    public Category update(Long id, Category category) {
         Category existing = findOne(id);
         existing.setName(category.getName());
         existing.setImageUri(category.getImageUri());
@@ -62,7 +62,7 @@ public class CategoryService implements CategoryRepository {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         mapper.delete(findOne(id));
     }
 

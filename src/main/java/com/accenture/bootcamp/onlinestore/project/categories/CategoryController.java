@@ -73,7 +73,7 @@ public class CategoryController {
     public String showCategory(@PathVariable("categoryId") Long id,
                                Model model) {
         Category category = categoryRepository.findOne(id);
-        List<Product> products = productRepository.findAll();
+        List<Product> products = categoryRepository.getProductsForCategory(id);
         model.addAttribute("category", category);
         model.addAttribute("products", products);
         return "categories/category-details";

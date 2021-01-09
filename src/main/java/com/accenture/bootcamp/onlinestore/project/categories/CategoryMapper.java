@@ -8,7 +8,7 @@ import java.util.List;
 public interface CategoryMapper {
 
     @Select("select id, name, imageUri from categories where id = #{id}")
-    Category findOne(long id);
+    Category findOne(Long id);
 
     @Select("select id, name, imageUri from categories")
     List<Category> findAll();
@@ -18,7 +18,7 @@ public interface CategoryMapper {
             "inner join products_categories\n" +
             "on products_categories.category_id = categories.id\n" +
             "where products_categories.product_id = #{productId}")
-    List<Category> getCategoriesForProduct(long productId);
+    List<Category> getCategoriesForProduct(Long productId);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
