@@ -1,14 +1,13 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
+import com.accenture.bootcamp.onlinestore.project.categories.Category;
 import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
+import com.accenture.bootcamp.onlinestore.project.products.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.sql.Timestamp;
@@ -21,23 +20,31 @@ public class OrdersController {
     private final OrderService orderService;
 
     @GetMapping("/admin/orders")
-    public String getOrderDetails(Model model){
-        List<Customer> allOrders = orderService.getOrderDetails();
-        model.addAttribute("allOrders", allOrders);
+    public String getAllOrders(Model model){
+        List<Customer> allOrders = orderService.getAllOrders();
+        model.addAttribute("Order", allOrders);
         return "cms/orders/orders-table";
     }
 
-    @GetMapping("/admin/orders/cancel/{id}")
-    public String cancelOrder(@PathVariable("id") long id) {
-        orderService.delete(id);
+    @GetMapping("/admin/orders/{id}")
+    public String findOrderById(@PathVariable Long id, Model model) {
+        model.addAttribute("Order", orderService.findOrderById(id));
+        return "cms/orders/orders-table";
+    }
+
+    @PostMapping("/admin/orders/approve/{id}")
+    public String updateStatusToApproved(@PathVariable("orderId") Long id) {
+        orderService.updateStatusToApproved(id);
         return "redirect:/admin/orders";
     }
 
-   /* @GetMapping("/{id}")
-    public String findOrderById(@PathVariable Long id, Model model) {
-        model.addAttribute("oneOrder", orderService.findOrderById(id));
-        return "cms/order/??";
+
+    /*@GetMapping("/admin/orders/cancel/{id}")
+    public String cancelOrder(@PathVariable("id") long id) {
+        orderService.delete(id);
+        return "redirect:/admin/orders";
     }*/
+
 
     /*@GetMapping
     public String findProductListByOrderId(Model model) {

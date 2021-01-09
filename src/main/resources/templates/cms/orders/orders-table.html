@@ -13,15 +13,19 @@
                 <th>ID</th>
                 <th>Datetime</th>
                 <th>Customer details</th>
+                <th>Status</th>
                 <th>Action</th>
                 </thead>
                 <tbody>
-                <tr th:each="order : ${allOrders}">
+                <tr th:each="order : ${Order}">
                     <td th:text="${order.id}"></td>
                     <td th:text="${order.orderTime}"></td>
                     <td th:text="${order.firstName + ' ' + order.lastName + ', ' +
                      order.address + ', ' + 'Tel. ' + order.phoneNumber}"></td>
+                    <!-- Status PENDING/APPROVED-->
+                    <td th:text="${order.statusId}"></td>
                     <td>
+                        <a th:href="@{/admin/orders/approve/{id}(id=${order.id})}">Approve</a>
                         <a th:href="@{/admin/orders/cancel/{id}(id=${order.id})}">Cancel</a>
                     </td>
                 </tr>

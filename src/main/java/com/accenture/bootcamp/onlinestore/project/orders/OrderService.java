@@ -3,6 +3,8 @@ package com.accenture.bootcamp.onlinestore.project.orders;
 import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
 import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
+import com.accenture.bootcamp.onlinestore.project.products.Product;
+import com.accenture.bootcamp.onlinestore.project.products.ProductRequest;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -17,16 +19,31 @@ public class OrderService {
         this.mapper = mapper;
     }
 
-    public List<Customer> getOrderDetails() {
-        return mapper.getOrderDetails();
+    public List<Customer> getAllOrders() {
+        return mapper.getAllOrders();
     }
 
-    public void delete(long id) {
+    public Order findOrderById(Long id) {
+        Customer order = mapper.findOrderById(id);
+        if (order == null) {
+            throw new NotFoundException("Order with id " + id + " doesn't exist");
+        }
+        return order;
+    }
+
+    public Order updateStatusToApproved(Long id) {
+        Order existing = findOrderById(id);
+        existing.setStatusId(findOrderById(id).getStatusId());
+        return existing;
+    }
+
+
+   /* public void delete(long id) {
         mapper.delete(id);
-    }
+    }*/
 
-    /*@Override
-    public Order findOrderById(long id) {
+
+   /* public Order findOrderById(long id) {
         Order order = mapper.findOrderById(id);
         if (order == null) {
             throw new NotFoundException("Order with id " + id + " doesn't exist");

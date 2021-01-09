@@ -3,9 +3,7 @@ package com.accenture.bootcamp.onlinestore.project.orders;
 import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
 import com.accenture.bootcamp.onlinestore.project.products.Product;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -15,19 +13,27 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
 
-    @Select("select o.id, o.order_time, c.id, c.first_name, c.last_name, c.address, c.phone_number from\n" +
-            " customers as c\n" +
-            " inner join orders as o\n" +
-            " on c.id=o.customer_id;")
-    List<Customer> getOrderDetails();
+    @Select("select o.id, o.order_time, o.status_id, c.id, c.first_name, c.last_name, c.address, c.phone_number from\n" +
+            "customers as c\n" +
+            "inner join orders as o\n" +
+            "on c.id=o.customer_id")
+    List<Customer> getAllOrders();
 
-    @Delete("delete from orders where id=#{id}")
-    void delete(long id);
+    @Select("select o.id, o.order_time, o.status_id, c.id, c.first_name, c.last_name, c.address, c.phone_number from\n" +
+            "customers as c\n" +
+            "inner join orders as o\n" +
+            "on c.id=o.customer_id where o.id = #{id}")
+    Customer findOrderById(Long id);
 
-       /* @Select("select o.id, o.order_time, c.id, c.first_name, c.last_name, c.address, c.phone_number from\n" +
-                " customers as c\n" +
-                " inner join orders as o\n" +
-                " on c.id=o.customer_id where o.id = #{id}")
+    @Update("UPDATE orders SET status_id = 2 WHERE id = #{id}")
+    void updateStatusToApproved (Order order);
+
+
+
+   /* @Delete("delete from orders where id=#{id}")
+    void delete(long id);*/
+
+        /*@Insert("insert into orders where id = #{id}")
     Order findOrderById(long id);*/
 
    /* @Select("select id, customer_id, order_time from orders where customer_id = #{customer_id}")

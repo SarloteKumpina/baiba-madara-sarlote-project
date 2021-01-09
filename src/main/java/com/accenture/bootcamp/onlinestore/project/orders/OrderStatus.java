@@ -1,0 +1,45 @@
+package com.accenture.bootcamp.onlinestore.project.orders;
+
+import com.accenture.bootcamp.onlinestore.project.customer.Customer;
+
+import java.util.Objects;
+
+public class OrderStatus extends Order {
+
+    private int id;
+    private String name;
+
+    public OrderStatus(){
+
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderStatus that = (OrderStatus) o;
+        return id == that.id &&
+                name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
+}
