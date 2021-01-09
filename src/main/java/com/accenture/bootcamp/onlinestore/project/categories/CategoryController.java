@@ -76,7 +76,7 @@ public class CategoryController {
         List<Product> products = categoryRepository.getProductsForCategory(id);
         model.addAttribute("category", category);
         model.addAttribute("products", products);
-        return "categories/category-details";
+        return "cms/categories/category-details";
     }
 
 
