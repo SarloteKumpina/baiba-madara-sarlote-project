@@ -11,7 +11,7 @@ public interface ProductRepository {
 
 //    void insertProductCategory(long productId, List<Long> categoryIds);
 
-    Product update(Long id, ProductRequest product);
+    Product update(Product product);
 
     void delete(Long id);
 }

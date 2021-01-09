@@ -7,13 +7,9 @@
 
 <main class="container">
     <div class="py-5 px-3">
-        <h1 class="main-heading">Create / Edit product</h1>
+        <h1 class="main-heading">Create product</h1>
         <form method="post"
             th:object="${productToCreate}">
-            <div class="form-group">
-                <label for="id">ID</label>
-                <input readonly type="number" class="form-control" id="id" placeholder="id" value="1"/>
-            </div>
             <div class="form-group">
                 <label for="imageUri">Image URL</label>
                 <input type="text" th:field="*{imageUri}" class="form-control" id="imageUri" placeholder="Image URI">
@@ -35,15 +31,16 @@
                 <textarea th:field="*{description}" class="form-control" id="description" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <label for="categories">Products</label>
-                <select multiple class="form-control" id="categories">
-                    <option>[ID: 1] Category X</option>
-                    <option>[ID: 2] Category y</option>
-                    <option>[ID: 3] Category Z</option>
+                <label for="categories">Categories</label>
+                <select multiple class="form-control" id="categories" th:field="${productToCreate.categoryIds}">
+                    <option th:each="category : ${categories}"
+                            th:text="${category.name}"
+                            th:value="${{category.id}}">Category
+                    </option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary product-create-btn">Save</button>
-            <a class="btn btn-secondary" href="/products/categories" role="button">Cancel</a>
+            <a class="btn btn-secondary" href="/admin/products" role="button">Cancel</a>
         </form>
     </div>
 </main>

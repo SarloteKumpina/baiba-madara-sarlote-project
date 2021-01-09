@@ -75,16 +75,9 @@ public class ProductService implements ProductRepository {
 //    }
 
     @Override
-    public Product update(Long id, ProductRequest product) {
-        Product existing = findOne(id);
-        existing.setName(product.getName());
-        existing.setCategoryIds(product.getCategoryIds());
-        existing.setPrice(product.getPrice());
-        existing.setDescription(product.getDescription());
-        existing.setStock(product.getStock());
-        existing.setImageUri(product.getImageUri());
-        mapper.update(existing);
-        return existing;
+    public Product update(Product product) {
+        mapper.update(product);
+        return product;
     }
 
     @Override

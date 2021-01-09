@@ -1,6 +1,5 @@
 package com.accenture.bootcamp.onlinestore.project.products;
 
-import com.accenture.bootcamp.onlinestore.project.categories.Category;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public interface ProductMapper {
     List<Product> getProductsForCategory(long categoryId);
 
     @Update("UPDATE products SET name = #{name}, price = #{price}," +
-            "description = #{description}, stock = #{stock}, imageUri = #{imageURI}" +
+            "description = #{description}, stock = #{stock}, imageUri = #{imageUri}" +
             " WHERE id = #{id}")
     void update(Product product);
 
@@ -37,26 +36,13 @@ public interface ProductMapper {
             " values(#{name},#{price},#{description},#{stock},#{imageUri})")
     void insertProduct(Product product);
 
-    @Options(useGeneratedKeys = true,
-            keyProperty = "id",
-            keyColumn = "id")
     @Insert("insert into products_categories(product_id, category_id)" +
-            " values(#{product_id},#{category_id})")
+            " values(#{productId},#{categoryId})")
     void insertProductCategory(Long productId, Long categoryId);
 
-
-
-//    @Options(useGeneratedKeys = true,
-//            keyProperty = "id",
-//            keyColumn = "id")
-//    @Insert("insert into products_categories(product_id, category_id)" +
-//            " values(#{product_id},#{category_id})")
-//    void insertProductCategory(Long productId, List<Long> categoryIds);
-
-
-    @Delete("delete from products where id=#{product_id}")
+    @Delete("delete from products where id=#{productId}")
     void delete(Long productId);
 
-    @Delete("delete from products_categories where product_id=#{product_id}")
+    @Delete("delete from products_categories where product_id=#{productId}")
     void deleteProductCategories(Long productId);
 }
