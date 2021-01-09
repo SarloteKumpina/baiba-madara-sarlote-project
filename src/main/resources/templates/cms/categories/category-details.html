@@ -7,7 +7,7 @@
 
 <main class="container">
     <div class="starter-template py-5 px-3">
-        <h1 th:text="${category.name}" class="main-heading">Products</h1>
+        <h1 th:text="${category.name}" class="main-heading">Category</h1>
 <!--        <button type="button" class="btn btn-primary category-create-btn"-->
 <!--                onclick="location.href = 'products/new'">Create product</button>-->
 <!--        <h2 th:text="'Products ' + '(' + ${#lists.size(category.products)} + ')'">Products</h2>-->
@@ -15,17 +15,20 @@
             <tr>
                 <th>ID</th>
                 <th>Image</th>
+                <th>Description</th>
                 <th>Price</th>
                 <th>Name</th>
                 <th>Categories</th>
                 <th>In stock</th>
-                <th>Action</th>
+<!--                <th>Action</th>-->
             </tr>
-            <tr th:each="product: ${products.content}">
+<!--            PRODUCTS.CONTENT-->
+            <tr th:each="product: ${products}">
                 <td th:text="${product.id}"></td>
                 <td><img height="100"
                          th:src="${product.imageUri}"/>
                 </td>
+                <td th:text="${product.description}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.name}"></td>
                 <td>

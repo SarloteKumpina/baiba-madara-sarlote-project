@@ -17,11 +17,11 @@ public interface ProductMapper {
     long findSelectedCategoryId(long categoryId);
 
     @Select("select products.id, products.name, products.price, products.description," +
-            "products.stock, product.imageUri\n" +
+            "products.stock, products.imageUri\n" +
             "from products\n" +
             "inner join products_categories\n" +
             "on products_categories.product_id = products.id\n" +
-            "where products_categories.categoryId = #{categoryId}")
+            "where products_categories.category_id = #{category_id}")
     List<Product> getProductsForCategory(long categoryId);
 
     @Update("UPDATE products SET name = #{name}, price = #{price}," +
