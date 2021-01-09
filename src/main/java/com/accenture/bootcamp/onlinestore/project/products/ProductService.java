@@ -42,22 +42,13 @@ public class ProductService implements ProductRepository {
     @Override
     public Product insertProduct(Product product) {
         mapper.insertProduct(product);
-
         for (int i = 0; i < product.getCategoryIds().size(); i++) {
             Long categoryId = product.getCategoryIds().get(i);
             mapper.insertProductCategory(product.getId(), categoryId);
         }
-
         return product;
     }
 
-//    @Override
-//    public Product insertProduct(ProductRequest request) {
-//        Product product = new Product(request);
-//        mapper.insertProduct(product);
-//        return product;
-//    }
-//
 //    @Override
 //    public void insertProductCategory(Long productId, List<Long> categoryIds) {
 //        List<Long> categoryIdsToAdd = new ArrayList<>(categoryIds);
@@ -77,6 +68,11 @@ public class ProductService implements ProductRepository {
     @Override
     public Product update(Product product) {
         mapper.update(product);
+        mapper.deleteProductCategories(product.getId());
+        for (int i = 0; i < product.getCategoryIds().size(); i++) {
+            Long categoryId = product.getCategoryIds().get(i);
+            mapper.insertProductCategory(product.getId(), categoryId);
+        }
         return product;
     }
 

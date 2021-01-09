@@ -35,11 +35,12 @@
                 <textarea th:field="*{description}" class="form-control" id="description" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <label for="categories">Products</label>
-                <select multiple class="form-control" id="categories">
-                    <option>[ID: 1] Category X</option>
-                    <option>[ID: 2] Category y</option>
-                    <option>[ID: 3] Category Z</option>
+                <label for="categories">Categories</label>
+                <select multiple class="form-control" id="categories" th:field="${productForUpdate.categoryIds}">
+                    <option th:each="category : ${categories}"
+                            th:text="${category.name}"
+                            th:value="${{category.id}}">Category
+                    </option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary product-create-btn">Edit</button>
