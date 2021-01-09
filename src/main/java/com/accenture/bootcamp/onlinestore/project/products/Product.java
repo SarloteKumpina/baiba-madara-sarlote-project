@@ -23,7 +23,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, List<Long> categoryIds, BigDecimal price,
+    public Product(Long id, String name, List<Long> categoryIds, BigDecimal price,
                    String description, int stock, String imageUri) {
         this.id = id;
         this.name = name;
@@ -44,11 +44,11 @@ public class Product {
         this.imageUri = request.getImageUri();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

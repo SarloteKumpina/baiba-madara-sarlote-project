@@ -9,7 +9,7 @@ import java.util.List;
 public interface ProductMapper {
 
     @Select("select id, name, price, description, stock from products where id = #{id}")
-    Product findOne(long id);
+    Product findOne(Long id);
 
     @Select("select id, name, price, description, stock, imageUri from products")
     List<Product> findAll();
@@ -42,7 +42,7 @@ public interface ProductMapper {
             keyColumn = "id")
     @Insert("insert into products_categories(product_id, category_id)" +
             " values(#{product_id},#{category_id})")
-    void insertProductCategory(long productId, long categoryId);
+    void insertProductCategory(Long productId, Long categoryId);
 
 
 
@@ -51,12 +51,12 @@ public interface ProductMapper {
 //            keyColumn = "id")
 //    @Insert("insert into products_categories(product_id, category_id)" +
 //            " values(#{product_id},#{category_id})")
-//    void insertProductCategory(long productId, List<Long> categoryIds);
+//    void insertProductCategory(Long productId, List<Long> categoryIds);
 
 
     @Delete("delete from products where id=#{product_id}")
-    void delete(long productId);
+    void delete(Long productId);
 
     @Delete("delete from products_categories where product_id=#{product_id}")
-    void deleteProductCategories(long productId);
+    void deleteProductCategories(Long productId);
 }

@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product findOne(@PathVariable long id) {
+    public Product findOne(@PathVariable Long id) {
         return productRepository.findOne(id);
     }
 
@@ -43,14 +43,16 @@ public class ProductController {
 
     @GetMapping("/admin/products/new")
     public String showProductForm(Model model) {
-        //model.addAttribute("frontProduct", new AddedProductData());
+        Product product = new Product();
+        model.addAttribute("productToCreate", product);
         //model.addAttribute("options", categoriesService.categories());
-        return "cms/products/create-edit-product";
+        return "cms/products/create-product";
     }
 
-    @PostMapping
-    public Product create(@RequestBody ProductRequest product) {
-        return productRepository.insertProduct(product);
+    @PostMapping("/admin/products/new")
+    public String saveProduct(Product product) {
+        productRepository.insertProduct(product);
+        return "redirect:/admin/products";
     }
 
 //    @PostMapping("/category")
@@ -59,13 +61,13 @@ public class ProductController {
 //    }
 
     @PutMapping("/{id}")
-    public Product update(@PathVariable long id,
+    public Product update(@PathVariable Long id,
                           @RequestBody ProductRequest product) {
         return productRepository.update(id, product);
     }
 
     @GetMapping("/admin/products/delete/{id}")
-    public String delete(@PathVariable("id") long id) {
+    public String delete(@PathVariable("id") Long id) {
         productRepository.delete(id);
         return "redirect:/admin/products";
     }

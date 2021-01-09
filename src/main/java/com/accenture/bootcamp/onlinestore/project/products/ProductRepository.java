@@ -3,15 +3,15 @@ package com.accenture.bootcamp.onlinestore.project.products;
 import java.util.List;
 
 public interface ProductRepository {
-    Product findOne(long id);
+    Product findOne(Long id);
 
     List<Product> findAll();
 
-    Product insertProduct(ProductRequest product);
+    Product insertProduct(Product product);
 
 //    void insertProductCategory(long productId, List<Long> categoryIds);
 
-    Product update(long id, ProductRequest product);
+    Product update(Long id, ProductRequest product);
 
-    void delete(long id);
+    void delete(Long id);
 }

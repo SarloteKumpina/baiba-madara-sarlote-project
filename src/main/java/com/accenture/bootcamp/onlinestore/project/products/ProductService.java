@@ -20,7 +20,7 @@ public class ProductService implements ProductRepository {
     }
 
     @Override
-    public Product findOne(long id) {
+    public Product findOne(Long id) {
         Product product = mapper.findOne(id);
         if (product == null) {
             throw new NotFoundException("Product with id " + id + " doesn't exist");
@@ -40,8 +40,7 @@ public class ProductService implements ProductRepository {
     }
 
     @Override
-    public Product insertProduct(ProductRequest request) {
-        Product product = new Product(request);
+    public Product insertProduct(Product product) {
         mapper.insertProduct(product);
 
         for (int i = 0; i < product.getCategoryIds().size(); i++) {
@@ -60,7 +59,7 @@ public class ProductService implements ProductRepository {
 //    }
 //
 //    @Override
-//    public void insertProductCategory(long productId, List<Long> categoryIds) {
+//    public void insertProductCategory(Long productId, List<Long> categoryIds) {
 //        List<Long> categoryIdsToAdd = new ArrayList<>(categoryIds);
 //        List<Long> validCategoryIds = new ArrayList<>();
 //        for (int i = 0; i < categoryIdsToAdd.size(); i++) {
@@ -76,7 +75,7 @@ public class ProductService implements ProductRepository {
 //    }
 
     @Override
-    public Product update(long id, ProductRequest product) {
+    public Product update(Long id, ProductRequest product) {
         Product existing = findOne(id);
         existing.setName(product.getName());
         existing.setCategoryIds(product.getCategoryIds());
@@ -89,7 +88,7 @@ public class ProductService implements ProductRepository {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         mapper.deleteProductCategories(id);
         mapper.delete(id);
     }
