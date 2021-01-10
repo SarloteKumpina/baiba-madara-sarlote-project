@@ -7,7 +7,7 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
 
-    @Select("select id, name, price, description, stock from products where id = #{id}")
+    @Select("select id, name, price, description, stock, imageUri from products where id = #{id}")
     Product findOne(Long id);
 
     @Select("select id, name, price, description, stock, imageUri from products")
