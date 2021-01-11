@@ -33,7 +33,7 @@ public class ShopController {
         return "shop/about";
     }
 
-    @GetMapping(path = {"/shop", "/shop/categories", "/shop/categories/{categoryId}"})
+    @GetMapping(path = {"/shop/shop", "/shop/categories", "/shop/categories/{categoryId}"})
     public String shopOneCategory(@PathVariable(required = false) Long categoryId, Model model) {
         if (categoryId == null) {
             List<Category> allCategories = categoryRepository.findAll();
