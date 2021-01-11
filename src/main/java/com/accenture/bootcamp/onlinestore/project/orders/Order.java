@@ -1,9 +1,11 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
+import com.accenture.bootcamp.onlinestore.project.customer.Customer;
+
 import java.sql.Timestamp;
 import java.util.Objects;
 
-public class Order {
+public class Order extends Customer {
 
     private Long id;
     private Long customerId;

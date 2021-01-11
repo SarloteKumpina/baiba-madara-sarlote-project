@@ -15,12 +15,12 @@ public class OrderService {
         this.mapper = mapper;
     }
 
-    public List<Customer> getAllOrders() {
+    public List<Order> getAllOrders() {
         return mapper.getAllOrders();
     }
 
     public Order findOrderById(Long id) {
-        Customer order = mapper.findOrderById(id);
+        Order order = mapper.findOrderById(id);
         if (order == null) {
             throw new NotFoundException("Order with id " + id + " doesn't exist");
         }

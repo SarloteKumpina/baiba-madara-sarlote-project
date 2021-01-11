@@ -4,7 +4,7 @@ import com.accenture.bootcamp.onlinestore.project.orders.Order;
 
 import java.math.BigDecimal;
 
-public class Customer extends Order {
+public class Customer  {
 
     private long id;
     private String firstName;
@@ -73,16 +73,6 @@ public class Customer extends Order {
     }
     public void setStatusName(String statusName) {
         this.statusName = statusName;
-    }
-
-    @Override
-    public int getStatusId() {
-        return super.getStatusId();
-    }
-
-    @Override
-    public void setStatusId(int statusId) {
-        super.setStatusId(statusId);
     }
 
     public void setStatusId(String statusId) {

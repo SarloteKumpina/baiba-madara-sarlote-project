@@ -16,7 +16,7 @@ public interface OrderMapper {
             " right join customers as c on c.id=o.customer_id\n" +
             " inner join status as s on o.status_id=s.id \n" +
             " group by o.id;")
-    List<Customer> getAllOrders();
+    List<Order> getAllOrders();
 
     @Select("select o.id, o.order_time, SUM(products.price * op.quantity) as orderTotalSum,\n" +
             " s.name as statusName, c.id, c.first_name, c.last_name, c.address, c.phone_number \n" +
@@ -26,13 +26,13 @@ public interface OrderMapper {
             " right join customers as c on c.id=o.customer_id\n" +
             " inner join status as s on o.status_id=s.id \n" +
             " where o.id = #{id}")
-    Customer findOrderById(Long id);
+    Order findOrderById(Long id);
 
     @Select("select s.id as statusId, s.name\n" +
             "from status as s;")
     List<OrderStatus> findAllStatuses();
 
-    @Update("UPDATE orders SET status_id as statusId = #{status_id} where id = #{id}")
+    @Update("UPDATE orders SET status_id = #{status_id} where id = #{id}")
     void update (Order order);
 
 }

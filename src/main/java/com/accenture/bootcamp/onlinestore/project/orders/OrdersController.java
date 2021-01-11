@@ -15,7 +15,7 @@ public class OrdersController {
 
     @GetMapping("/admin/orders")
     public String getAllOrders(Model model){
-        List<Customer> allOrders = orderService.getAllOrders();
+        List<Order> allOrders = orderService.getAllOrders();
         model.addAttribute("Order", allOrders);
         return "cms/orders/orders-table";
     }
