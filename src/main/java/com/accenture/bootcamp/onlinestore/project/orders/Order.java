@@ -8,7 +8,7 @@ public class Order {
     private Long id;
     private Long customerId;
     private Timestamp orderTime;
-    private String statusId;
+    private int statusId;
 
     public Order() {
 
@@ -38,11 +38,11 @@ public class Order {
         this.orderTime = orderTime;
     }
 
-    public String getStatusId() {
+    public int getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(String statusId) {
+    public void setStatusId(int statusId) {
         this.statusId = statusId;
     }
 

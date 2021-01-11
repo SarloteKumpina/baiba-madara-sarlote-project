@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{cms/layout/head :: head}"></div>
+<body>
+
+<div th:replace="~{cms/layout/navigation :: navigation}"></div>
+
+<main class="container">
+    <div class="py-5 px-3">
+        <h1 class="main-heading">Edit Order</h1>
+        <form method="post"
+              th:object="${orderForUpdate}">
+             <div class="form-group">
+                <label for="statuses">Order "Status"</label>
+                     <p></p>
+                <select multiple class="form-control" id="statuses" th:field="${orderForUpdate.statusId}">
+                    <option th:each="order : ${statuses}"
+                            th:text="${order.name}"
+                            th:value="${{order.statusId}}">OrderStatus
+                    </option>
+                </select>
+            </div>
+            <p></p>
+            <button type="submit" class="btn btn-primary order-create-btn">Edit</button>
+            <a class="btn btn-secondary" href="/admin/orders" role="button">Cancel</a>
+        </form>
+    </div>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+</body>
+</html>
