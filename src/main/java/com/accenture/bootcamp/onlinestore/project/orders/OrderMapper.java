@@ -32,7 +32,7 @@ public interface OrderMapper {
             "from status as s;")
     List<OrderStatus> findAllStatuses();
 
-    @Update("UPDATE orders SET status_id = #{status_id} where id = #{id}")
+    @Update("UPDATE orders SET status_id = #{statusId} where id = #{id}")
     void update (Order order);
 
 }
