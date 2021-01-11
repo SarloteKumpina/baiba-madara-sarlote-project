@@ -1,7 +1,5 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-import com.accenture.bootcamp.onlinestore.project.customer.Customer;
-
 import java.util.Objects;
 
 public class OrderStatus extends Order {
@@ -42,4 +40,5 @@ public class OrderStatus extends Order {
     public int hashCode() {
         return Objects.hash(id, name);
     }
+
 }

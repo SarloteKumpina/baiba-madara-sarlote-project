@@ -33,14 +33,23 @@ public class ShopController {
         return "shop/about";
     }
 
-    @GetMapping(path = {"/shop/{categoryName}", "/shop"})
-    public String shopProduct(@PathVariable(required = false) String categoryName, Model model) {
-        System.out.println(categoryName);
-        List<Category> allCategories = categoryRepository.findAll();
-        model.addAttribute("allCategories", allCategories);
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "shop/shop";
+    @GetMapping(path = {"/shop", "/categories", "/categories/{categoryId}"})
+    public String shopOneCategory(@PathVariable(required = false) Long categoryId, Model model) {
+        if (categoryId == null) {
+            List<Category> allCategories = categoryRepository.findAll();
+            model.addAttribute("allCategories", allCategories);
+            List<Product> products = productRepository.findAll();
+            model.addAttribute("products", products);
+            return "shop/shop";
+        } else {
+            List<Category> allCategories = categoryRepository.findAll();
+            model.addAttribute("allCategories", allCategories);
+            Category category = categoryRepository.findOne(categoryId);
+            model.addAttribute("category", category);
+            List<Product> products = productRepository.getProductsForCategory(categoryId);
+            model.addAttribute("products", products);
+            return "shop/shop-by-categories";
+        }
     }
 
     @GetMapping("/cart")
@@ -61,41 +70,5 @@ public class ShopController {
     @GetMapping("/contact-us")
     public String ShopContact() {
         return "shop/contact-us";
-    }
-
-
-    @GetMapping("/test")
-    public String testCategoriesList(Model model) {
-        List<Category> allCategories = categoryRepository.findAll();
-        model.addAttribute("allCategories", allCategories);
-        return "shop/shopLooks/categories";
-    }
-
-    @GetMapping("/test2")
-    public String testProductsList(Model model) {
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "shop/shopLooks/productslist";
-    }
-
-    @GetMapping("/test3")
-    public String testProductsList3(Model model) {
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "shop/shopLooks/productsgrid";
-    }
-
-    @GetMapping("/test4")
-    public String testProductsList4(Model model) {
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "shop/shopLooks/listgridviewfromw3schools";
-    }
-
-    @GetMapping("/test5")
-    public String testProductsList5(Model model) {
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "shop/shopLooks/expandinggridfromw3schools";
     }
 }

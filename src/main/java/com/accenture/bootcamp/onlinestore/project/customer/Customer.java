@@ -2,19 +2,7 @@ package com.accenture.bootcamp.onlinestore.project.customer;
 
 import com.accenture.bootcamp.onlinestore.project.orders.Order;
 
-import java.sql.Timestamp;
-
 public class Customer extends Order {
-
-    //create TABLE customers (
-    //    id bigint(20) NOT NULL AUTO_INCREMENT,
-    //    first_name varchar(255) NOT NULL,
-    //    last_name varchar(255) NOT NULL,
-    //    phone_number varchar (255) NOT NULL,
-    //    email varchar(255) NOT NULL,
-    //    address varchar(255) NOT NULL,
-    //    PRIMARY KEY (id)
-    //);
 
     private long id;
     private String firstName;
@@ -22,7 +10,8 @@ public class Customer extends Order {
     private String phoneNumber;
     private String email;
     private String address;
-
+    private String statusName;
+    private String statusId;
 
     public Customer() {
 
@@ -74,5 +63,22 @@ public class Customer extends Order {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    @Override
+    public int getStatusId() {
+        return super.getStatusId();
+    }
+
+    @Override
+    public void setStatusId(int statusId) {
+        super.setStatusId(statusId);
     }
 }
