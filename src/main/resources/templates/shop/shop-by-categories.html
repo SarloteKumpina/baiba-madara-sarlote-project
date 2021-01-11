@@ -183,6 +183,7 @@
                             <div class="tab-content">
 <!--Products in grid-view-->
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <h3 th:text="'category: ' + ${category.name}" class="main-heading">Category</h3>
                                     <div class="row">
 <!--Bootstrap 4 Grid-->
                                         <div th:each="product: ${products}" class="col-sm-6 col-md-6 col-lg-4 col-xl-4" >
