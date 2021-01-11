@@ -2,6 +2,8 @@ package com.accenture.bootcamp.onlinestore.project.customer;
 
 import com.accenture.bootcamp.onlinestore.project.orders.Order;
 
+import java.math.BigDecimal;
+
 public class Customer extends Order {
 
     private long id;
@@ -12,6 +14,7 @@ public class Customer extends Order {
     private String address;
     private String statusName;
     private String statusId;
+    private BigDecimal orderTotalSum;
 
     public Customer() {
 
@@ -80,5 +83,17 @@ public class Customer extends Order {
     @Override
     public void setStatusId(int statusId) {
         super.setStatusId(statusId);
+    }
+
+    public void setStatusId(String statusId) {
+        this.statusId = statusId;
+    }
+
+    public BigDecimal getOrderTotalSum() {
+        return orderTotalSum;
+    }
+
+    public void setOrderTotalSum(BigDecimal orderTotalSum) {
+        this.orderTotalSum = orderTotalSum;
     }
 }
