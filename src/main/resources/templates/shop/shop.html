@@ -47,11 +47,11 @@
 <!--kategoriju nosaukumi-->
                         <div class="filter-sidebar-left">
                             <div class="title-left">
-                                <h3><a href="/shop/categories">Categories</a></h3>
+                                <h3><a href="/categories">Categories</a></h3>
                             </div>
                             <div class="list-group">
                                 <ul >
-                                    <li th:each="category: ${allCategories}"> <a th:href="@{/shop/categories/{category}(category=${category.id})}"
+                                    <li th:each="category: ${allCategories}"> <a th:href="@{/categories/{category}(category=${category.id})}"
                                             th:text="${category.name}">
 <!-- plus skaits kategorijā?-->
                                     </a> </li>
