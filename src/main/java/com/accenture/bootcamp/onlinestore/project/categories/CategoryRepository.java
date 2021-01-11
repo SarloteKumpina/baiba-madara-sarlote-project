@@ -7,6 +7,8 @@ public interface CategoryRepository {
 
     List<Category> findAll();
 
+    List<Long> getCategoryIdsForProduct(Long productId);
+
     Category create(Category category);
 
     Category update(Long id, Category category);

@@ -29,6 +29,11 @@ public class CategoryService implements CategoryRepository {
     }
 
     @Override
+    public List<Long> getCategoryIdsForProduct(Long productId) {
+        return mapper.getCategoryIdsForProduct(productId);
+    }
+
+    @Override
     public Category create(Category newCategory) {
         mapper.create(newCategory);
         return newCategory;

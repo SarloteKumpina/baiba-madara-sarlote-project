@@ -20,6 +20,13 @@ public interface CategoryMapper {
             "where products_categories.product_id = #{productId}")
     List<Category> getCategoriesForProduct(Long productId);
 
+    @Select("select categories.id\n" +
+            "from categories\n" +
+            "inner join products_categories\n" +
+            "on products_categories.category_id = categories.id\n" +
+            "where products_categories.product_id = #{productId}")
+    List<Long> getCategoryIdsForProduct(Long productId);
+
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
