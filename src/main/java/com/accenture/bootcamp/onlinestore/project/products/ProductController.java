@@ -67,6 +67,10 @@ public class ProductController {
     @GetMapping("/admin/products/update/{id}")
     public String displayProductUpdateForm(@PathVariable("id") Long id, Model model) {
         Product productForUpdate = productRepository.findOne(id);
+        // 1. retrieve categoryIds List for specific product
+        //category = productRepository.findOne(categoryId);
+
+        // 2. insert retrieved list into "productForUpdate
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("productForUpdate", productForUpdate);
         model.addAttribute("categories", categories);

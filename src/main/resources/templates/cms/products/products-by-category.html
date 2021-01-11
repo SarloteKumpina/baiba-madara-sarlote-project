@@ -17,6 +17,7 @@
                 <th>Price</th>
                 <th>Categories</th>
                 <th>In stock</th>
+                <th>Action</th>
             </tr>
             <tr th:each="product: ${products}">
                 <td th:text="${product.id}"></td>
@@ -34,6 +35,10 @@
                     </ul>
                 </td>
                 <td th:text="${product.stock}"></td>
+                <td>
+                    <a th:href="@{/admin/products/update/{id}(id=${product.id})}">Edit</a>
+                    <a th:href="@{/admin/products/delete/{id}(id=${product.id})}">Delete</a>
+                </td>
             </tr>
         </table>
     </div>
