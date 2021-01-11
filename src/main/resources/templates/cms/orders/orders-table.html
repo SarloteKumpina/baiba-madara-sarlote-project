@@ -23,10 +23,9 @@
                     <td th:text="${order.firstName + ' ' + order.lastName + ', ' +
                      order.address + ', ' + 'Tel. ' + order.phoneNumber}"></td>
                     <!-- Status PENDING/APPROVED-->
-                    <td th:text="${order.statusId}"></td>
+                    <td th:text="${order.statusName}"></td>
                     <td>
-                        <a th:href="@{/admin/orders/approve/{id}(id=${order.id})}">Approve</a>
-                        <a th:href="@{/admin/orders/cancel/{id}(id=${order.id})}">Cancel</a>
+                        <a th:href="@{/admin/orders/update-status/{id}(id=${order.id})}">Edit</a>
                     </td>
                 </tr>
                 </tbody>
