@@ -10,8 +10,14 @@ public interface CategoryMapper {
     @Select("select id, name, imageUri from categories where id = #{id}")
     Category findOne(Long id);
 
+    @Select("select name from categories where name = #{name}")
+    String findByName(String name);
+
     @Select("select id, name, imageUri from categories")
     List<Category> findAll();
+
+    @Select("select name from categories")
+    List<String> findAllNames();
 
     @Select("select categories.id, categories.name, categories.imageUri\n" +
             "from categories\n" +
