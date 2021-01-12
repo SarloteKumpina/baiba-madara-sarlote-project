@@ -68,4 +68,16 @@ public class Category {
     public int hashCode() {
         return Objects.hash(id, name, imageUri);
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
+    public boolean categoryIsNew() {
+        return this.id == null;
+    }
+
+
+
 }

@@ -23,9 +23,19 @@ public class CategoryService implements CategoryRepository {
         return category;
     }
 
-        @Override
+    @Override
+    public String findByName(String name) {
+        return mapper.findByName(name);
+    }
+
+    @Override
     public List<Category> findAll() {
         return mapper.findAll();
+    }
+
+    @Override
+    public List<String> findAllNames() {
+        return mapper.findAllNames();
     }
 
     @Override
