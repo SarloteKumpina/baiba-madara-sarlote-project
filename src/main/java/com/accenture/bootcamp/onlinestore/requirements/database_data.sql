@@ -2,7 +2,9 @@ insert into categories values
     (null, 'glasses', 'https://www.coolframes.co.uk/get_image_zoom.php?fid=165448&color=52_0UNN_Blue_Red_White_00_Demo_Lens&alt='),
     (null, 'dresses', 'https://i.pinimg.com/564x/78/d7/a6/78d7a68fdcf7e91560b82147e5025a96.jpg'),
     (null, 'shoes', 'https://cdn-images.farfetch-contents.com/13/68/25/52/13682552_21610419_1000.jpg'),
-    (null, 'New Years offer', 'https://image.freepik.com/free-vector/lettering-happy-new-year-2021_52683-51730.jpg');
+    (null, 'New Years offer', 'https://image.freepik.com/free-vector/lettering-happy-new-year-2021_52683-51730.jpg'),
+    (null, 'skirts', 'https://www.portmans.com.au/RJ/aurora/images/products/large/710262_pinkombre_back_l.jpg'),
+    (null, 'purses', 'https://www.kularfashion.com/images/ted-baker-muscovy-textured-leather-bobble-matinee-purse-rose-gold-p6994-18975_medium.jpg');
 
 insert into products values
     (null, 'Tommy Hilfiger 1017', 120.00, 'Package contents: Tommy Hilfiger Eyeglasses, Tommy Hilfiger Genuine Case, Tommy Hilfiger Branded Cloth', 100, 'https://www.coolframes.co.uk/get_image_zoom.php?fid=165448&color=52_0UNN_Blue_Red_White_00_Demo_Lens&alt='),
@@ -15,7 +17,11 @@ insert into products values
     (null, 'Tommy Hilfiger Inella (Black) Womens Shoes', 99.00, 'Man-made vegan leather Tommy Hilfiger® ankle boots in a round-toe silhouette with inside zipper and pull-tab at the heel.', 100, 'https://m.media-amazon.com/images/I/71EmUDbwGOL._SX400_.jpg'),
     (null, 'Tommy Hilfiger Divah Lace-up Booties ', 119.00, 'Tommy Hilfiger Divah Lace-Up Booties Womens Shoes', 100, 'https://cdn.modesens.com/product/4274063'),
     (null, 'Tommy Hilfiger Sunday dress sandals', 115.99, 'SUNDAY TWO-PIECE BLOCK-HEEL DRESS SANDALS WOMENs SHOES IN BLACK', 100, 'https://i.pinimg.com/564x/7d/2f/81/7d2f8138115daa40308983bdfb88eb2d.jpg'),
-    (null, 'Tommy Hilfiger ankle strap sandals', 113.00, 'Blue calf leather ankle strap sandals from Tommy Hilfiger featuring an open toe, a buckle fastening, a branded insole and a chunky high heel.', 100, 'https://cdn-images.farfetch-contents.com/13/68/25/52/13682552_21610419_1000.jpg');
+    (null, 'Tommy Hilfiger ankle strap sandals', 113.00, 'Blue calf leather ankle strap sandals from Tommy Hilfiger featuring an open toe, a buckle fastening, a branded insole and a chunky high heel.', 100, 'https://cdn-images.farfetch-contents.com/13/68/25/52/13682552_21610419_1000.jpg'),
+    (null, 'Clara Crossbody Purse', 160.00, 'Elegant, simple, and understated, youll want to carry the Clara Crossbody purse all around town.', 100, 'https://cdn.shopify.com/s/files/1/0277/9027/products/Clara.Crossbody.Vachetta.w.3_1100x.jpg?v=1566506039'),
+    (null, 'Ted Baker MUSCOVY Textured Leather Bobble Matinee Purse', 85.00, 'Product Details: Pebbled grain leather, Crystal bobble clasp, Internal compartment for cards, Internal compartment for coins and notes, Zip compartment, Popper closure, Fully lined, Dimensions: H9.5cm x W19cm x D3cm, Fabric Content: Shell: 100% Bovine Leather; Lining: 100% Polyester', 100, 'https://www.kularfashion.com/images/ted-baker-muscovy-textured-leather-bobble-matinee-purse-rose-gold-p6994-18975_medium.jpg'),
+    (null, 'Dress Me Up Ombre Skirt', 119.95, 'The Dress Me Up Ombre Skirt can easily be dressed down or up for your next event! Get the look by pairing with a sleeveless knit tank and sandal heels.', 100, 'https://www.portmans.com.au/RJ/aurora/images/products/large/710262_pinkombre_back_l.jpg'),
+    (null, 'Linen Ruffle Mini Skirt', 59.97, 'The Linen Ruffle Skirt will add some colour to your wardrobe this summer! Wear with white tank top and sandal heels for a warm day out', 100, 'https://www.portmans.com.au/RJ/aurora/images/products/large/714598_red_back_l.jpg');
 
 insert into products_categories values
     (null, 1, 1),
@@ -39,7 +45,11 @@ insert into products_categories values
     (null, 8, 4),
     (null, 9, 4),
     (null, 10, 4),
-    (null, 11, 4);
+    (null, 11, 4),
+    (null, 12, 6),
+    (null, 13, 6),
+    (null, 14, 5),
+    (null, 15, 5);
 
 insert into customers (first_name, last_name, phone_number, email, address) values
 ('Dace', 'Bogdāne', 26667203, 'dacebogdane@gmail.com', 'Madona, Vaboļu iela 11'),
