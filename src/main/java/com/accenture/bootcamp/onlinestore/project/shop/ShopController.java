@@ -34,7 +34,7 @@ public class ShopController {
     }
 
     @GetMapping(path = {"/shop", "/categories", "/categories/{categoryId}"})
-    public String shopOneCategory(@PathVariable(required = false) Long categoryId, Model model) {
+    public String shopByCategories(@PathVariable(required = false) Long categoryId, Model model) {
         if (categoryId == null) {
             List<Category> allCategories = categoryRepository.findAll();
             model.addAttribute("allCategories", allCategories);
@@ -50,6 +50,13 @@ public class ShopController {
             model.addAttribute("products", products);
             return "shop/shop-by-categories";
         }
+    }
+
+    @GetMapping("/products/{productId}")
+    public String productDetail(@PathVariable(required = true) Long productId, Model model) {
+        Product product = productRepository.findOne(productId);
+        model.addAttribute("product", product);
+        return "shop/shop-detail";
     }
 
     @GetMapping("/cart")
