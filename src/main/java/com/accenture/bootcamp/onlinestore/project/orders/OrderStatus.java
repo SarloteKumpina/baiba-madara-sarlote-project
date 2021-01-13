@@ -2,7 +2,9 @@ package com.accenture.bootcamp.onlinestore.project.orders;
 
 import java.util.Objects;
 
-public class OrderStatus extends Order {
+public class OrderStatus  {
+
+    //test commit
 
     private int id;
     private String name;
@@ -10,7 +12,6 @@ public class OrderStatus extends Order {
     public OrderStatus(){
 
     }
-    //test
 
     public long getId() {
         return id;
