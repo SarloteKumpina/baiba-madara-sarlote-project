@@ -30,24 +30,24 @@ public class CategoryController {
     }
 
     @GetMapping("/admin/categories/create")
-    public String displayCategoryCreateForm(Model model) {
-        Category categoryToCreate = new Category();
-        model.addAttribute("categoryToCreate", categoryToCreate);
+    public String displayCategoryCreateForm(Category category) {
+//        Category categoryToCreate = new Category();
+//        model.addAttribute("categoryToCreate", categoryToCreate);
         return "cms/categories/create-category";
     }
 
     @PostMapping("/admin/categories/create")
-    public String createCategory(Category category) {
+    public String createCategory(@Valid Category category, BindingResult result) {
         String name = category.getName();
         List<String> allNamesForCategories = categoryRepository.findAllNames();
-        if(category.categoryIsNew() && name.equals("")){
-            return "redirect:/admin/categories";
-        } else if(category.categoryIsNew() && allNamesForCategories.contains(name)) {
-            return "redirect:/admin/categories";
-        } else {
-            categoryRepository.create(category);
-            return "redirect:/admin/categories";
+        if(category.categoryIsNew() && allNamesForCategories.contains(name)){
+            result.rejectValue("name", "duplicate", "Category with this name already exists.");
+            return "cms/categories/create-category";
+        } else if (result.hasErrors()) {
+            return "cms/categories/create-category";
         }
+        categoryRepository.create(category);
+        return "redirect:/admin/categories";
     }
 
 
