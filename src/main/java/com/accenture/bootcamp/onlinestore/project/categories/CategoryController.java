@@ -38,11 +38,11 @@ public class CategoryController {
 
     @PostMapping("/admin/categories/create")
     public String createCategory(Category category) {
-        String name = categoryRepository.findByName(category.getName());
+        String name = category.getName();
         List<String> allNamesForCategories = categoryRepository.findAllNames();
-        if (category.categoryIsNew() && allNamesForCategories.contains(name)) {
+        if(category.categoryIsNew() && name.equals("")){
             return "redirect:/admin/categories";
-        } else if (name == null) {
+        } else if(category.categoryIsNew() && allNamesForCategories.contains(name)) {
             return "redirect:/admin/categories";
         } else {
             categoryRepository.create(category);
