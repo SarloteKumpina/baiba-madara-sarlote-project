@@ -1,7 +1,5 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-import com.accenture.bootcamp.onlinestore.project.customer.Customer;
-
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -9,7 +7,8 @@ import java.util.List;
 public interface OrderMapper {
 
     @Select("select o.id, o.order_time, SUM(products.price * op.quantity) as orderTotalSum,\n" +
-            " s.name as statusName, c.id, c.first_name, c.last_name, c.address, c.phone_number \n" +
+            " s.name as statusName, c.id as customerId, c.first_name as firstName," +
+            " c.last_name as lastName, c.address, c.phone_number as phoneNumber \n" +
             " from orders as o\n" +
             " left join orders_products as op on op.order_id = o.id\n" +
             " left join products on products.id = op.product_id\n" +
