@@ -36,8 +36,10 @@ public class ShopProductController {
         model.addAttribute("productForAddToCart", product);
         model.addAttribute("categoriesForProduct", categories);
         model.addAttribute("productForm", productForm);
-        return "shop/shop-detail";
+        return "shop/product-details";
     }
+
+
 
     private void addShoppingCartCookieToResponse(HttpServletResponse response, String cookieValue) {
         Cookie cookie = CookieUtils.createCookie(USER_ID_COOKIE_NAME, cookieValue);

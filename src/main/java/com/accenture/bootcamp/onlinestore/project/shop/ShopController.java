@@ -58,7 +58,7 @@ public class ShopController {
     public String productDetail(@PathVariable(required = true) Long productId, Model model) {
         Product product = productRepository.findOne(productId);
         model.addAttribute("product", product);
-        return "shop/shop-detail";
+        return "shop/product-details";
     }
 
 //    @GetMapping("/cart")
