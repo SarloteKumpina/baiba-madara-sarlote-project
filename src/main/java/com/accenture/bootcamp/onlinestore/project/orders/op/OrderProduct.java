@@ -13,7 +13,7 @@ import java.util.List;
 public class OrderProduct {
 
     private long id;
-    private List<Long> productIds = new ArrayList<>();
+    private Long productId;
     private int quantity;
     private long orderId;
 

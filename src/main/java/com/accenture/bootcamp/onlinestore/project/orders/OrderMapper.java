@@ -32,6 +32,27 @@ public interface OrderMapper {
     List<OrderStatus> findAllStatuses();
 
     @Update("UPDATE orders SET status_id = #{statusId} where id = #{id}")
-    void update (Order order);
+    void updateStatus (Order order);
+
+    @Options(useGeneratedKeys = true,
+            keyProperty = "id",
+            keyColumn = "id")
+    @Insert("insert into customers(id, first_name, last_name, address, phone_number)" +
+            " values(#{id}, #{firstName}, #{lastName}, #{address}, #{phoneNumber})")
+    void insertCustomerDetails(Order order);
+
+    @Options(useGeneratedKeys = true,
+            keyProperty = "id",
+            keyColumn = "id")
+    @Insert("insert into orders(user_id, customer_id)" +
+            " values(#{userId}, #{customerId})")
+    void insertOrderInfo(Order order);
+
+    @Options(useGeneratedKeys = true,
+            keyProperty = "id",
+            keyColumn = "id")
+    @Insert("insert into orders_products (product_id, order_id, quantity)" +
+            " values( #{productId},#{orderId}, #{quantity}")
+    void insertOrdersProducts(Order order);
 
 }
