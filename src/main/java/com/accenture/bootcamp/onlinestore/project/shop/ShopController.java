@@ -59,10 +59,10 @@ public class ShopController {
         return "shop/shop-detail";
     }
 
-    @GetMapping("/cart")
-    public String ShopCart() {
-        return "shop/cart";
-    }
+//    @GetMapping("/cart")
+//    public String ShopCart() {
+//        return "shop/cart";
+//    }
 
     @GetMapping("/checkout")
     public String ShopCheckout() {
