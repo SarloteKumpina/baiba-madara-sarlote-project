@@ -1,13 +1,12 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class OrderService {
+public class OrderService extends Order {
 
     private final OrderMapper mapper;
 

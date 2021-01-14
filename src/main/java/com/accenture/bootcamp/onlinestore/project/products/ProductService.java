@@ -31,7 +31,7 @@ public class ProductService implements ProductRepository {
     @Override
     public List<Product> findAll() {
         List<Product> products = mapper.findAll();
-        for (int i = 0; i < products.size(); i++){
+        for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             List<Category> categories = categoryMapper.getCategoriesForProduct(product.getId());
             product.setCategories(categories);
@@ -41,7 +41,7 @@ public class ProductService implements ProductRepository {
 
     public List<Product> getProductsForCategory(Long id) {
         List<Product> products = mapper.getProductsForCategory(id);
-        for (int i = 0; i < products.size(); i++){
+        for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             List<Category> categories = categoryMapper.getCategoriesForProduct(product.getId());
             product.setCategories(categories);

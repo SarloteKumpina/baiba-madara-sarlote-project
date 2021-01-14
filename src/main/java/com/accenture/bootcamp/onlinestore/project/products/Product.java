@@ -100,7 +100,7 @@ public class Product {
         this.imageUri = imageUri;
     }
 
-    public List<Category> getCategories(){
+    public List<Category> getCategories() {
         return categories;
     }
 
