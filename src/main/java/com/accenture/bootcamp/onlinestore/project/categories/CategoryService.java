@@ -1,12 +1,12 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
-public class CategoryService implements CategoryRepository {
+@Service
+public class CategoryService {
 
     private final CategoryMapper mapper;
 
@@ -14,7 +14,6 @@ public class CategoryService implements CategoryRepository {
         this.mapper = mapper;
     }
 
-    @Override
     public Category findOne(Long id) {
         Category category = mapper.findOne(id);
         if (category == null) {
@@ -23,33 +22,27 @@ public class CategoryService implements CategoryRepository {
         return category;
     }
 
-    @Override
     public String findByName(String name) {
         return mapper.findByName(name);
     }
 
-    @Override
     public List<Category> findAll() {
         return mapper.findAll();
     }
 
-    @Override
     public List<String> findAllNames() {
         return mapper.findAllNames();
     }
 
-    @Override
     public List<Long> getCategoryIdsForProduct(Long productId) {
         return mapper.getCategoryIdsForProduct(productId);
     }
 
-    @Override
     public Category create(Category newCategory) {
         mapper.create(newCategory);
         return newCategory;
     }
 
-    @Override
     public Category update(Long id, Category category) {
         Category existing = findOne(id);
         existing.setName(category.getName());
@@ -58,7 +51,6 @@ public class CategoryService implements CategoryRepository {
         return existing;
     }
 
-    @Override
     public void delete(Long id) {
         mapper.delete(findOne(id));
     }

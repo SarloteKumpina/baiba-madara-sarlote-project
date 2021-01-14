@@ -1,7 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.shop;
 
 import com.accenture.bootcamp.onlinestore.project.categories.Category;
-import com.accenture.bootcamp.onlinestore.project.categories.CategoryRepository;
+import com.accenture.bootcamp.onlinestore.project.categories.CategoryService;
 import com.accenture.bootcamp.onlinestore.project.products.Product;
 import com.accenture.bootcamp.onlinestore.project.products.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ import java.util.List;
 
 @Controller
 public class ShopController {
-    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
     private final ProductRepository productRepository;
 
     @Autowired
-    public ShopController(CategoryRepository categoryRepository, ProductRepository productRepository) {
-        this.categoryRepository = categoryRepository;
+    public ShopController(CategoryService categoryService, ProductRepository productRepository) {
+        this.categoryService = categoryService;
         this.productRepository = productRepository;
     }
 
@@ -36,15 +36,15 @@ public class ShopController {
     @GetMapping(path = {"/shop", "/categories", "/categories/{categoryId}"})
     public String shopByCategories(@PathVariable(required = false) Long categoryId, Model model) {
         if (categoryId == null) {
-            List<Category> allCategories = categoryRepository.findAll();
+            List<Category> allCategories = categoryService.findAll();
             model.addAttribute("allCategories", allCategories);
             List<Product> products = productRepository.findAll();
             model.addAttribute("products", products);
             return "shop/shop";
         } else {
-            List<Category> allCategories = categoryRepository.findAll();
+            List<Category> allCategories = categoryService.findAll();
             model.addAttribute("allCategories", allCategories);
-            Category category = categoryRepository.findOne(categoryId);
+            Category category = categoryService.findOne(categoryId);
             model.addAttribute("category", category);
             List<Product> products = productRepository.getProductsForCategory(categoryId);
             model.addAttribute("products", products);
