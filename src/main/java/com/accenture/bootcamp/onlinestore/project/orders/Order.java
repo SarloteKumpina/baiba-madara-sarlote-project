@@ -16,5 +16,7 @@ public class Order extends Customer {
     private Long customerId;
     private LocalDateTime orderTime;
     private int statusId;
+    private String userId;
+
 }
 
