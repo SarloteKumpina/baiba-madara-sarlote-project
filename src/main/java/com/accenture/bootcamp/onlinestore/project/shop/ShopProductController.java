@@ -4,6 +4,8 @@ import com.accenture.bootcamp.onlinestore.project.categories.Category;
 import com.accenture.bootcamp.onlinestore.project.categories.CategoryService;
 import com.accenture.bootcamp.onlinestore.project.products.Product;
 import com.accenture.bootcamp.onlinestore.project.products.ProductRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +20,12 @@ import java.util.UUID;
 import com.accenture.bootcamp.onlinestore.project.cookies.CookieUtils;
 import static com.accenture.bootcamp.onlinestore.project.cookies.Cookies.USER_ID_COOKIE_NAME;
 
+@Controller
+@AllArgsConstructor
 public class ShopProductController {
 
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
-
-    public ShopProductController(ProductRepository repository, CategoryService categoryService) {
-        this.productRepository = repository;
-        this.categoryService = categoryService;
-    }
 
     @GetMapping("/product/{productId}")
     public String productDetails(@PathVariable Long productId,

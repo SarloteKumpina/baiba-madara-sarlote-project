@@ -1,15 +1,12 @@
 package com.accenture.bootcamp.onlinestore.project.shop;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class ShopAddProductToCartForm {
     private Integer quantity = 1;
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
 
     @Override
     public String toString() {
