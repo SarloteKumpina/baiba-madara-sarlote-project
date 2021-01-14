@@ -51,10 +51,18 @@ public class CategoryController {
     }
 
     @PostMapping("/admin/categories/update/{categoryId}")
-    public String updateCategory(@PathVariable("categoryId") Long id, Category category) {
+    public String updateCategory(@PathVariable("categoryId") Long id,
+                                 @Valid Category category, BindingResult result) {
         categoryService.update(id, category);
         return "redirect:/admin/categories";
     }
+
+
+//    @PostMapping("/admin/categories/update/{categoryId}")
+//    public String updateCategory(@PathVariable("categoryId") Long id, Category category) {
+//        categoryService.update(id, category);
+//        return "redirect:/admin/categories";
+//    }
 
     @GetMapping("/admin/categories/delete/{id}")
     public String deleteCategory(@PathVariable("id") Long id) {

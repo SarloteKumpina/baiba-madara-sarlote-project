@@ -30,19 +30,19 @@ public class ShopController {
         return "shop/index";
     }
 
-    @GetMapping("/about")
+    @GetMapping("/about-us")
     public String shopAbout() {
         return "shop/about";
     }
 
-    @GetMapping(path = {"/shop", "/categories", "/categories/{categoryId}"})
+    @GetMapping(path = {"/products", "/categories", "/categories/{categoryId}"})
     public String shopByCategories(@PathVariable(required = false) Long categoryId, Model model) {
         if (categoryId == null) {
             List<Category> allCategories = categoryService.findAll();
             model.addAttribute("allCategories", allCategories);
             List<Product> products = productRepository.findAll();
             model.addAttribute("products", products);
-            return "shop/shop";
+            return "shop/products";
         } else {
             List<Category> allCategories = categoryService.findAll();
             model.addAttribute("allCategories", allCategories);
@@ -50,7 +50,7 @@ public class ShopController {
             model.addAttribute("category", category);
             List<Product> products = productRepository.getProductsForCategory(categoryId);
             model.addAttribute("products", products);
-            return "shop/shop-by-categories";
+            return "shop/products-by-categories";
         }
     }
 
@@ -71,7 +71,7 @@ public class ShopController {
         return "shop/checkout";
     }
 
-    @GetMapping("/service")
+    @GetMapping("/our-service")
     public String ShopService() {
         return "shop/service";
     }

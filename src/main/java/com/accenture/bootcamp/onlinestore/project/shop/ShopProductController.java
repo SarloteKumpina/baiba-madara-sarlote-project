@@ -41,6 +41,8 @@ public class ShopProductController {
 
 
 
+
+
     private void addShoppingCartCookieToResponse(HttpServletResponse response, String cookieValue) {
         Cookie cookie = CookieUtils.createCookie(USER_ID_COOKIE_NAME, cookieValue);
         response.addCookie(cookie);
