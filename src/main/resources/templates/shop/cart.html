@@ -32,10 +32,12 @@
     <!-- Start Cart  -->
     <div class="cart-box-main">
         <div class="container">
+<!--produktu saraksts-->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-main table-responsive">
                         <table class="table">
+<!--tabulas visraksta rinda -->
                             <thead>
                                 <tr>
                                     <th>Images</th>
@@ -46,72 +48,25 @@
                                     <th>Remove</th>
                                 </tr>
                             </thead>
+<!--tabulā produktu saraksts-->
                             <tbody>
-                                <tr>
+                                <tr th:each="product: ${products}" >
                                     <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                        <a th:href="@{/products/{product}(product=${product.id})}">
+									<img th:src="${product.imageUri}" class="img-fluid" src="images/img-pro-01.jpg" alt="" />
 								</a>
                                     </td>
                                     <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
+                                        <a th:href="@{/products/{product}(product=${product.id})}">
+                                            <p th:text="${product.name}"></p>
 								</a>
                                     </td>
                                     <td class="price-pr">
-                                        <p>$ 80.0</p>
+                                            <p th:text="${product.price}"></p>
                                     </td>
                                     <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
                                     <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-02.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 60.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-03.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 30.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
+<!--                                        <p th:text="${product.total}"></p>-->
                                     </td>
                                     <td class="remove-pr">
                                         <a href="#">
@@ -124,25 +79,27 @@
                     </div>
                 </div>
             </div>
-
+<!--coupon un update cart-->
             <div class="row my-5">
+<!--coupon-->
                 <div class="col-lg-6 col-sm-6">
-                    <div class="coupon-box">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">
-                            <div class="input-group-append">
-                                <button class="btn btn-theme" type="button">Apply Coupon</button>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="coupon-box">-->
+<!--                        <div class="input-group input-group-sm">-->
+<!--                            <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">-->
+<!--                            <div class="input-group-append">-->
+<!--                                <button class="btn btn-theme" type="button">Apply Coupon</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
+<!--update cart-->
                 <div class="col-lg-6 col-sm-6">
                     <div class="update-box">
                         <input value="Update Cart" type="submit">
                     </div>
                 </div>
             </div>
-
+<!--order summary-->
             <div class="row my-5">
                 <div class="col-lg-8 col-sm-12"></div>
                 <div class="col-lg-4 col-sm-12">
