@@ -24,7 +24,9 @@ public class ShopController {
     }
 
     @GetMapping(path = {"", "/index"})
-    public String shopHome() {
+    public String shopHome(Model model) {
+        List<Category> allCategories = categoryService.findAll();
+        model.addAttribute("allCategories", allCategories);
         return "shop/index";
     }
 
