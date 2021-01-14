@@ -1,7 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -12,14 +12,10 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
-
-    @Autowired
-    public CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
 
     @GetMapping(path = {"/admin/categories", "/admin"})
     public String getAllCategories(Model model) {
@@ -30,8 +26,6 @@ public class CategoryController {
 
     @GetMapping("/admin/categories/create")
     public String displayCategoryCreateForm(Category category) {
-//        Category categoryToCreate = new Category();
-//        model.addAttribute("categoryToCreate", categoryToCreate);
         return "cms/categories/create-category";
     }
 
@@ -39,7 +33,7 @@ public class CategoryController {
     public String createCategory(@Valid Category category, BindingResult result) {
         String name = category.getName();
         List<String> allNamesForCategories = categoryService.findAllNames();
-        if(category.categoryIsNew() && allNamesForCategories.contains(name)){
+        if (category.categoryIsNew() && allNamesForCategories.contains(name)) {
             result.rejectValue("name", "duplicate", "Category with this name already exists.");
             return "cms/categories/create-category";
         } else if (result.hasErrors()) {
@@ -48,7 +42,6 @@ public class CategoryController {
         categoryService.create(category);
         return "redirect:/admin/categories";
     }
-
 
     @GetMapping("/admin/categories/update/{id}")
     public String displayCategoryUpdateForm(@PathVariable("id") Long id, Model model) {
