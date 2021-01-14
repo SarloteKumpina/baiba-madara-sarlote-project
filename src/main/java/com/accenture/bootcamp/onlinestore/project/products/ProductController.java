@@ -1,7 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.products;
 
 import com.accenture.bootcamp.onlinestore.project.categories.Category;
-import com.accenture.bootcamp.onlinestore.project.categories.CategoryRepository;
+import com.accenture.bootcamp.onlinestore.project.categories.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +14,12 @@ import java.util.List;
 public class ProductController {
 
     private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
 
     @Autowired
-    public ProductController(ProductRepository repository, CategoryRepository categoryRepository) {
+    public ProductController(ProductRepository repository, CategoryService categoryService) {
         this.productRepository = repository;
-        this.categoryRepository = categoryRepository;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/{id}")
@@ -36,7 +36,7 @@ public class ProductController {
             model.addAttribute("products", products);
             return "cms/products/products";
         } else {
-            category = categoryRepository.findOne(categoryId);
+            category = categoryService.findOne(categoryId);
             products = productRepository.getProductsForCategory(categoryId);
             model.addAttribute("category", category);
             model.addAttribute("products", products);
@@ -47,7 +47,7 @@ public class ProductController {
     @GetMapping("/admin/products/new")
     public String showProductForm(Model model) {
         Product product = new Product();
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryService.findAll();
         model.addAttribute("productToCreate", product);
         model.addAttribute("categories", categories);
         return "cms/products/create-product";
@@ -67,9 +67,9 @@ public class ProductController {
     @GetMapping("/admin/products/update/{id}")
     public String displayProductUpdateForm(@PathVariable("id") Long id, Model model) {
         Product productForUpdate = productRepository.findOne(id);
-        List<Long> categoryIdsForProduct = categoryRepository.getCategoryIdsForProduct(id);
+        List<Long> categoryIdsForProduct = categoryService.getCategoryIdsForProduct(id);
         productForUpdate.setCategoryIds(categoryIdsForProduct);
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryService.findAll();
         model.addAttribute("productForUpdate", productForUpdate);
         model.addAttribute("categories", categories);
         return "cms/products/update-product";
