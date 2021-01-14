@@ -71,9 +71,9 @@
 <!--                        <h2>Fachion Lorem ipsum dolor sit amet</h2>-->
                         <h2 th:text="${product.name}" ></h2>
 <!--                        <h5> <del>$ 60.00</del> $40.79</h5>-->
-                        <h5 th:text="${product.price}" ></h5>
+                        <h5 th:text="${product.price} + ' EUR'" ></h5>
 <!--                        <p class="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span>-->
-                        <p th:text="'More than ' + ${product.stock} + ' available'" class="available-stock">
+                        <p th:text="${product.stock} + ' available'" class="available-stock">
                             <p>
                                 <h4>Short Description:</h4>
 <!--                        <p>Nam sagittis a augue eget scelerisque. Nullam lacinia consectetur sagittis. Nam sed neque id eros fermentum dignissim quis at tortor. Nullam ultricies urna quis sem sagittis pharetra. Nam erat turpis, cursus in ipsum at,-->
