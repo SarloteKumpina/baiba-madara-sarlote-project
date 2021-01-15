@@ -1,6 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
+import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
 import com.accenture.bootcamp.onlinestore.project.products.Product;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +32,19 @@ public class OrderService extends Order {
 
     public Order updateOrder(Long id, Order order) {
         Order existing = findOrderById(id);
+        existing.setFirstName(order.getFirstName());
+        existing.setLastName(order.getLastName());
+        existing.setAddress(order.getAddress());
+        existing.setPhoneNumber(order.getPhoneNumber());
         existing.setStatusId(order.getStatusId());
-        mapper.updateStatus(existing);
+        mapper.updateOrder(existing);
+        return existing;
+    }
+
+    public Order updateOrderStatus(Long id, Order order) {
+        Order existing = findOrderById(id);
+        existing.setStatusId(order.getStatusId());
+        mapper.updateOrderStatus(existing);
         return existing;
     }
 

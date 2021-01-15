@@ -1,8 +1,5 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-
-import com.accenture.bootcamp.onlinestore.project.categories.Category;
-import com.accenture.bootcamp.onlinestore.project.products.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +26,13 @@ public class OrdersController {
     }
 
     @PostMapping("/admin/orders/update-status/{id}")
-    public String updateStatus(@PathVariable("id") Long id, Order order) {
+    public String updateOrderStatus(@PathVariable("id") Long id, Order order) {
+        orderService.updateOrderStatus(id, order);
+        return "redirect:/admin/orders";
+    }
+
+    @PostMapping("/admin/orders/update-order/{id}")
+    public String updateOrder(@PathVariable("id") Long id, Order order) {
         orderService.updateOrder(id, order);
         return "redirect:/admin/orders";
     }
@@ -42,13 +45,13 @@ public class OrdersController {
         model.addAttribute("statuses", statuses);
         return "cms/orders/order-update";
     }
-
-    @GetMapping("???")
-    public String createOrderForm(Model model) {
-        Order order = new Order();
-        model.addAttribute("orderToCreate", order);
-        return "???";
-    }
+//
+//    @GetMapping("???")
+//    public String createOrderForm(Model model) {
+//        Order order = new Order();
+//        model.addAttribute("orderToCreate", order);
+//        return "???";
+//    }
 
 
     @PostMapping("???")

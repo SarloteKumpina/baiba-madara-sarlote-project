@@ -32,7 +32,12 @@ public interface OrderMapper {
     List<OrderStatus> findAllStatuses();
 
     @Update("UPDATE orders SET status_id = #{statusId} where id = #{id}")
-    void updateStatus (Order order);
+    void updateOrderStatus (Order order);
+
+     @Update("UPDATE orders SET first_name = #{firstName}, last_name #{lastName}," +
+                " address #{address}, phone_number #{phoneNumber}," +
+                " status_id = #{statusId} where id = #{id}")
+        void updateOrder (Order order);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
