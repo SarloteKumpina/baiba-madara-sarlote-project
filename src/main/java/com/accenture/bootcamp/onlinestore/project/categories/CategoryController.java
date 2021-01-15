@@ -51,7 +51,8 @@ public class CategoryController {
     }
 
     @PostMapping("/admin/categories/update/{categoryId}")
-    public String updateCategory(@PathVariable("categoryId") Long id, Category category) {
+    public String updateCategory(@PathVariable("categoryId") Long id,
+                                 @Valid Category category, BindingResult result) {
         categoryService.update(id, category);
         return "redirect:/admin/categories";
     }
