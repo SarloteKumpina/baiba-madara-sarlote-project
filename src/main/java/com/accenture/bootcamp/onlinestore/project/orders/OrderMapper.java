@@ -3,6 +3,7 @@ package com.accenture.bootcamp.onlinestore.project.orders;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+
 @Mapper
 public interface OrderMapper {
 
@@ -27,17 +28,26 @@ public interface OrderMapper {
             " where o.id = #{id}")
     Order findOrderById(Long id);
 
+    @Select("select op.order_id as orderId, p.id as productId, p.imageUri, p.name as productName,\n" +
+            " SUM(p.price * op.quantity) as orderTotalSum, op.quantity, o.id, c.first_name, c.last_name\n" +
+            "from products as p\n" +
+            "inner join orders_products as op on p.id=op.product_id\n" +
+            "left join orders as o on op.order_id=o.id\n" +
+            "left join customers as c on o.customer_id=c.id\n" +
+            "where op.order_id = #{order_id} group by op.id")
+    List<Order> getAllOrdersProducts(Long id);
+
     @Select("select s.id as statusId, s.name\n" +
             "from status as s;")
     List<OrderStatus> findAllStatuses();
 
     @Update("UPDATE orders SET status_id = #{statusId} where id = #{id}")
-    void updateOrderStatus (Order order);
+    void updateOrderStatus(Order order);
 
-     @Update("UPDATE orders SET first_name = #{firstName}, last_name #{lastName}," +
-                " address #{address}, phone_number #{phoneNumber}," +
-                " status_id = #{statusId} where id = #{id}")
-        void updateOrder (Order order);
+    @Update("UPDATE orders SET first_name = #{firstName}, last_name #{lastName}," +
+            " address #{address}, phone_number #{phoneNumber}," +
+            " status_id = #{statusId} where id = #{id}")
+    void updateOrder(Order order);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
