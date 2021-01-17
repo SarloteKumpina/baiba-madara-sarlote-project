@@ -1,5 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
+import com.accenture.bootcamp.onlinestore.project.customer.Customer;
+import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -69,5 +71,31 @@ public interface OrderMapper {
     @Insert("insert into orders_products (product_id, order_id, quantity)" +
             " values( #{productId},#{orderId}, #{quantity}")
     void insertOrdersProducts(Order order);
+
+
+
+    @Options(useGeneratedKeys = true,
+            keyProperty = "id",
+            keyColumn = "id")
+    @Insert("insert into customers(id, first_name, last_name, phone_number, email, address)" +
+            " values(#{id}, #{first_name}, #{last_name}, #{phone_number}, #{email}, #{address})")
+    Customer createCustomer(Customer customer);
+
+    @Options(useGeneratedKeys = true,
+            keyProperty = "id",
+            keyColumn = "id")
+    @Insert("insert into orders(id, customer_id, order_time, status_id, user_id)" +
+            " values(#{id}, #{customerId},#{orderTime}, #{statusId}, #{userId})")
+    void createOrder(Order order);
+
+    @Select("select id from orders where user_id=#{userId}")
+    Long findOrderIdByUserId(String userId);
+
+    @Options(useGeneratedKeys = true,
+            keyProperty = "id",
+            keyColumn = "id")
+    @Insert("insert into orders_products(id, product_id, quantity, order_id)" +
+            " values(#{id}, #{product_id}, #{quantity}, #{order_id}")
+    void insertIntoOrderProducts(OrderProduct orderProduct);
 
 }
