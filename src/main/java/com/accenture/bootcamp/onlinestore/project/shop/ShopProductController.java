@@ -46,19 +46,16 @@ public class ShopProductController {
                                    HttpServletResponse response,
                                    Model model) {
         Product product = productRepository.findOne(productId);
-        Order order = new Order();
         Long orderId;
-        OrderProduct orderProduct = new OrderProduct();
         if (userId == null){
             String userIdentifier = UUID.randomUUID().toString();
             userId = userIdentifier;
             addShoppingCartCookieToResponse(response, userId);
-            order = orderService.createNewOrder(1, userId);
+            Order order = orderService.createNewOrder(1, userId);
             orderId = orderService.findOrderIdByUserId(order.getUserId());
             orderService.insertIntoOrderProducts(productId, form.getQuantity(), orderId);
         } else {
-            addShoppingCartCookieToResponse(response, userId);
-            orderId = orderService.findOrderIdByUserId(order.getUserId());
+            orderId = orderService.findOrderIdByUserId(userId);
             orderService.insertIntoOrderProducts(productId, form.getQuantity(), orderId);
         }
         model.addAttribute("product", product);
