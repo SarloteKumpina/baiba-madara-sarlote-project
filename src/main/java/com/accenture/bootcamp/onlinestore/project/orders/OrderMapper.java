@@ -1,5 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
+import com.accenture.bootcamp.onlinestore.project.shoppingcart.ShoppingCart;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -54,5 +55,22 @@ public interface OrderMapper {
     @Insert("insert into orders_products (product_id, order_id, quantity)" +
             " values( #{productId},#{orderId}, #{quantity}")
     void insertOrdersProducts(Order order);
+
+    //4. if customer is not known, create new order and set order statuss is SHOPPING CART (=4)
+    @Insert("insert into orders (status_id) values (4)")
+    void createNewOrder(Order order);
+
+    //5. if customer is known, get All orders by cookie (userId)
+    @Select("select * from orders where user_id = #{id}")
+    Order getAllOrdersByCookie(Long userId);
+
+    //6. if customer is known, get order by cookie and order statuss is SHOPPING CART (=4)
+    @Select("select * from orders where user_id = #{id} and status_id = 4")
+    Order getOrderByCookieAndStatusShoppingCart(Long userId);
+
+    //7. get order_id of order found in 6th point
+    @Select("select id from orders where user_id = #{id} and status_id = 4")
+    Long getOrderIdByCookieAndStatusShoppingCart(Long userId);
+
 
 }

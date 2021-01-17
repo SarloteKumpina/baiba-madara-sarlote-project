@@ -2,6 +2,8 @@ package com.accenture.bootcamp.onlinestore.project.orders;
 
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
 import com.accenture.bootcamp.onlinestore.project.products.Product;
+import com.accenture.bootcamp.onlinestore.project.shoppingcart.ShoppingCart;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,5 +44,31 @@ public class OrderService extends Order {
         mapper.insertOrdersProducts(order);
         return order;
     }
+
+    //4. if customer is not known, create new order and set order statuss is SHOPPING CART (=4)
+    public Order createNewOrder(Order order){
+        mapper.createNewOrder(order);
+        return order;
+    }
+
+    //5. if customer is known, get All orders by cookie (userId)
+    public Order getAllOrdersByCookie(Long userId){
+        Order order = mapper.getAllOrdersByCookie(userId);
+        return order;
+    }
+
+    //6. if customer is known, get order by cookie and order statuss is SHOPPING CART (=4)
+    public Order getOrderByCookieAndStatusShoppingCart(Long userId){
+        Order order = mapper.getOrderByCookieAndStatusShoppingCart(userId);
+        return order;
+    }
+
+    //7. get order_id of order found in 6th point
+    public Long getOrderIdByCookieAndStatusShoppingCart(Long userId){
+        Long orderId = mapper.getOrderIdByCookieAndStatusShoppingCart(userId);
+        return orderId;
+    }
+
+
 
 }
