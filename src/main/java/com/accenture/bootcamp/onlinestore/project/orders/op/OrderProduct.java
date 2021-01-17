@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class OrderProduct {
-        private long id;
+        private Long id;
         private Long productId;
         private int quantity;
-        private long orderId;
+        private Long orderId;
     }
 
