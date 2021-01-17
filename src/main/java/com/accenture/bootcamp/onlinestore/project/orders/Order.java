@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,6 +18,13 @@ public class Order extends Customer {
     private LocalDateTime orderTime;
     private int statusId;
     private String userId;
+
+    //For Order view-items
+    private Long productId;
+    private int quantity;
+    private String imageUri;
+    private String productName;
+    private BigDecimal productPrice;
 
 }
 

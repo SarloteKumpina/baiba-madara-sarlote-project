@@ -26,6 +26,7 @@
                     <td th:text="${order.statusName}"></td>
                     <td th:text="${order.orderTotalSum + ' €'}"></td>
                     <td>
+                        <a th:href="@{/admin/orders/view-items/{id}(id=${order.id})}">View items</a>
                         <a th:href="@{/admin/orders/update-status/{id}(id=${order.id})}">Edit</a>
                     </td>
                 </tr>

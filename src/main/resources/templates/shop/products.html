@@ -113,7 +113,7 @@
 
 <!--papildus mazās podziņas, pievienot wishlist utt-->
                                                     <div class="mask-icon">
-                                                        <a class="cart" th:href="@{/products/{product}(product=${product.id})}">View product</a>
+                                                        <a class="cart" th:href="@{/product/{product}(product=${product.id})}">View product</a>
                                                     </div>
                                                 </div>
 <!--galvenais rāmītis-->
@@ -147,7 +147,7 @@
                                                     <h4 th:text="${product.name}"></h4>
                                                     <h5 th:text="${product.price}"></h5>
                                                     <p th:text="${product.description}"></p>
-                                                    <a class="btn hvr-hover" th:href="@{/products/{product}(product=${product.id})}">View product</a>
+                                                    <a class="btn hvr-hover" th:href="@{/product/{product}(product=${product.id})}">View product</a>
                                                 </div>
                                             </div>
                                         </div>
