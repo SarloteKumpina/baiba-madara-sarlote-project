@@ -82,7 +82,7 @@ public interface OrderMapper {
     Customer createCustomer(Customer customer);
 
     @Options(useGeneratedKeys = true,
-            keyProperty = "id",
+            keyProperty = "orderId",
             keyColumn = "id")
     @Insert("insert into orders(id, customer_id, order_time, status_id, user_id)" +
             " values(#{id}, #{customerId},#{orderTime}, #{statusId}, #{userId})")
@@ -95,7 +95,7 @@ public interface OrderMapper {
             keyProperty = "id",
             keyColumn = "id")
     @Insert("insert into orders_products(id, product_id, quantity, order_id)" +
-            " values(#{id}, #{product_id}, #{quantity}, #{order_id}")
+            " values(#{id}, #{productId}, #{quantity}, #{orderId})")
     void insertIntoOrderProducts(OrderProduct orderProduct);
 
 }
