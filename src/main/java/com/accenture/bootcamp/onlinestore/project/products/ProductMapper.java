@@ -13,6 +13,9 @@ public interface ProductMapper {
     @Select("select id, name, price, description, stock, imageUri from products")
     List<Product> findAll();
 
+    @Select("select name from products")
+    List<String> findAllNames();
+
     @Select("SELECT * FROM categories WHERE id IN (#{id})")
     Long findSelectedCategoryId(long categoryId);
 

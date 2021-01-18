@@ -39,6 +39,10 @@ public class ProductService implements ProductRepository {
         return products;
     }
 
+    public List<String> findAllNames() {
+        return mapper.findAllNames();
+    }
+
     public List<Product> getProductsForCategory(Long id) {
         List<Product> products = mapper.getProductsForCategory(id);
         for (int i = 0; i < products.size(); i++) {

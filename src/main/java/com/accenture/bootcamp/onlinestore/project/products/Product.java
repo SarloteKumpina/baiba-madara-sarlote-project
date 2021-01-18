@@ -1,29 +1,55 @@
 package com.accenture.bootcamp.onlinestore.project.products;
 
 import com.accenture.bootcamp.onlinestore.project.categories.Category;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.*;
 
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Product {
 
     private Long id;
+
+    @NotBlank(message = "Name is mandatory.")
+    @Size(min = 3, max = 255, message = "Name size must be between 3 and 255 characters long.")
     private String name;
+
     private List<Long> categoryIds = new ArrayList<>();
+
+    @DecimalMin(value = "0.01", inclusive = true, message = "The price cannot be lower than 0.01.")
+    //@Digits(integer = 6, fraction = 2, message = "The Price must be at least 0.01")
+    //@Size(min = 0.01, message = "The Price must be at least 0.01")
     private BigDecimal price;
+
+    @NotBlank(message = "Description is mandatory.")
+    @Size(min = 3, max = 255, message = "Description size must be between 3 and 255 characters long.")
     private String description;
+
+    @NotNull(message = "Quantity value cannot be empty.")
+    @Min(value = 0, message = "Quantity cannot be less than 0.")
     private int stock;
+
+    @NotBlank(message = "ImageUri is mandatory.")
+    @Size(min = 3, max = 255, message = "ImageUri size must be between 3 and 255 characters long.")
     private String imageUri;
 
+    @NotEmpty(message = "The product has to assigned to a category.")
     private List<Category> categories = new ArrayList<>();
 
-    public Product() {
+    public boolean productIsNew() {
+        return this.id == null;
     }
 
-    public Product(Long id, String name, List<Long> categoryIds, BigDecimal price,
+ /*   public Product() {
+    }*/
+
+ /*   public Product(Long id, String name, List<Long> categoryIds, BigDecimal price,
                    String description, int stock, String imageUri) {
         this.id = id;
         this.name = name;
@@ -32,9 +58,9 @@ public class Product {
         this.description = description;
         this.stock = stock;
         this.imageUri = imageUri;
-    }
+    }*/
 
-    public Product(ProductRequest request) {
+ /*   public Product(ProductRequest request) {
         this.id = id;
         this.name = request.getName();
         this.categoryIds = request.getCategoryIds();
@@ -42,9 +68,9 @@ public class Product {
         this.description = request.getDescription();
         this.stock = request.getStock();
         this.imageUri = request.getImageUri();
-    }
+    }*/
 
-    public Long getId() {
+/*    public Long getId() {
         return id;
     }
 
@@ -106,9 +132,9 @@ public class Product {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
-    }
+    }*/
 
-    @Override
+/*    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -125,5 +151,5 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, categoryIds, price, description, stock, imageUri);
-    }
+    }*/
 }
