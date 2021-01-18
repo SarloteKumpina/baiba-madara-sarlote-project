@@ -56,13 +56,6 @@ public class OrderService {
     }
 
 
-    public Order createOrder(Order order) {
-        mapper.insertCustomerDetails(order);
-        mapper.insertOrderInfo(order);
-        mapper.insertOrdersProducts(order);
-        return order;
-    }
-
     public Customer createCustomer(Customer customer) {
         return mapper.createCustomer(customer);
     }
