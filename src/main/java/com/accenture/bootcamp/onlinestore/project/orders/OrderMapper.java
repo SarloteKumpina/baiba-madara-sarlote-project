@@ -30,7 +30,7 @@ public interface OrderMapper {
             " where o.id = #{id}")
     Order findOrderById(Long id);
 
-    @Select("select op.order_id as orderId, p.id as productId, p.imageUri, p.name as productName,\n" +
+    @Select("select op.order_id, p.id as productId, p.imageUri, p.name as productName,\n" +
             " SUM(p.price * op.quantity) as orderTotalSum, op.quantity, o.id, c.first_name, c.last_name\n" +
             "from products as p\n" +
             "inner join orders_products as op on p.id=op.product_id\n" +
@@ -39,9 +39,9 @@ public interface OrderMapper {
             "where op.order_id = #{order_id} group by op.id")
     List<Order> getAllOrdersProducts(Long id);
 
-    @Select("select s.id as statusId, s.name\n" +
+    @Select("select s.id as statusId, s.name as statusName\n" +
             "from status as s;")
-    List<OrderStatus> findAllStatuses();
+    List<Order> findAllStatuses();
 
     @Update("UPDATE orders SET status_id = #{statusId} where id = #{id}")
     void updateOrderStatus(Order order);
@@ -69,7 +69,7 @@ public interface OrderMapper {
             keyProperty = "id",
             keyColumn = "id")
     @Insert("insert into orders_products (product_id, order_id, quantity)" +
-            " values( #{productId},#{orderId}, #{quantity}")
+            " values( #{productId},#{id}, #{quantity}")
     void insertOrdersProducts(Order order);
 
 
@@ -82,7 +82,7 @@ public interface OrderMapper {
     Customer createCustomer(Customer customer);
 
     @Options(useGeneratedKeys = true,
-            keyProperty = "orderId",
+            keyProperty = "id",
             keyColumn = "id")
     @Insert("insert into orders(id, customer_id, order_time, status_id, user_id)" +
             " values(#{id}, #{customerId},#{orderTime}, #{statusId}, #{userId})")
@@ -95,7 +95,7 @@ public interface OrderMapper {
             keyProperty = "id",
             keyColumn = "id")
     @Insert("insert into orders_products(id, product_id, quantity, order_id)" +
-            " values(#{id}, #{productId}, #{quantity}, #{orderId})")
+            " values(#{id}, #{productId}, #{quantity}, #{id})")
     void insertIntoOrderProducts(OrderProduct orderProduct);
 
 }

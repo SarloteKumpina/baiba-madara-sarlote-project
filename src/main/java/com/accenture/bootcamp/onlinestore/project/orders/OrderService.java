@@ -3,14 +3,13 @@ package com.accenture.bootcamp.onlinestore.project.orders;
 import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
 import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
-import com.accenture.bootcamp.onlinestore.project.products.Product;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class OrderService extends Order {
+public class OrderService {
 
     private final OrderMapper mapper;
 
@@ -30,14 +29,11 @@ public class OrderService extends Order {
         return order;
     }
 
-    public List<OrderStatus> findAllStatuses() {
-        return mapper.findAllStatuses();
-    }
     public List<Order> getAllOrdersProducts(Long id) {
         return mapper.getAllOrdersProducts(id);
     }
 
-    public List<OrderStatus> findAllStatuses() {
+    public List<Order> findAllStatuses() {
         return mapper.findAllStatuses();
     }
 
@@ -84,11 +80,11 @@ public class OrderService extends Order {
         return mapper.findOrderIdByUserId(userId);
     }
 
-    public OrderProduct insertIntoOrderProducts(Long productId, int quantity, Long orderId) {
+    public OrderProduct insertIntoOrderProducts(Long productId, int quantity, Long id) {
         OrderProduct orderProduct = new OrderProduct();
         orderProduct.setProductId(productId);
         orderProduct.setQuantity(quantity);
-        orderProduct.setOrderId(orderId);
+        orderProduct.setOrderId(id);
         mapper.insertIntoOrderProducts (orderProduct);
         return orderProduct;
     }

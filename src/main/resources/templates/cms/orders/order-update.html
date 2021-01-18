@@ -15,7 +15,7 @@
                      <p></p>
                 <select multiple class="form-control" id="statuses" th:field="${orderForUpdate.statusId}">
                     <option th:each="order : ${statuses}"
-                            th:text="${order.name}"
+                            th:text="${order.statusName}"
                             th:value="${{order.statusId}}">OrderStatus
                     </option>
                 </select>

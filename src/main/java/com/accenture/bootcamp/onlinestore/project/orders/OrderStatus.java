@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode
-public class OrderStatus extends Order {
+public class OrderStatus {
 
     private int orderStatusId;
     private String name;
