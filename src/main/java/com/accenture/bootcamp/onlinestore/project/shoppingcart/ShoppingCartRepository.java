@@ -59,6 +59,12 @@ public class ShoppingCartRepository implements ShoppingCartMapper {
         return total;
     }
 
+    @Override
+    public List<ShoppingCart> getProductsForOrderStatusShoppingCart(Long id) {
+        List<ShoppingCart> products = shoppingCartMapper.getProductsForOrderStatusShoppingCart(id);
+        return products;
+    }
+
     //aprēķinām grand total
 
     //mainām produktu skaitu un update shopping cart - pagaidām netaisām

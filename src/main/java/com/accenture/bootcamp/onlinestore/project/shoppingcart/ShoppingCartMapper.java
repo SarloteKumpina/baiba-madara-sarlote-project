@@ -33,6 +33,15 @@ public interface ShoppingCartMapper {
             "where status.id = '1' AND #{id} IS NULL OR (orders.id = #{id})")
     List<Product> getProductsForOrderPending(Long orderId);
 
+    @Select("select products.imageUri, products.id, products.name, products.price, orders_products.quantity, " +
+            "(products.price * orders_products.quantity) as total\n" +
+            "from orders_products\n" +
+            "inner join orders on orders_products.order_id = orders.id\n" +
+            "inner join products on orders_products.product_id = products.id\n" +
+            "inner join status on orders.status_id = status.id\n" +
+            "where status.id = '4' AND #{id} IS NULL OR (orders.id = #{id})")
+    List<ShoppingCart> getProductsForOrderStatusShoppingCart(Long orderId);
+
 
     //nospiežot add to cart -> vai jau ir šāds cepums (meklē pēc id, cepums glabājas orders tabulā)
     //ja nav - jauns order db ar statusu pending un orders_products samapo order id ar prod id
