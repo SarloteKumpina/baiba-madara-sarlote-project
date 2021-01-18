@@ -41,12 +41,6 @@
                     <a th:href="@{/admin/products/update/{id}(id=${product.id})}">Edit</a>
                     <a th:href="@{/admin/products/delete/{id}(id=${product.id})}">Delete</a>
                 </td>
-                <!--<td>
-                    <a target="_blank"
-                       th:href="${product.pictureURL}" th:if="${!#strings.isEmpty(movie.pictureURL)}">
-                        <img class="table-poster" th:src="${movie.pictureURL}"/>
-                    </a>
-                </td>-->
             </tr>
         </table>
     </div>

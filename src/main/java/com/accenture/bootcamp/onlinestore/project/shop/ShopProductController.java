@@ -2,7 +2,6 @@ package com.accenture.bootcamp.onlinestore.project.shop;
 
 import com.accenture.bootcamp.onlinestore.project.categories.CategoryService;
 import com.accenture.bootcamp.onlinestore.project.orders.OrderService;
-import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
 import com.accenture.bootcamp.onlinestore.project.products.Product;
 import com.accenture.bootcamp.onlinestore.project.products.ProductRepository;
 import com.accenture.bootcamp.onlinestore.project.orders.Order;
@@ -46,19 +45,15 @@ public class ShopProductController {
                                    HttpServletResponse response,
                                    Model model) {
         Product product = productRepository.findOne(productId);
-        Order order = new Order();
         Long orderId;
-        OrderProduct orderProduct = new OrderProduct();
         if (userId == null){
-            String userIdentifier = UUID.randomUUID().toString();
-            userId = userIdentifier;
+            userId = UUID.randomUUID().toString();
             addShoppingCartCookieToResponse(response, userId);
-            order = orderService.createNewOrder(1, userId);
+            Order order = orderService.createNewOrder(1, userId);
             orderId = orderService.findOrderIdByUserId(order.getUserId());
             orderService.insertIntoOrderProducts(productId, form.getQuantity(), orderId);
         } else {
-            addShoppingCartCookieToResponse(response, userId);
-            orderId = orderService.findOrderIdByUserId(order.getUserId());
+            orderId = orderService.findOrderIdByUserId(userId);
             orderService.insertIntoOrderProducts(productId, form.getQuantity(), orderId);
         }
         model.addAttribute("product", product);

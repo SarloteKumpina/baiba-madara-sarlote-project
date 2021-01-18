@@ -39,33 +39,19 @@ public class OrdersController {
         return "redirect:/admin/orders";
     }
 
-    @PostMapping("/checkout")
-    public String updateOrder(@PathVariable("id") Long id, Order order) {
-        orderService.updateOrder(id, order);
-        return "redirect:/admin/orders";
-    }
+//    @PostMapping("/checkout")
+//    public String updateOrder(@PathVariable("id") Long id, Order order) {
+//        orderService.updateOrder(id, order);
+//        return "redirect:/admin/orders";
+//    }
 
     @GetMapping("/admin/orders/update-status/{id}")
     public String showOrderEditForm(@PathVariable("id") Long id, Model model) {
         Order orderForUpdate = orderService.findOrderById(id);
-        List<OrderStatus> statuses = orderService.findAllStatuses();
+        List<Order> statuses = orderService.findAllStatuses();
         model.addAttribute("orderForUpdate", orderForUpdate);
         model.addAttribute("statuses", statuses);
         return "cms/orders/order-update";
-    }
-//
-//    @GetMapping("???")
-//    public String createOrderForm(Model model) {
-//        Order order = new Order();
-//        model.addAttribute("orderToCreate", order);
-//        return "???";
-//    }
-
-
-    @PostMapping("???")
-    public String saveOrder(Order order) {
-        orderService.createOrder(order);
-        return "redirect:/admin/orders";
     }
 
 }
