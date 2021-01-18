@@ -1,4 +1,4 @@
-package com.accenture.bootcamp.onlinestore.project.shop;
+package com.accenture.bootcamp.onlinestore.project.addtocart;
 
 import com.accenture.bootcamp.onlinestore.project.categories.CategoryService;
 import com.accenture.bootcamp.onlinestore.project.orders.OrderService;
@@ -22,7 +22,7 @@ import static com.accenture.bootcamp.onlinestore.project.cookies.Cookies.USER_ID
 
 @Controller
 @AllArgsConstructor
-public class ShopProductController {
+public class AddToCartController {
 
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
@@ -32,7 +32,7 @@ public class ShopProductController {
     public String productDetails(@PathVariable(required = true) Long productId,
                                  Model model) {
         Product product = productRepository.findOne(productId);
-        ShopAddProductToCartForm productForm = new ShopAddProductToCartForm();
+        AddToCartForm productForm = new AddToCartForm();
         model.addAttribute("product", product);
         model.addAttribute("productForm", productForm);
         return "shop/product-details";
@@ -41,7 +41,7 @@ public class ShopProductController {
     @PostMapping("/product/{productId}")
     public String addProductToCart(@PathVariable Long productId,
                                    @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
-                                   ShopAddProductToCartForm form,
+                                   AddToCartForm form,
                                    HttpServletResponse response,
                                    Model model) {
         Product product = productRepository.findOne(productId);
