@@ -39,11 +39,11 @@ public class OrdersController {
         return "redirect:/admin/orders";
     }
 
-    @PostMapping("/checkout")
-    public String updateOrder(@PathVariable("id") Long id, Order order) {
-        orderService.updateOrder(id, order);
-        return "redirect:/admin/orders";
-    }
+//    @PostMapping("/checkout")
+//    public String updateOrder(@PathVariable("id") Long id, Order order) {
+//        orderService.updateOrder(id, order);
+//        return "redirect:/admin/orders";
+//    }
 
     @GetMapping("/admin/orders/update-status/{id}")
     public String showOrderEditForm(@PathVariable("id") Long id, Model model) {

@@ -41,10 +41,4 @@ final class OrderTableSql {
     public static final String INSERT_INTO_ORDERS_PRODUCTS = "insert into orders_products(id, product_id, quantity, order_id)" +
             " values(#{id}, #{productId}, #{quantity}, #{id})";
 
-
-
-
-
-
-
 }
