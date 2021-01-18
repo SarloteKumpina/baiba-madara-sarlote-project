@@ -2,7 +2,6 @@ package com.accenture.bootcamp.onlinestore.project.shop;
 
 import com.accenture.bootcamp.onlinestore.project.categories.CategoryService;
 import com.accenture.bootcamp.onlinestore.project.orders.OrderService;
-import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
 import com.accenture.bootcamp.onlinestore.project.products.Product;
 import com.accenture.bootcamp.onlinestore.project.products.ProductRepository;
 import com.accenture.bootcamp.onlinestore.project.orders.Order;
@@ -48,8 +47,7 @@ public class ShopProductController {
         Product product = productRepository.findOne(productId);
         Long orderId;
         if (userId == null){
-            String userIdentifier = UUID.randomUUID().toString();
-            userId = userIdentifier;
+            userId = UUID.randomUUID().toString();
             addShoppingCartCookieToResponse(response, userId);
             Order order = orderService.createNewOrder(1, userId);
             orderId = orderService.findOrderIdByUserId(order.getUserId());

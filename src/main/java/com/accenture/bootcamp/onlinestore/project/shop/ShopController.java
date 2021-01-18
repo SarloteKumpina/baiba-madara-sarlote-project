@@ -54,13 +54,6 @@ public class ShopController {
         }
     }
 
-//    @GetMapping("/products/{productId}")
-//    public String productDetail(@PathVariable(required = true) Long productId, Model model) {
-//        Product product = productRepository.findOne(productId);
-//        model.addAttribute("product", product);
-//        return "shop/product-details";
-//    }
-
 //    @GetMapping("/cart")
 //    public String ShopCart() {
 //        return "shop/cart";
