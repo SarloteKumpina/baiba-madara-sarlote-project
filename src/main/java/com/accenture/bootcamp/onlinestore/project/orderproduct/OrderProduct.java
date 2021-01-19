@@ -1,4 +1,4 @@
-package com.accenture.bootcamp.onlinestore.project.orders.op;
+package com.accenture.bootcamp.onlinestore.project.orderproduct;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

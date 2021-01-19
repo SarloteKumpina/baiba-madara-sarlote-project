@@ -1,7 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
 import com.accenture.bootcamp.onlinestore.project.customer.Customer;
-import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
+import com.accenture.bootcamp.onlinestore.project.orderproduct.OrderProduct;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -49,6 +49,9 @@ public interface OrderMapper {
 
     @Select(SELECT_ORDER_BY_USER_ID)
     Long findOrderIdByUserId(String userId);
+
+    @Select(FIND_ORDER_BY_USER_ID_WHERE_STATUS_IS_SHOPPING_CART)
+    Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, int statusId);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
