@@ -44,6 +44,7 @@ public class ShoppingCartController {
 //    if no one product is selected, user sees cart-empty look
 //    if at least one product is selected, user sees cart
 //    cart look updates after importing or removing products
+
     @GetMapping(path = {"/cart", "/cart/{orderId}"})
     public String ShoppingCart(@PathVariable(required = false) Long orderId, Model model) {
         if (orderId == null) {
@@ -53,7 +54,7 @@ public class ShoppingCartController {
         model.addAttribute("allOrders", allOrders);
         Order order = mapper.findOrderById(orderId);
         model.addAttribute("order", order);
-        List<Product> products = shoppingCartMapper.getProductsForOrderStatusShoppingCart(orderId);
+        List<ShoppingCart> products = shoppingCartMapper.getProductsForOrderStatusShoppingCart(orderId);
         model.addAttribute("products", products);
         return "shop/cart";
         }

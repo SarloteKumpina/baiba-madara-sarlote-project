@@ -7,6 +7,8 @@ public interface ProductRepository {
 
     List<Product> findAll();
 
+    List<String> findAllNames();
+
     List<Product> getProductsForCategory(Long productId);
 
     Product insertProduct(Product product);

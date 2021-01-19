@@ -11,6 +11,7 @@ CREATE TABLE products (
     price DECIMAL(8,2) NOT NULL,
     description VARCHAR(1000) NOT NULL,
     stock INT(11),
+    reserved_stock INT(11),
     imageUri VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
 );

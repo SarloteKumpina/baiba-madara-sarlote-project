@@ -1,11 +1,11 @@
-package com.accenture.bootcamp.onlinestore.project.shop;
+package com.accenture.bootcamp.onlinestore.project.addtocart;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ShopAddProductToCartForm {
+public class AddToCartForm {
     private Integer quantity = 1;
 
     @Override

@@ -2,25 +2,29 @@ package com.accenture.bootcamp.onlinestore.project.products;
 
 import com.accenture.bootcamp.onlinestore.project.categories.Category;
 import com.accenture.bootcamp.onlinestore.project.categories.CategoryService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 //@RequestMapping("/online-shop/product")
 @Controller
+@AllArgsConstructor
 public class ProductController {
 
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
 
-    @Autowired
+/*    @Autowired
     public ProductController(ProductRepository repository, CategoryService categoryService) {
         this.productRepository = repository;
         this.categoryService = categoryService;
-    }
+    }*/
 
     @GetMapping("/{id}")
     public Product findOne(@PathVariable Long id) {
@@ -45,16 +49,28 @@ public class ProductController {
     }
 
     @GetMapping("/admin/products/new")
-    public String showProductForm(Model model) {
-        Product product = new Product();
+    public String showProductForm(Model model, Product product) {
+//        Product product = new Product();
         List<Category> categories = categoryService.findAll();
-        model.addAttribute("productToCreate", product);
+//        model.addAttribute("productToCreate", product);
         model.addAttribute("categories", categories);
         return "cms/products/create-product";
     }
 
     @PostMapping("/admin/products/new")
-    public String saveProduct(Product product) {
+    public String saveProduct(Model model, @Valid Product product, BindingResult result) {
+        String name = product.getName();
+        List<String> allNamesForProducts = productRepository.findAllNames();
+        if(product.productIsNew() && allNamesForProducts.contains(name)){
+            result.rejectValue("name", "duplicate", "Product with this name already exists.");
+            List<Category> categories = categoryService.findAll();
+            model.addAttribute("categories", categories);
+            return "cms/products/create-product";
+        } else if (result.hasErrors()){
+            List<Category> categories = categoryService.findAll();
+            model.addAttribute("categories", categories);
+            return "cms/products/create-product";
+        }
         productRepository.insertProduct(product);
         return "redirect:/admin/products";
     }
@@ -65,18 +81,24 @@ public class ProductController {
 //    }
 
     @GetMapping("/admin/products/update/{id}")
-    public String displayProductUpdateForm(@PathVariable("id") Long id, Model model) {
+    public String displayProductUpdateForm(@PathVariable("id") Long id, Model model, Product product) {
         Product productForUpdate = productRepository.findOne(id);
         List<Long> categoryIdsForProduct = categoryService.getCategoryIdsForProduct(id);
         productForUpdate.setCategoryIds(categoryIdsForProduct);
         List<Category> categories = categoryService.findAll();
-        model.addAttribute("productForUpdate", productForUpdate);
+        model.addAttribute("product", productForUpdate);
         model.addAttribute("categories", categories);
         return "cms/products/update-product";
     }
 
-    @PostMapping("/admin/products/update/{id}")
-    public String updateProduct(@PathVariable("id") Long id, Product product) {
+    @PostMapping("/admin/products/update")
+    public String updateProduct(Model model, @Valid Product product, BindingResult result) {
+        if (result.hasErrors()){
+            List<Category> categories = categoryService.findAll();
+            //model.addAttribute("productForUpdate", product);
+            model.addAttribute("categories", categories);
+            return "cms/products/update-product";
+        }
         productRepository.update(product);
         return "redirect:/admin/products";
     }
