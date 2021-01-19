@@ -8,7 +8,10 @@ INSERT INTO categories
 VALUES
 (null, 'dresses', 'https://media.tedbaker.com/t_xld_pdp_zoom,q_auto:best,f_auto/Product/Womens/241988_IVORY_1?'),
 (null, 'shoes', 'https://row.jimmychoo.com/dw/image/v2/BDNT_PRD/on/demandware.static/-/Sites-jch-master-product-catalog/default/dw146e97d8/images/original/ODETTE100WQQ_005752_ANGLE.jpg?sw=1800&sh=1800&sm=fit'),
-(null, 'sunglasses', 'https://i1.adis.ws/i/tom_ford/FT0662_52F_OS_B?$large$&bg=rgb(255,255,255)');
+(null, 'sunglasses', 'https://i1.adis.ws/i/tom_ford/FT0662_52F_OS_B?$large$&bg=rgb(255,255,255)'),
+(null, 'ted baker', 'https://riyadh-park.com/wp-content/uploads/2019/10/ted-baker-london-logo1.jpeg'),
+(null, 'jimmy choo', 'https://i.pinimg.com/originals/1d/8e/a8/1d8ea811deb52a6929e895f64bc96ed5.jpg'),
+(null, 'tom ford', 'https://i.pinimg.com/originals/53/aa/d8/53aad883f8da7086db3ea43dfdadd9b2.jpg');
 
 
 INSERT INTO products
