@@ -2,7 +2,7 @@ package com.accenture.bootcamp.onlinestore.project.orders;
 
 import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
-import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
+import com.accenture.bootcamp.onlinestore.project.orderproduct.OrderProduct;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -29,22 +29,18 @@ public class OrderService {
         return order;
     }
 
-    public List<Order> getAllOrdersProducts(Long id) {
-        return mapper.getAllOrdersProducts(id);
+    public List<Order> orderedProducts(Long id) {
+        return mapper.orderedProducts(id);
     }
 
     public List<Order> findAllStatuses() {
         return mapper.findAllStatuses();
     }
 
-    public Order updateOrder(Long id, Order order) {
+    public Order updateOrderWithCustomer(Long id, Order order) {
         Order existing = findOrderById(id);
-        existing.setFirstName(order.getFirstName());
-        existing.setLastName(order.getLastName());
-        existing.setAddress(order.getAddress());
-        existing.setPhoneNumber(order.getPhoneNumber());
-        existing.setStatusId(order.getStatusId());
-        mapper.updateOrder(existing);
+        existing.setCustomerId(order.getCustomerId());
+        mapper.updateOrderWithCustomer(existing);
         return existing;
     }
 
@@ -53,11 +49,6 @@ public class OrderService {
         existing.setStatusId(order.getStatusId());
         mapper.updateOrderStatus(existing);
         return existing;
-    }
-
-
-    public Customer createCustomer(Customer customer) {
-        return mapper.createCustomer(customer);
     }
 
     public Order createNewOrder(int statusId, String userId) {
@@ -73,6 +64,10 @@ public class OrderService {
         return mapper.findOrderIdByUserId(userId);
     }
 
+    public Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, int statusId) {
+        return mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
+    }
+
     public OrderProduct insertIntoOrderProducts(Long productId, int quantity, Long id) {
         OrderProduct orderProduct = new OrderProduct();
         orderProduct.setProductId(productId);
@@ -80,6 +75,15 @@ public class OrderService {
         orderProduct.setOrderId(id);
         mapper.insertIntoOrderProducts (orderProduct);
         return orderProduct;
+    }
+
+    public boolean userHasOrderWithStatusShoppingCart(String userId, int statusId){
+        Long orderId = mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
+        if (orderId != null){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

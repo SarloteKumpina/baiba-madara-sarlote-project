@@ -1,5 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
+import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

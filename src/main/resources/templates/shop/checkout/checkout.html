@@ -66,13 +66,13 @@
                                    type="text" class="form-control" id="address" placeholder="" required>
                             <div class="invalid-feedback"> Please enter your shipping address. </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="zip">Zip *</label>
-                                <input th:field="${checkoutForm.zip}"
-                                       th:value="${checkoutForm.zip}"
-                                       type="text" class="form-control" id="zip" placeholder="" required>
-                                <div class="invalid-feedback"> Zip code required. </div>
+                        <div >
+                            <div class="mb-3">
+                                <label for="phoneNumber">Phone Number *</label>
+                                <input th:field="${checkoutForm.phoneNumber}"
+                                       th:value="${checkoutForm.phoneNumber}"
+                                       type="text" class="form-control" id="phoneNumber" placeholder="" required>
+                                <div class="invalid-feedback"> Phone number code required. </div>
                             </div>
                         </div>
                         <hr class="mb-4">
