@@ -1,6 +1,5 @@
 package com.accenture.bootcamp.onlinestore.project.addtocart;
 
-import com.accenture.bootcamp.onlinestore.project.categories.CategoryService;
 import com.accenture.bootcamp.onlinestore.project.orders.OrderService;
 import com.accenture.bootcamp.onlinestore.project.products.Product;
 import com.accenture.bootcamp.onlinestore.project.products.ProductRepository;
@@ -25,11 +24,10 @@ import static com.accenture.bootcamp.onlinestore.project.cookies.Cookies.USER_ID
 public class AddToCartController {
 
     private final ProductRepository productRepository;
-    private final CategoryService categoryService;
     private final OrderService orderService;
 
     @GetMapping("/product/{productId}")
-    public String productDetails(@PathVariable(required = true) Long productId,
+    public String productDetails(@PathVariable Long productId,
                                  Model model) {
         Product product = productRepository.findOne(productId);
         AddToCartForm productForm = new AddToCartForm();
@@ -51,11 +49,13 @@ public class AddToCartController {
             addShoppingCartCookieToResponse(response, userId);
             Order order = orderService.createNewOrder(1, userId);
             orderId = orderService.findOrderIdByUserId(order.getUserId());
-            orderService.insertIntoOrderProducts(productId, form.getQuantity(), orderId);
         } else {
-            orderId = orderService.findOrderIdByUserId(userId);
-            orderService.insertIntoOrderProducts(productId, form.getQuantity(), orderId);
+            if (!orderService.userHasOrderWithStatusShoppingCart(userId, 1)) {
+                orderService.createNewOrder(1, userId);
+            }
+            orderId = orderService.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, 1);
         }
+        orderService.insertIntoOrderProducts(productId, form.getQuantity(), orderId);
         model.addAttribute("product", product);
         model.addAttribute("productForm", form);
         model.addAttribute("isSuccess", true);
