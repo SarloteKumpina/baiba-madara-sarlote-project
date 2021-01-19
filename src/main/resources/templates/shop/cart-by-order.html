@@ -54,12 +54,12 @@
                             <tbody>
                                 <tr th:each="product: ${products}" >
                                     <td class="thumbnail-img">
-                                        <a th:href="@{/product/{product}(product=${product.id})}">
+                                        <a th:href="@{/products/{product}(product=${product.id})}">
 									<img th:src="${product.imageUri}" class="img-fluid" alt="" />
 								</a>
                                     </td>
                                     <td class="name-pr">
-                                        <a th:href="@{/product/{product}(product=${product.id})}">
+                                        <a th:href="@{/products/{product}(product=${product.id})}">
                                             <p th:text="${product.name}"></p>
 								</a>
                                     </td>
@@ -85,8 +85,6 @@
 <!--                                            <p> remove </p>-->
 <!--                                        </a>-->
 <!--                                        <a href="#">-->
-
-                                        <!--jātaisa jauns bez order id-->
 <!--                                        <a th:href="@{/cart/{orderId}/delete/{id}(orderId= ${order.id}, id=${product.id})}">-->
 <!-- pielieku vēl klases klāt, bet tāpat nestrādā podziņa <i class="icon btn fas fa-times"></i>-->
 									<i class="fas fa-times"></i>
