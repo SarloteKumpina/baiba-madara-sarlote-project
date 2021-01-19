@@ -1,6 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-final class OrderTableSql {
+public final class OrderTableSql {
 
     public static final String SELECT_FROM_ORDER = "select o.id, o.order_time, SUM(products.price * op.quantity) as orderTotalSum,\n" +
             " s.name as statusName, c.id, c.first_name,\n" +
@@ -24,15 +24,10 @@ final class OrderTableSql {
     public static final String SELECT_FROM_STATUS = "select s.id as statusId, s.name as statusName\n" +
             "from status as s;";
     public static final String UPDATE_ORDER_STATUS = "UPDATE orders SET status_id = #{statusId} where id = #{id}";
-    public static final String UPDATE_ORDER_INFORMATION = "UPDATE orders SET first_name = #{firstName}, last_name #{lastName}," +
-            " address #{address}, phone_number #{phoneNumber}," +
-            " status_id = #{statusId} where id = #{id}";
+    public static final String UPDATE_ORDER_WITH_CUSTOMER_ID = "update orders set customer_id = #{id} where id = #{id};";
 
-    public static final String INSERT_CUSTOMER_DETAILS = "insert into customers(id, first_name, last_name, address, phone_number)" +
-            " values(#{id}, #{firstName}, #{lastName}, #{address}, #{phoneNumber})";
-
-    public static final String CREATE_CUSTOMER = "insert into customers(id, first_name, last_name, phone_number, email, address)" +
-            " values(#{id}, #{first_name}, #{last_name}, #{phone_number}, #{email}, #{address})";
+    public static final String CREATE_CUSTOMER = "insert into customers(first_name, last_name, phone_number, email, address)" +
+            " values(#{firstName}, #{lastName}, #{phoneNumber}, #{email}, #{address})";
 
     public static final String INSERT_INTO_ORDERS = "insert into orders(id, customer_id, order_time, status_id, user_id)\n" +
             " values(#{id}, #{customerId},#{orderTime}, #{statusId}, #{userId})";

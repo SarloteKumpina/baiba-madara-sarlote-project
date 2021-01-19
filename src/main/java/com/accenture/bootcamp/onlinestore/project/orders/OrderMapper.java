@@ -18,7 +18,7 @@ public interface OrderMapper {
     Order findOrderById(Long id);
 
     @Select(SELECT_ORDER_PRODUCTS)
-    List<Order> getAllOrdersProducts(Long id);
+    List<Order> orderedProducts(Long id);
 
     @Select(SELECT_FROM_STATUS)
     List<Order> findAllStatuses();
@@ -26,20 +26,8 @@ public interface OrderMapper {
     @Update(UPDATE_ORDER_STATUS)
     void updateOrderStatus(Order order);
 
-    @Update(UPDATE_ORDER_INFORMATION)
-    void updateOrder(Order order);
-
-    @Options(useGeneratedKeys = true,
-            keyProperty = "id",
-            keyColumn = "id")
-    @Insert(INSERT_CUSTOMER_DETAILS)
-    void insertCustomerDetails(Order order);
-
-    @Options(useGeneratedKeys = true,
-            keyProperty = "id",
-            keyColumn = "id")
-    @Insert(CREATE_CUSTOMER)
-    Customer createCustomer(Customer customer);
+    @Update(UPDATE_ORDER_WITH_CUSTOMER_ID)
+    void updateOrderWithCustomer(Order order);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
