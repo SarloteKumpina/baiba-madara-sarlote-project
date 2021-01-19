@@ -18,6 +18,7 @@ import java.util.UUID;
 
 import com.accenture.bootcamp.onlinestore.project.cookies.CookieUtils;
 import static com.accenture.bootcamp.onlinestore.project.cookies.Cookies.USER_ID_COOKIE_NAME;
+import static com.accenture.bootcamp.onlinestore.project.orders.OrdersOrderStatus.ORDER_IN_PROGRESS_STATUS_ID;
 
 @Controller
 @AllArgsConstructor
@@ -47,13 +48,13 @@ public class AddToCartController {
         if (userId == null){
             userId = UUID.randomUUID().toString();
             addShoppingCartCookieToResponse(response, userId);
-            Order order = orderService.createNewOrder(1, userId);
+            Order order = orderService.createNewOrder(ORDER_IN_PROGRESS_STATUS_ID, userId);
             orderId = orderService.findOrderIdByUserId(order.getUserId());
         } else {
-            if (!orderService.userHasOrderWithStatusShoppingCart(userId, 1)) {
-                orderService.createNewOrder(1, userId);
+            if (!orderService.userHasOrderWithStatusShoppingCart(userId, ORDER_IN_PROGRESS_STATUS_ID)) {
+                orderService.createNewOrder(ORDER_IN_PROGRESS_STATUS_ID, userId);
             }
-            orderId = orderService.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, 1);
+            orderId = orderService.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, ORDER_IN_PROGRESS_STATUS_ID);
         }
         orderService.insertIntoOrderProducts(productId, form.getQuantity(), orderId);
         model.addAttribute("product", product);
