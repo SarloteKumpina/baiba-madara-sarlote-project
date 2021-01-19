@@ -29,22 +29,18 @@ public class OrderService {
         return order;
     }
 
-    public List<Order> getAllOrdersProducts(Long id) {
-        return mapper.getAllOrdersProducts(id);
+    public List<Order> orderedProducts(Long id) {
+        return mapper.orderedProducts(id);
     }
 
     public List<Order> findAllStatuses() {
         return mapper.findAllStatuses();
     }
 
-    public Order updateOrder(Long id, Order order) {
+    public Order updateOrderWithCustomer(Long id, Order order) {
         Order existing = findOrderById(id);
-        existing.setFirstName(order.getFirstName());
-        existing.setLastName(order.getLastName());
-        existing.setAddress(order.getAddress());
-        existing.setPhoneNumber(order.getPhoneNumber());
-        existing.setStatusId(order.getStatusId());
-        mapper.updateOrder(existing);
+        existing.setCustomerId(order.getCustomerId());
+        mapper.updateOrderWithCustomer(existing);
         return existing;
     }
 
@@ -53,11 +49,6 @@ public class OrderService {
         existing.setStatusId(order.getStatusId());
         mapper.updateOrderStatus(existing);
         return existing;
-    }
-
-
-    public Customer createCustomer(Customer customer) {
-        return mapper.createCustomer(customer);
     }
 
     public Order createNewOrder(int statusId, String userId) {
