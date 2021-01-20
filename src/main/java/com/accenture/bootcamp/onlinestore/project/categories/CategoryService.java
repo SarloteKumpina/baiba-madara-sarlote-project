@@ -1,18 +1,16 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class CategoryService {
 
     private final CategoryMapper mapper;
-
-    public CategoryService(CategoryMapper mapper) {
-        this.mapper = mapper;
-    }
 
     public Category findOne(Long id) {
         Category category = mapper.findOne(id);
