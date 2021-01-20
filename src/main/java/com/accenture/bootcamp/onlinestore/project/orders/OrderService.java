@@ -1,21 +1,18 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
 import com.accenture.bootcamp.onlinestore.project.orderproduct.OrderProduct;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class OrderService {
 
     private final OrderMapper mapper;
-
-    public OrderService(OrderMapper mapper) {
-        this.mapper = mapper;
-    }
 
     public List<Order> getAllOrders() {
         return mapper.getAllOrders();
@@ -68,22 +65,9 @@ public class OrderService {
         return mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
     }
 
-    public OrderProduct insertIntoOrderProducts(Long productId, int quantity, Long id) {
-        OrderProduct orderProduct = new OrderProduct();
-        orderProduct.setProductId(productId);
-        orderProduct.setQuantity(quantity);
-        orderProduct.setOrderId(id);
-        mapper.insertIntoOrderProducts (orderProduct);
-        return orderProduct;
-    }
-
     public boolean userHasOrderWithStatusShoppingCart(String userId, int statusId){
         Long orderId = mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
-        if (orderId != null){
-            return true;
-        } else {
-            return false;
-        }
+        return orderId != null;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.addtocart;
 
 import com.accenture.bootcamp.onlinestore.project.cookies.CookieUtils;
+import com.accenture.bootcamp.onlinestore.project.orderproduct.OrderProductService;
 import com.accenture.bootcamp.onlinestore.project.orders.Order;
 import com.accenture.bootcamp.onlinestore.project.orders.OrderService;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import static com.accenture.bootcamp.onlinestore.project.orders.OrdersOrderStatu
 public class AddToCartService {
 
     private final OrderService orderService;
+    private final OrderProductService orderProductService;
 
     public void addProductToCart(Long productId, String userId, AddToCartForm form,
                                  HttpServletResponse response){
@@ -33,7 +35,13 @@ public class AddToCartService {
             }
             orderId = orderService.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, ORDER_IN_PROGRESS_STATUS_ID);
         }
-        orderService.insertIntoOrderProducts(productId, form.getQuantity(), orderId);
+        if(orderProductService.userHasThisProductInCart(orderId, productId)){
+            int productQuantityInCart = orderProductService.getProductQuantityFromOrder(orderId, productId);
+            productQuantityInCart += form.getQuantity();
+            orderProductService.updateProductQuantityInOrder(productQuantityInCart, orderId, productId);
+        } else {
+            orderProductService.insertIntoOrderProducts(productId, form.getQuantity(), orderId);
+        }
     }
 
     private void addShoppingCartCookieToResponse(HttpServletResponse response, String cookieValue) {

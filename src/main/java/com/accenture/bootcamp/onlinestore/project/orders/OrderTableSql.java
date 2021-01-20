@@ -37,7 +37,4 @@ public final class OrderTableSql {
     public static final String FIND_ORDER_BY_USER_ID_WHERE_STATUS_IS_SHOPPING_CART = "select id from orders " +
             "where user_id=#{userId} and status_id=#{statusId}";
 
-    public static final String INSERT_INTO_ORDERS_PRODUCTS = "insert into orders_products(id, product_id, quantity, order_id)" +
-            " values(#{id}, #{productId}, #{quantity}, #{orderId})";
-
 }
