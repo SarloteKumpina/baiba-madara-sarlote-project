@@ -26,8 +26,7 @@ public interface ShoppingCartMapper {
             "where status.id = '1' AND #{id} IS NULL OR (orders.id = #{id})")
     List<ShoppingCart> getProductsForOrderStatusShoppingCart(Long orderId);
 
-
-    //dzēšam produktu no shopping cart and return product in products - pagaidām netaisām
-//    @Delete("delete from orders_products where id=#{id}")
-//    void removeProductFromShoppingCart(Long id);
+    //11. remove product from orders_products
+    @Delete("delete from orders_products where product_id=#{productId} AND order_id = #{orderId}")
+    void removeProductFromShoppingCart(Long productId, Long orderId);
 }

@@ -33,10 +33,9 @@ public class ShoppingCartRepository implements ShoppingCartMapper {
         return products;
     }
 
-
-    //dzēšam produktu no shopping cart and return product in products - pagaidām netaisām
-//    @Override
-//    public void removeProductFromShoppingCart(Long productId) {
-//        shoppingCartMapper.removeProductFromShoppingCart(productId);
-//    }
+    //11. remove product from orders_products
+    @Override
+    public void removeProductFromShoppingCart(Long productId, Long orderId) {
+        shoppingCartMapper.removeProductFromShoppingCart(productId, orderId);
+    }
 }
