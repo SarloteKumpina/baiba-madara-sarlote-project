@@ -44,14 +44,7 @@ public interface OrderMapper {
     @Select(FIND_ORDER_BY_USER_ID_AND_STATUS_ID)
     Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, int statusId);
 
-    @Options(useGeneratedKeys = true,
-            keyProperty = "id",
-            keyColumn = "id")
-    @Insert(INSERT_INTO_ORDERS_PRODUCTS)
-    void insertIntoOrderProducts(OrderProduct orderProduct);
-
     @Update(UPDATE_ORDER_STATUS)
     void updateOrderStatusToPending(Order order);
-
 
 }
