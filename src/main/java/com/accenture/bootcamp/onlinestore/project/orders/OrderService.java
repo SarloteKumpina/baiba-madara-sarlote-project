@@ -1,8 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
-
-import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
 import com.accenture.bootcamp.onlinestore.project.orderproduct.OrderProduct;
+import com.accenture.bootcamp.onlinestore.project.products.ProductMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -12,9 +11,11 @@ import java.util.List;
 public class OrderService {
 
     private final OrderMapper mapper;
+    private final ProductMapper productMapper;
 
-    public OrderService(OrderMapper mapper) {
+    public OrderService(OrderMapper mapper, ProductMapper productMapper) {
         this.mapper = mapper;
+        this.productMapper = productMapper;
     }
 
     public List<Order> getAllOrders() {
@@ -37,14 +38,14 @@ public class OrderService {
         return mapper.findAllStatuses();
     }
 
-    public Order updateOrderWithCustomer(Long id, Order order) {
+    public Order updateOrderCustomerId(Long id, Long customerId, Order order) {
         Order existing = findOrderById(id);
         existing.setCustomerId(order.getCustomerId());
-        mapper.updateOrderWithCustomer(existing);
-        return existing;
+        mapper.updateOrderCustomerId(existing);
+        return order;
     }
 
-    public Order updateOrderStatus(Long id, Order order) {
+    public Order updateOrderStatus(Long id, int statusId, Order order) {
         Order existing = findOrderById(id);
         existing.setStatusId(order.getStatusId());
         mapper.updateOrderStatus(existing);
@@ -64,6 +65,10 @@ public class OrderService {
         return mapper.findOrderIdByUserId(userId);
     }
 
+    public Order findOrderByUserIdAndStatusId(String userId, int statusId) {
+        return mapper.findOrderByUserIdAndStatusId(userId, statusId);
+    }
+
     public Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, int statusId) {
         return mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
     }
@@ -73,17 +78,36 @@ public class OrderService {
         orderProduct.setProductId(productId);
         orderProduct.setQuantity(quantity);
         orderProduct.setOrderId(id);
-        mapper.insertIntoOrderProducts (orderProduct);
+        mapper.insertIntoOrderProducts(orderProduct);
         return orderProduct;
     }
 
-    public boolean userHasOrderWithStatusShoppingCart(String userId, int statusId){
+    public boolean userHasOrderWithStatusShoppingCart(String userId, int statusId) {
         Long orderId = mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
-        if (orderId != null){
+        if (orderId != null) {
             return true;
         } else {
             return false;
         }
     }
 
+    //returns true if we have enough products in stock
+    //compare ordered product quantity with product stock quantity
+    //for each product in this particular order
+//        if (orderService.verifyProductCount(order.getId())) {
+//            return;
+//        }
+
+////    public boolean verifyProductCount(Long id) {
+////
+////
+//
+//
+//    }
+
+    public Order updateOrderStatusToPending(Long id, int statusId, Order order) {
+        order.setStatusId(statusId);
+        mapper.updateOrderStatusToPending(order);
+        return order;
+    }
 }

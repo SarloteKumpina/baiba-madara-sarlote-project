@@ -27,7 +27,7 @@ public interface OrderMapper {
     void updateOrderStatus(Order order);
 
     @Update(UPDATE_ORDER_WITH_CUSTOMER_ID)
-    void updateOrderWithCustomer(Order order);
+    void updateOrderCustomerId(Order order);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
@@ -38,7 +38,10 @@ public interface OrderMapper {
     @Select(SELECT_ORDER_BY_USER_ID)
     Long findOrderIdByUserId(String userId);
 
-    @Select(FIND_ORDER_BY_USER_ID_WHERE_STATUS_IS_SHOPPING_CART)
+    @Select(FIND_ORDER_BY_USER_ID_AND_STATUS_ID)
+    Order findOrderByUserIdAndStatusId(String userId, int statusId);
+
+    @Select(FIND_ORDER_BY_USER_ID_AND_STATUS_ID)
     Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, int statusId);
 
     @Options(useGeneratedKeys = true,
@@ -46,5 +49,9 @@ public interface OrderMapper {
             keyColumn = "id")
     @Insert(INSERT_INTO_ORDERS_PRODUCTS)
     void insertIntoOrderProducts(OrderProduct orderProduct);
+
+    @Update(UPDATE_ORDER_STATUS)
+    void updateOrderStatusToPending(Order order);
+
 
 }

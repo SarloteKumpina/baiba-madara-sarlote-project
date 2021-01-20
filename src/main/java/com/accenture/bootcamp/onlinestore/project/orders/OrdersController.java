@@ -34,8 +34,8 @@ public class OrdersController {
     }
 
     @PostMapping("/admin/orders/update-status/{id}")
-    public String updateOrderStatus(@PathVariable("id") Long id, Order order) {
-        orderService.updateOrderStatus(id, order);
+    public String updateOrderStatus(@PathVariable("id") Long id, int statusId, Order order) {
+        orderService.updateOrderStatus(id, statusId, order);
         return "redirect:/admin/orders";
     }
 

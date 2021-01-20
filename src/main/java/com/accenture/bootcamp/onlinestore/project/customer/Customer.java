@@ -17,8 +17,5 @@ public class Customer {
     private String phoneNumber;
     private String email;
     private String address;
-    private String statusName;
-    private int statusId;
-    private BigDecimal orderTotalSum;
 
 }
