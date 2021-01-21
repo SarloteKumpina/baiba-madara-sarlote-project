@@ -9,7 +9,7 @@ public interface ProductRepository {
 
     List<String> findAllNames();
 
-    List<Product> getProductsForCategory(Long productId);
+    List<Product> getProductsForCategory(Long categoryId);
 
     Product insertProduct(Product product);
 

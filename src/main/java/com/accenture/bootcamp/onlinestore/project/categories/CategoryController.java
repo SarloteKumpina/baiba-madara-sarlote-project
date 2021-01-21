@@ -1,5 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
+import com.accenture.bootcamp.onlinestore.project.products.Product;
+import com.accenture.bootcamp.onlinestore.project.products.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,7 @@ import java.util.List;
 public class CategoryController {
 
     private final CategoryService categoryService;
+    private final ProductRepository productRepository;
 
     @GetMapping(path = {"/admin/categories", "/admin"})
     public String getAllCategories(Model model) {
@@ -47,16 +50,16 @@ public class CategoryController {
     public String displayCategoryUpdateForm(@PathVariable("id") Long id, Model model, Category category) {
         Category categoryForUpdate = categoryService.findOne(id);
         model.addAttribute("category", categoryForUpdate);
-        model.addAttribute("currentCategoryName", categoryForUpdate.getName());
         return "cms/categories/update-category";
     }
 
     @PostMapping("/admin/categories/update")
-    public String updateCategory(Model model, @Valid Category category, BindingResult result) {
+    public String updateCategory(@Valid Category category, BindingResult result) {
         String name = category.getName();
-        String previousName = (String) model.getAttribute("currentCategoryName");
+        Category currentCategory = categoryService.findOne(category.getId());
+        String currentCategoryName = currentCategory.getName();
         List<String> allNamesForCategories = categoryService.findAllNames();
-        if (!name.equals(previousName) && allNamesForCategories.contains(name)) {
+        if (!name.equals(currentCategoryName) && allNamesForCategories.contains(name)) {
             result.rejectValue("name", "duplicate", "Category with this name already exists.");
             return "cms/categories/update-category";
         } else if (result.hasErrors()) {
@@ -68,6 +71,10 @@ public class CategoryController {
 
     @GetMapping("/admin/categories/delete/{id}")
     public String deleteCategory(@PathVariable("id") Long id) {
+        List<Product> productsForCategory = productRepository.getProductsForCategory(id);
+        if (productsForCategory.isEmpty()){
+
+        }
         categoryService.delete(id);
         return "redirect:/admin/categories";
     }

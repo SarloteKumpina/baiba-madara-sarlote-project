@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-//@RequestMapping("/online-shop/product")
 @Controller
 @AllArgsConstructor
 public class ProductController {
@@ -94,8 +93,10 @@ public class ProductController {
     @PostMapping("/admin/products/update")
     public String updateProduct(Model model, @Valid Product product, BindingResult result) {
         String name = product.getName();
+        Product currentProduct = productRepository.findOne(product.getId());
+        String currentProductName = currentProduct.getName();
         List<String> allNamesForProducts = productRepository.findAllNames();
-        if(allNamesForProducts.contains(name)){
+        if(!name.equals(currentProductName) && allNamesForProducts.contains(name)){
             result.rejectValue("name", "duplicate", "Product with this name already exists.");
             List<Category> categories = categoryService.findAll();
             model.addAttribute("categories", categories);
