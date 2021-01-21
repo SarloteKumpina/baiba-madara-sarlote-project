@@ -8,8 +8,10 @@
 <main class="container">
     <div class="starter-template py-5 px-3">
         <h1 class="main-heading">Update category</h1>
-        <form method="post"
-              th:object="${categoryForUpdate}">
+        <form action="#"
+              th:action="@{/admin/categories/update}"
+              th:object="${category}"
+              method="post">
             <div class="form-group">
                 <label for="id">ID</label>
                 <input readonly type="number" th:field="*{id}" class="form-control" id="id" placeholder="id" value="1"/>
@@ -17,10 +19,12 @@
             <div class="form-group">
                 <label for="categoryName">Name</label>
                 <input type="text" th:field="*{name}" class="form-control" id="categoryName" placeholder="name">
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
             </div>
             <div class="form-group">
                 <label for="imageUri">Image URI</label>
                 <input type="text" th:field="*{imageUri}" class="form-control" id="imageUri" placeholder="Image URI">
+                <div th:if="${#fields.hasErrors('imageUri')}" th:errors="*{imageUri}">ImageUri Error</div>
             </div>
             <button type="submit" class="btn btn-primary category-create-btn">Save</button>
             <a class="btn btn-secondary" href="/admin/categories" role="button">Cancel</a>

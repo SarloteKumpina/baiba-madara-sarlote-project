@@ -93,7 +93,14 @@ public class ProductController {
 
     @PostMapping("/admin/products/update")
     public String updateProduct(Model model, @Valid Product product, BindingResult result) {
-        if (result.hasErrors()){
+        String name = product.getName();
+        List<String> allNamesForProducts = productRepository.findAllNames();
+        if(allNamesForProducts.contains(name)){
+            result.rejectValue("name", "duplicate", "Product with this name already exists.");
+            List<Category> categories = categoryService.findAll();
+            model.addAttribute("categories", categories);
+            return "cms/products/update-product";
+        } else if (result.hasErrors()){
             List<Category> categories = categoryService.findAll();
             //model.addAttribute("productForUpdate", product);
             model.addAttribute("categories", categories);

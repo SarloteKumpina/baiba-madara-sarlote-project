@@ -23,14 +23,10 @@
                 <td th:text="${category.id}"></td>
                 <td><img width="100" th:src="${category.imageUri}"/></td>
                 <td>
-                    <ul>
-                        <li>
                             <a th:text="${category.name}"
                                th:href="@{/admin/products/by-category/{categoryId}(categoryId=${category.id})}">
 
                             </a>
-                        </li>
-                    </ul>
                 </td>
                 <td>
                     <a th:href="@{/admin/categories/update/{id}(id=${category.id})}">Edit</a>

@@ -44,16 +44,25 @@ public class CategoryController {
     }
 
     @GetMapping("/admin/categories/update/{id}")
-    public String displayCategoryUpdateForm(@PathVariable("id") Long id, Model model) {
+    public String displayCategoryUpdateForm(@PathVariable("id") Long id, Model model, Category category) {
         Category categoryForUpdate = categoryService.findOne(id);
-        model.addAttribute("categoryForUpdate", categoryForUpdate);
+        model.addAttribute("category", categoryForUpdate);
+        model.addAttribute("currentCategoryName", categoryForUpdate.getName());
         return "cms/categories/update-category";
     }
 
-    @PostMapping("/admin/categories/update/{categoryId}")
-    public String updateCategory(@PathVariable("categoryId") Long id,
-                                 @Valid Category category, BindingResult result) {
-        categoryService.update(id, category);
+    @PostMapping("/admin/categories/update")
+    public String updateCategory(Model model, @Valid Category category, BindingResult result) {
+        String name = category.getName();
+        String previousName = (String) model.getAttribute("currentCategoryName");
+        List<String> allNamesForCategories = categoryService.findAllNames();
+        if (!name.equals(previousName) && allNamesForCategories.contains(name)) {
+            result.rejectValue("name", "duplicate", "Category with this name already exists.");
+            return "cms/categories/update-category";
+        } else if (result.hasErrors()) {
+            return "cms/categories/update-category";
+        }
+        categoryService.update(category);
         return "redirect:/admin/categories";
     }
 

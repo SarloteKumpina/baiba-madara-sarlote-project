@@ -43,12 +43,12 @@ public class CategoryService {
         return newCategory;
     }
 
-    public Category update(Long id, Category category) {
-        Category existing = findOne(id);
+    public Category update(Category category) {
+       /* Category existing = findOne(id);
         existing.setName(category.getName());
-        existing.setImageUri(category.getImageUri());
-        mapper.update(existing);
-        return existing;
+        existing.setImageUri(category.getImageUri());*/
+        mapper.update(category);
+        return category;
     }
 
     public void delete(Long id) {

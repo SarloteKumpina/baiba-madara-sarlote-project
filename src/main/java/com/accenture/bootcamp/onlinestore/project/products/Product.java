@@ -33,13 +33,13 @@ public class Product {
 
     @NotNull(message = "Quantity value cannot be empty.")
     @Min(value = 0, message = "Quantity cannot be less than 0.")
-    private int stock;
+    private Integer stock;
 
     @NotBlank(message = "ImageUri is mandatory.")
     @Size(min = 3, max = 255, message = "ImageUri size must be between 3 and 255 characters long.")
     private String imageUri;
 
-    @NotEmpty(message = "The product has to assigned to a category.")
+    //@NotEmpty(message = "The product has to assigned to a category.")
     private List<Category> categories = new ArrayList<>();
 
     public boolean productIsNew() {
