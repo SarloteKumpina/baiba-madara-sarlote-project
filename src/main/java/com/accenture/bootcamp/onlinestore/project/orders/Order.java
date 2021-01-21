@@ -35,5 +35,6 @@ public class Order {
     private String productName;
     private BigDecimal productPrice;
 
+    private int stock;
 }
 

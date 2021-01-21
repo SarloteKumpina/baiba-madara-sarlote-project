@@ -1,8 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
-import com.accenture.bootcamp.onlinestore.project.orderproduct.OrderProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -70,9 +68,15 @@ public class OrderService {
         return mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
     }
 
-    public boolean userHasOrderWithStatusShoppingCart(String userId, int statusId){
+    public boolean userHasOrderWithStatusShoppingCart(String userId, int statusId) {
         Long orderId = mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
         return orderId != null;
+    }
+
+    public Order updateOrderStatusToPending(Long id, int statusId, Order order) {
+        order.setStatusId(statusId);
+        mapper.updateOrderStatusToPending(order);
+        return order;
     }
 
     //returns true if we have enough products in stock
@@ -82,16 +86,24 @@ public class OrderService {
 //            return;
 //        }
 
-////    public boolean verifyProductCount(Long id) {
-////
-////
-//
-//
-//    }
+    public boolean verifyProductCount(Long id) {
+        List<Order> orderedProducts = mapper.orderedProducts(id);
+        for (Order product : orderedProducts) {
+            if (product.getQuantity() < product.getStock()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return true;
+    }
 
-    public Order updateOrderStatusToPending(Long id, int statusId, Order order) {
-        order.setStatusId(statusId);
-        mapper.updateOrderStatusToPending(order);
-        return order;
+    public int minusFromStock(Long id, int stockUpdate) {
+        List<Order> orderedProducts = mapper.orderedProducts(id);
+        for (Order product : orderedProducts) {
+            stockUpdate = product.getStock() - product.getQuantity();
+            product.setStock(stockUpdate);
+        }
+        return stockUpdate;
     }
 }

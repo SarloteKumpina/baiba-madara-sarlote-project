@@ -4,6 +4,7 @@ import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.customer.CustomerRepository;
 import com.accenture.bootcamp.onlinestore.project.orders.Order;
 import com.accenture.bootcamp.onlinestore.project.orders.OrderService;
+import com.accenture.bootcamp.onlinestore.project.products.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class CheckoutService {
         //updates order status to PENDING
         //and updates product count in stock
         orderService.updateOrderStatusToPending(order.getId(), ORDER_PENDING_FOR_APPROVAL_STATUS_ID, order);
-        //orderService.updateProductCountInStock()
+        orderService.minusFromStock(order.getId(), order.getStock());
     }
     private Customer createCustomer(CheckoutForm form) {
         Customer customer = new Customer();

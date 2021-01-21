@@ -13,7 +13,7 @@ public final class OrderTableSql {
 
     public static final String SELECT_FROM_ORDER_GROUP_BY_ID = SELECT_FROM_ORDER + " group by o.id;";
     public static final String SELECT_FROM_ORDER_BY_ID_QUERY = SELECT_FROM_ORDER + " where o.id = #{id};";
-    public static final String SELECT_ORDER_PRODUCTS = "select op.order_id, p.id as productId, p.imageUri, p.name as productName,\n" +
+    public static final String SELECT_ORDER_PRODUCTS = "select op.order_id, p.id as productId, p.imageUri, p.stock, p.name as productName,\n" +
             " SUM(p.price * op.quantity) as orderTotalSum, op.quantity, o.id, c.first_name, c.last_name\n" +
             "from products as p\n" +
             "inner join orders_products as op on p.id=op.product_id\n" +
@@ -36,5 +36,4 @@ public final class OrderTableSql {
 
     public static final String FIND_ORDER_BY_USER_ID_AND_STATUS_ID = "select id from orders " +
             "where user_id=#{userId} and status_id=#{statusId}";
-
 }
