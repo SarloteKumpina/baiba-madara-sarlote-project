@@ -1,9 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-import com.accenture.bootcamp.onlinestore.project.customer.Customer;
-import com.accenture.bootcamp.onlinestore.project.orderproduct.OrderProduct;
 import org.apache.ibatis.annotations.*;
-
 import java.util.List;
 
 import static com.accenture.bootcamp.onlinestore.project.orders.OrderTableSql.*;
