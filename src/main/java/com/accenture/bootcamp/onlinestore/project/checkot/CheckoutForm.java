@@ -12,15 +12,16 @@ public class CheckoutForm {
     private String lastName;
     private String email;
     private String address;
-    private String zip;
+    private String phoneNumber;;
 
     @Override
     public String toString() {
         return "CheckoutForm{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
-                ", zip='" + zip + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }

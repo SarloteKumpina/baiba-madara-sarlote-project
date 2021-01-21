@@ -17,7 +17,7 @@
                 <th>Price</th>
                 </thead>
                 <tbody>
-                <tr th:each="product : ${allOrdersProducts}">
+                <tr th:each="product : ${orderedProducts}">
                     <td th:text="${product.productId}"></td>
                     <td><img height="100"
                              th:src="${product.imageUri}"/>

@@ -54,12 +54,12 @@
                             <tbody>
                                 <tr th:each="product: ${products}" >
                                     <td class="thumbnail-img">
-                                        <a th:href="@{/product/{product}(product=${product.id})}">
+                                        <a th:href="@{/products/{product}(product=${product.id})}">
 									<img th:src="${product.imageUri}" class="img-fluid" alt="" />
 								</a>
                                     </td>
                                     <td class="name-pr">
-                                        <a th:href="@{/product/{product}(product=${product.id})}">
+                                        <a th:href="@{/products/{product}(product=${product.id})}">
                                             <p th:text="${product.name}"></p>
 								</a>
                                     </td>
@@ -79,22 +79,23 @@
                                         <p th:text="${product.total}">total</p>
 
                                     </td>
-<!--oriģinālā bija -->
-<!--                                    <td class="remove-pr">-->
-<!--                                        <a href="#">-->
-<!--                                            <i class="fas fa-times"></i>-->
-<!--                                        </a>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
 <!--Ritvars noņēma remove-->
                                     <td class="remove-pr">
-                                        <a th:href="@{/cart/delete/{productId}(productId=${product.id})}">
-                                            <i class="fas fa-times"></i>
-                                        </a>
-
+<!--                                        <a th:href="@{/cart/{orderId}/delete/{id}(orderId= ${order.id}, id=${product.id})}">-->
+<!--                                            <p> remove </p>-->
+<!--                                        </a>-->
+<!--                                        <a href="#">-->
+<!--                                        <a th:href="@{/cart/{orderId}/delete/{id}(orderId= ${order.id}, id=${product.id})}">-->
 <!-- pielieku vēl klases klāt, bet tāpat nestrādā podziņa <i class="icon btn fas fa-times"></i>-->
-<!--									<i class="fas fa-times"></i>-->
-<!--								</a>-->
+
+
+<!--šāda podziņa products admin delete-->
+<!--                                        <a th:href="@{/admin/products/delete/{id}(id=${product.id})}">Delete</a>-->
+<!--šāda podziņa products admin delete-->
+
+
+									<i class="fas fa-times"></i>
+								</a>
                                     </td>
                                 </tr>
                             </tbody>

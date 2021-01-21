@@ -15,15 +15,15 @@ public class ShoppingCart {
     private String name;
     private BigDecimal price;
     private int quantity;
-    private double total;
-    private double grandtotal;
+    private BigDecimal total;
+    private BigDecimal grandtotal;
 
     private List<Product> products = new ArrayList<>();
 
     public ShoppingCart() {
     }
 
-    public ShoppingCart(Long shoppingCartId, Long id, String imageUri, String name, BigDecimal price, int quantity, double total, double grandtotal, List<Product> products) {
+    public ShoppingCart(Long shoppingCartId, Long id, String imageUri, String name, BigDecimal price, int quantity, BigDecimal total, BigDecimal grandtotal, List<Product> products) {
         this.shoppingCartId = shoppingCartId;
         this.id = id;
         this.imageUri = imageUri;
@@ -83,19 +83,19 @@ public class ShoppingCart {
         this.quantity = quantity;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
-    public double getGrandtotal() {
+    public BigDecimal getGrandtotal() {
         return grandtotal;
     }
 
-    public void setGrandtotal(double grandtotal) {
+    public void setGrandtotal(BigDecimal grandtotal) {
         this.grandtotal = grandtotal;
     }
 
@@ -113,13 +113,13 @@ public class ShoppingCart {
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingCart that = (ShoppingCart) o;
         return quantity == that.quantity &&
-                Double.compare(that.total, total) == 0 &&
-                Double.compare(that.grandtotal, grandtotal) == 0 &&
                 Objects.equals(shoppingCartId, that.shoppingCartId) &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(imageUri, that.imageUri) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(price, that.price) &&
+                Objects.equals(total, that.total) &&
+                Objects.equals(grandtotal, that.grandtotal) &&
                 Objects.equals(products, that.products);
     }
 

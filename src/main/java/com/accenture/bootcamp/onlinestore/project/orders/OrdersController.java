@@ -27,23 +27,17 @@ public class OrdersController {
     }
 
     @GetMapping("/admin/orders/view-items/{id}")
-    public String findOrderProductsById(@PathVariable Long id, Model model) {
-        List<Order> allOrdersProducts = orderService.getAllOrdersProducts(id);
-        model.addAttribute("allOrdersProducts", allOrdersProducts);
+    public String orderedProducts(@PathVariable Long id, Model model) {
+        List<Order> orderedProducts = orderService.orderedProducts(id);
+        model.addAttribute("orderedProducts", orderedProducts);
         return "cms/orders/view-items";
     }
 
     @PostMapping("/admin/orders/update-status/{id}")
-    public String updateOrderStatus(@PathVariable("id") Long id, Order order) {
-        orderService.updateOrderStatus(id, order);
+    public String updateOrderStatus(@PathVariable("id") Long id, int statusId, Order order) {
+        orderService.updateOrderStatus(id, statusId, order);
         return "redirect:/admin/orders";
     }
-
-//    @PostMapping("/checkout")
-//    public String updateOrder(@PathVariable("id") Long id, Order order) {
-//        orderService.updateOrder(id, order);
-//        return "redirect:/admin/orders";
-//    }
 
     @GetMapping("/admin/orders/update-status/{id}")
     public String showOrderEditForm(@PathVariable("id") Long id, Model model) {

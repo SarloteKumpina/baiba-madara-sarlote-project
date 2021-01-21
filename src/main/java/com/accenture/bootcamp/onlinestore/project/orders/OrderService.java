@@ -1,21 +1,19 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-import com.accenture.bootcamp.onlinestore.project.customer.Customer;
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
-import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
+import com.accenture.bootcamp.onlinestore.project.products.Product;
+import com.accenture.bootcamp.onlinestore.project.products.ProductMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class OrderService {
 
     private final OrderMapper mapper;
-
-    public OrderService(OrderMapper mapper) {
-        this.mapper = mapper;
-    }
 
     public List<Order> getAllOrders() {
         return mapper.getAllOrders();
@@ -29,35 +27,26 @@ public class OrderService {
         return order;
     }
 
-    public List<Order> getAllOrdersProducts(Long id) {
-        return mapper.getAllOrdersProducts(id);
+    public List<Order> orderedProducts(Long id) {
+        return mapper.orderedProducts(id);
     }
 
     public List<Order> findAllStatuses() {
         return mapper.findAllStatuses();
     }
 
-    public Order updateOrder(Long id, Order order) {
+    public Order updateOrderCustomerId(Long id, Long customerId, Order order) {
         Order existing = findOrderById(id);
-        existing.setFirstName(order.getFirstName());
-        existing.setLastName(order.getLastName());
-        existing.setAddress(order.getAddress());
-        existing.setPhoneNumber(order.getPhoneNumber());
-        existing.setStatusId(order.getStatusId());
-        mapper.updateOrder(existing);
-        return existing;
+        existing.setCustomerId(order.getCustomerId());
+        mapper.updateOrderCustomerId(existing);
+        return order;
     }
 
-    public Order updateOrderStatus(Long id, Order order) {
+    public Order updateOrderStatus(Long id, int statusId, Order order) {
         Order existing = findOrderById(id);
         existing.setStatusId(order.getStatusId());
         mapper.updateOrderStatus(existing);
         return existing;
-    }
-
-
-    public Customer createCustomer(Customer customer) {
-        return mapper.createCustomer(customer);
     }
 
     public Order createNewOrder(int statusId, String userId) {
@@ -73,13 +62,52 @@ public class OrderService {
         return mapper.findOrderIdByUserId(userId);
     }
 
-    public OrderProduct insertIntoOrderProducts(Long productId, int quantity, Long id) {
-        OrderProduct orderProduct = new OrderProduct();
-        orderProduct.setProductId(productId);
-        orderProduct.setQuantity(quantity);
-        orderProduct.setOrderId(id);
-        mapper.insertIntoOrderProducts (orderProduct);
-        return orderProduct;
+    public Order findOrderByUserIdAndStatusId(String userId, int statusId) {
+        return mapper.findOrderByUserIdAndStatusId(userId, statusId);
     }
 
+    public Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, int statusId) {
+        return mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
+    }
+
+    public boolean userHasOrderWithStatusShoppingCart(String userId, int statusId) {
+        Long orderId = mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
+        return orderId != null;
+    }
+
+    public Order updateOrderStatusToPending(Long id, int statusId, Order order) {
+        order.setStatusId(statusId);
+        mapper.updateOrderStatusToPending(order);
+        return order;
+    }
+
+    //returns true if we have enough products in stock
+    //compare ordered product quantity with product stock quantity
+    //for each product in this particular order
+//        if (orderService.verifyProductCount(order.getId())) {
+//            return;
+//        }
+
+    public boolean verifyProductCount(Long id) {
+        List<Order> orderedProducts = mapper.orderedProducts(id);
+        for (Order product : orderedProducts) {
+            if (product.getQuantity() < product.getStock()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return true;
+    }
+
+        public Order minusFromStock(Long id, Long ProductId, Order order) {
+        List<Order> orderedProducts = mapper.orderedProducts(id);
+        for (Order product : orderedProducts) {
+            int stockUpdate = product.getStock() - product.getQuantity();
+            ProductId = product.getProductId();
+            product.setStock(stockUpdate);
+            mapper.updateProductStock(product);
+        }
+        return order;
+    }
 }

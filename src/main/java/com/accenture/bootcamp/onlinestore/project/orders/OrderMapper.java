@@ -1,9 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-import com.accenture.bootcamp.onlinestore.project.customer.Customer;
-import com.accenture.bootcamp.onlinestore.project.orders.op.OrderProduct;
+import com.accenture.bootcamp.onlinestore.project.products.Product;
 import org.apache.ibatis.annotations.*;
-
 import java.util.List;
 
 import static com.accenture.bootcamp.onlinestore.project.orders.OrderTableSql.*;
@@ -18,7 +16,7 @@ public interface OrderMapper {
     Order findOrderById(Long id);
 
     @Select(SELECT_ORDER_PRODUCTS)
-    List<Order> getAllOrdersProducts(Long id);
+    List<Order> orderedProducts(Long id);
 
     @Select(SELECT_FROM_STATUS)
     List<Order> findAllStatuses();
@@ -26,20 +24,8 @@ public interface OrderMapper {
     @Update(UPDATE_ORDER_STATUS)
     void updateOrderStatus(Order order);
 
-    @Update(UPDATE_ORDER_INFORMATION)
-    void updateOrder(Order order);
-
-    @Options(useGeneratedKeys = true,
-            keyProperty = "id",
-            keyColumn = "id")
-    @Insert(INSERT_CUSTOMER_DETAILS)
-    void insertCustomerDetails(Order order);
-
-    @Options(useGeneratedKeys = true,
-            keyProperty = "id",
-            keyColumn = "id")
-    @Insert(CREATE_CUSTOMER)
-    Customer createCustomer(Customer customer);
+    @Update(UPDATE_ORDER_WITH_CUSTOMER_ID)
+    void updateOrderCustomerId(Order order);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
@@ -50,10 +36,15 @@ public interface OrderMapper {
     @Select(SELECT_ORDER_BY_USER_ID)
     Long findOrderIdByUserId(String userId);
 
-    @Options(useGeneratedKeys = true,
-            keyProperty = "id",
-            keyColumn = "id")
-    @Insert(INSERT_INTO_ORDERS_PRODUCTS)
-    void insertIntoOrderProducts(OrderProduct orderProduct);
+    @Select(FIND_ORDER_BY_USER_ID_AND_STATUS_ID)
+    Order findOrderByUserIdAndStatusId(String userId, int statusId);
 
+    @Select(FIND_ORDER_BY_USER_ID_AND_STATUS_ID)
+    Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, int statusId);
+
+    @Update(UPDATE_ORDER_STATUS)
+    void updateOrderStatusToPending(Order order);
+
+    @Update(UPDATE_PRODUCT_STOCK)
+    void updateProductStock(Order order);
 }

@@ -6,9 +6,12 @@ VALUES
 
 INSERT INTO categories
 VALUES
-(null, 'dresses', 'https://media.tedbaker.com/t_xld_pdp_zoom,q_auto:best,f_auto/Product/Womens/241988_IVORY_1?'),
-(null, 'shoes', 'https://row.jimmychoo.com/dw/image/v2/BDNT_PRD/on/demandware.static/-/Sites-jch-master-product-catalog/default/dw146e97d8/images/original/ODETTE100WQQ_005752_ANGLE.jpg?sw=1800&sh=1800&sm=fit'),
-(null, 'sunglasses', 'https://i1.adis.ws/i/tom_ford/FT0662_52F_OS_B?$large$&bg=rgb(255,255,255)');
+(null, 'Dresses', 'https://media.tedbaker.com/t_xld_pdp_zoom,q_auto:best,f_auto/Product/Womens/243836_BLACK_1'),
+(null, 'Shoes', 'https://www.coltortiboutique.com/media/catalog/product/cache/06764c7e561f871da5967ecc153c7d6c/p/u/pumps_jimmy-choo_misto_201516nde000001-bmix-3.jpg'),
+(null, 'Sunglasses', 'https://johnlewis.scene7.com/is/image/JohnLewis/237472354'),
+(null, 'Ted Baker', 'https://riyadh-park.com/wp-content/uploads/2019/10/ted-baker-london-logo1.jpeg'),
+(null, 'Jimmy Choo', 'https://i.pinimg.com/originals/1d/8e/a8/1d8ea811deb52a6929e895f64bc96ed5.jpg'),
+(null, 'Tom Ford', 'https://i.pinimg.com/originals/53/aa/d8/53aad883f8da7086db3ea43dfdadd9b2.jpg');
 
 
 INSERT INTO products
@@ -76,3 +79,36 @@ values
 (null, 28, 1),
 (null, 29, 2),
 (null, 30, 3);
+
+insert into products_categories
+values
+(null, 1, 4),
+(null, 2, 5),
+(null, 3, 6),
+(null, 4, 4),
+(null, 5, 5),
+(null, 6, 6),
+(null, 7, 4),
+(null, 8, 5),
+(null, 9, 6),
+(null, 10, 4),
+(null, 11, 5),
+(null, 12, 6),
+(null, 13, 4),
+(null, 14, 5),
+(null, 15, 6),
+(null, 16, 4),
+(null, 17, 5),
+(null, 18, 6),
+(null, 19, 4),
+(null, 20, 5),
+(null, 21, 6),
+(null, 22, 4),
+(null, 23, 5),
+(null, 24, 6),
+(null, 25, 4),
+(null, 26, 5),
+(null, 27, 6),
+(null, 28, 4),
+(null, 29, 5),
+(null, 30, 6);
