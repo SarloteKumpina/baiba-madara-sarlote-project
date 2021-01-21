@@ -1,6 +1,8 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
+import com.accenture.bootcamp.onlinestore.project.products.Product;
+import com.accenture.bootcamp.onlinestore.project.products.ProductMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -98,12 +100,14 @@ public class OrderService {
         return true;
     }
 
-    public int minusFromStock(Long id, int stockUpdate) {
+        public Order minusFromStock(Long id, Long ProductId, Order order) {
         List<Order> orderedProducts = mapper.orderedProducts(id);
         for (Order product : orderedProducts) {
-            stockUpdate = product.getStock() - product.getQuantity();
+            int stockUpdate = product.getStock() - product.getQuantity();
+            ProductId = product.getProductId();
             product.setStock(stockUpdate);
+            mapper.updateProductStock(product);
         }
-        return stockUpdate;
+        return order;
     }
 }

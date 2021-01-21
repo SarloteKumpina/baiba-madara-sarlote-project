@@ -40,7 +40,7 @@ public class CheckoutService {
         //updates order status to PENDING
         //and updates product count in stock
         orderService.updateOrderStatusToPending(order.getId(), ORDER_PENDING_FOR_APPROVAL_STATUS_ID, order);
-        orderService.minusFromStock(order.getId(), order.getStock());
+        orderService.minusFromStock(order.getId(), order.getProductId(), order);
     }
     private Customer createCustomer(CheckoutForm form) {
         Customer customer = new Customer();

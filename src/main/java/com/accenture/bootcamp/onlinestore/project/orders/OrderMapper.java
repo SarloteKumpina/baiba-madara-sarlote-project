@@ -1,5 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
+import com.accenture.bootcamp.onlinestore.project.products.Product;
 import org.apache.ibatis.annotations.*;
 import java.util.List;
 
@@ -44,4 +45,6 @@ public interface OrderMapper {
     @Update(UPDATE_ORDER_STATUS)
     void updateOrderStatusToPending(Order order);
 
+    @Update(UPDATE_PRODUCT_STOCK)
+    void updateProductStock(Order order);
 }

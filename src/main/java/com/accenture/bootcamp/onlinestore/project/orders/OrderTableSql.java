@@ -36,4 +36,7 @@ public final class OrderTableSql {
 
     public static final String FIND_ORDER_BY_USER_ID_AND_STATUS_ID = "select id from orders " +
             "where user_id=#{userId} and status_id=#{statusId}";
+
+    public static final String UPDATE_PRODUCT_STOCK = "update products set stock = #{stock} where id = #{productId};";
+
 }
