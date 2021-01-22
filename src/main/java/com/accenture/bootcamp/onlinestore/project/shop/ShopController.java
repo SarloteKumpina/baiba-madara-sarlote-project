@@ -54,23 +54,8 @@ public class ShopController {
         }
     }
 
-//    @GetMapping("/cart")
-//    public String ShopCart() {
-//        return "shop/cart";
-//    }
-
-//    @GetMapping("/checkout")
-//    public String ShopCheckout() {
-//        return "shop/checkout";
-//    }
-
     @GetMapping("/our-service")
     public String ShopService() {
         return "shop/service";
-    }
-
-    @GetMapping("/contact-us")
-    public String ShopContact() {
-        return "shop/contact-us";
     }
 }
