@@ -45,8 +45,8 @@
                                     <th>Product Name</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
+                                    <th></th>
                                     <th>Total</th>
-<!--Ritvars noņēmis remove-->
                                     <th>Remove</th>
                                 </tr>
                             </thead>
@@ -66,35 +66,30 @@
                                     <td class="price-pr">
                                             <p th:text="${product.price}"></p>
                                     </td>
-<!--Ritvara-->
-<!--                                    <td class="quantity-box">-->
-<!--                                        1-->
+<!--this works fine without quantity-box-->
+<!--                                    <td class="quantity-pr">-->
+<!--                                        <p th:text="${product.quantity}">quantity</p>-->
 <!--                                    </td>-->
-<!--Ritvara-->
-                                    <td class="quantity-pr">
-                                        <p th:text="${product.quantity}">quantity</p>
-                                    </td>
-<!--                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>-->
+<!--this works fine with quantity-box and update button-->
+                                    <form action="#"
+                                          th:action="@{/cart/update/{productId}(productId=${product.id})}"
+                                          method="post">
+                                        <td class="quantity-pr">
+                                            <input type="hidden" th:value="${product.id}" name="productId"/>
+                                            <input
+                                                    class="form-control" type="number" min="1" th:value="${product.quantity}" name="quantity" />
+                                        <td class="asd">
+                                            <button value="update" type="submit" >Update</button>
+                                        </td>
+                                        </td>
+                                    </form>
                                     <td class="total-pr">
                                         <p th:text="${product.total}">total</p>
-
                                     </td>
-<!--oriģinālā bija -->
-<!--                                    <td class="remove-pr">-->
-<!--                                        <a href="#">-->
-<!--                                            <i class="fas fa-times"></i>-->
-<!--                                        </a>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--Ritvars noņēma remove-->
                                     <td class="remove-pr">
                                         <a th:href="@{/cart/delete/{productId}(productId=${product.id})}">
                                             <i class="fas fa-times"></i>
                                         </a>
-
-<!-- pielieku vēl klases klāt, bet tāpat nestrādā podziņa <i class="icon btn fas fa-times"></i>-->
-<!--									<i class="fas fa-times"></i>-->
-<!--								</a>-->
                                     </td>
                                 </tr>
                             </tbody>
@@ -104,27 +99,17 @@
             </div>
 <!--coupon un update cart-->
             <div class="row my-5">
-
 <!--coupon-->
                 <div class="col-lg-6 col-sm-6">
-<!--                    <div class="coupon-box">-->
-<!--                        <div class="input-group input-group-sm">-->
-<!--                            <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">-->
-<!--                            <div class="input-group-append">-->
-<!--                                <button class="btn btn-theme" type="button">Apply Coupon</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
                 </div>
 <!--update cart-->
                 <div class="col-lg-6 col-sm-6">
-<!--                    <div class="update-box">-->
-<!--                        <input value="Update Cart" type="submit">-->
-<!--                    </div>-->
+                    <div class="update-box">
+                        <input value="Update Cart" type="submit">
+                    </div>
                 </div>
             </div>
 <!--order summary-->
-<!--            <div class="row my-5">-->
             <div class="row my-5" style="margin-top: 0 !important;">
                 <div class="col-lg-8 col-sm-12"></div>
                 <div class="col-lg-4 col-sm-12">
