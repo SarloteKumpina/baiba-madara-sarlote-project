@@ -2,48 +2,44 @@ package com.accenture.bootcamp.onlinestore.project.categories;
 
 import org.apache.ibatis.annotations.*;
 
+import static com.accenture.bootcamp.onlinestore.project.categories.CategoryTableSql.*;
+
 import java.util.List;
 
 @Mapper
 public interface CategoryMapper {
 
-    @Select("select id, name, imageUri from categories where id = #{id}")
+    @Select(FIND_ONE)
     Category findOne(Long id);
 
-    @Select("select name from categories where name = #{name}")
+    @Select(FIND_BY_NAME)
     String findByName(String name);
 
-    @Select("select id, name, imageUri from categories")
+    @Select(FIND_ALL)
     List<Category> findAll();
 
-    @Select("select name from categories")
+    @Select(FIND_ALL_NAMES)
     List<String> findAllNames();
 
-    @Select("select categories.id, categories.name, categories.imageUri\n" +
-            "from categories\n" +
-            "inner join products_categories\n" +
-            "on products_categories.category_id = categories.id\n" +
-            "where products_categories.product_id = #{productId}")
+    @Select(GET_CATEGORIES_FOR_PRODUCT)
     List<Category> getCategoriesForProduct(Long productId);
 
-    @Select("select categories.id\n" +
-            "from categories\n" +
-            "inner join products_categories\n" +
-            "on products_categories.category_id = categories.id\n" +
-            "where products_categories.product_id = #{productId}")
+    @Select(GET_CATEGORY_IDS_FOR_PRODUCT)
     List<Long> getCategoryIdsForProduct(Long productId);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
-    @Insert("insert into categories(id, name, imageUri)" +
-            " values(#{id}, #{name},#{imageUri})")
+    @Insert(CREATE)
     void create(Category category);
 
-    @Update("update categories set name = #{name}, imageUri=#{imageUri} where id=#{id}")
+    @Update(UPDATE)
     void update(Category category);
 
-    @Delete("delete from categories where id=#{id}")
+    @Delete(DELETE)
     void delete(Category category);
+
+    @Select(FIND_HOW_MANY_TIMES_CATEGORY_NAME_APPEARS)
+    int findHowManyTimesCategoryNameAppears(String name);
 
 }
