@@ -28,8 +28,15 @@
             <div th:if="${isSuccess}" class="row alert alert-success">
                 <strong>Success!</strong>&nbsp;<span>Product was added to cart!</span>
             </div>
-            <div th:if="${isError}" class="row alert alert-danger">
-                <strong>Failure!</strong>&nbsp;<span>Cannot add more items to cart than available!</span>
+            <div th:if="${isError1}" class="row alert alert-danger">
+                <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please specify quantity!</span>
+            </div>
+            <div th:if="${isError2}" class="row alert alert-danger">
+                <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please check how many items
+                of this product was already added to cart and totally add no more items than available!</span>
+            </div>
+            <div th:if="${isError3}" class="row alert alert-danger">
+                <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please add no more items than available!</span>
             </div>
             <div class="row">
 

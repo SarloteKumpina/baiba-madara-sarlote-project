@@ -1,5 +1,7 @@
 package com.accenture.bootcamp.onlinestore.project.addtocart;
 
+import com.accenture.bootcamp.onlinestore.project.orderproduct.OrderProductService;
+import com.accenture.bootcamp.onlinestore.project.orders.OrderService;
 import com.accenture.bootcamp.onlinestore.project.products.Product;
 import com.accenture.bootcamp.onlinestore.project.products.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -22,6 +24,8 @@ public class AddToCartController {
 
     private final ProductRepository productRepository;
     private final AddToCartService addToCartService;
+    private final OrderService orderService;
+    private final OrderProductService orderProductService;
 
     @GetMapping("/product/{productId}")
     public String productDetails(@PathVariable Long productId,
@@ -42,21 +46,32 @@ public class AddToCartController {
                                    Model model) {
         Product product = productRepository.findOne(productId);
         Integer productInStock = product.getStock();
+        Long orderId = orderService.findOrderIdByUserId(userId);
         model.addAttribute("product", product);
         model.addAttribute("productForm", form);
 
-        if (result.hasErrors()) {
-            model.addAttribute("isError", true);
+        if (form.getQuantity() == null) {
+            model.addAttribute("isError1", true);
             return "shop/product-details";
-        } else if(form.getQuantity() > productInStock) {
-            model.addAttribute("isError", true);
-            result.rejectValue("quantity", "too_large", "Please check quantity, you cannot add more items than available.");
+        } else if (orderId != null && orderProductService.userHasThisProductInCart(orderId, productId)) {
+            int productQuantityInCart = orderProductService.getProductQuantityFromOrder(orderId, productId);
+            int totalQuantityToAddToCart = productQuantityInCart + form.getQuantity();
+            if (totalQuantityToAddToCart > productInStock) {
+                model.addAttribute("isError2", true);
+            }
+        } else if (form.getQuantity() > productInStock) {
+            model.addAttribute("isError3", true);
+//            result.rejectValue("quantity", "too_large", "Please check quantity, you cannot add more items than available.");
+            return "shop/product-details";
+        } else if (result.hasErrors()) {
+            model.addAttribute("isError4", true);
+            return "shop/product-details";
+        } else {
+            addToCartService.addProductToCart(productId, userId, form, response);
+//        model.addAttribute("productForm", new AddToCartForm());
+            model.addAttribute("isSuccess", true);
             return "shop/product-details";
         }
-        addToCartService.addProductToCart(productId, userId, form, response);
-
-//        model.addAttribute("productForm", new AddToCartForm());
-        model.addAttribute("isSuccess", true);
         return "shop/product-details";
     }
 
