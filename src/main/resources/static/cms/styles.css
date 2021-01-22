@@ -9,3 +9,8 @@ body {
 .container .table {
     margin-top: 1rem;
 }
+
+.validation-error {
+    color: #007bff;
+    text-align: center;
+}

@@ -35,8 +35,8 @@ public class CategoryController {
     @PostMapping("/admin/categories/create")
     public String createCategory(@Valid Category category, BindingResult result) {
         String name = category.getName();
-        List<String> allNamesForCategories = categoryService.findAllNames();
-        if (category.categoryIsNew() && allNamesForCategories.contains(name)) {
+        int categoryNameCount = categoryService.findHowManyTimesCategoryNameAppears(name);
+        if (category.categoryIsNew() && categoryNameCount > 0) {
             result.rejectValue("name", "duplicate", "Category with this name already exists.");
             return "cms/categories/create-category";
         } else if (result.hasErrors()) {
@@ -72,7 +72,7 @@ public class CategoryController {
     @GetMapping("/admin/categories/delete/{id}")
     public String deleteCategory(@PathVariable("id") Long id) {
         List<Product> productsForCategory = productRepository.getProductsForCategory(id);
-        if (productsForCategory.isEmpty()){
+        if (productsForCategory.isEmpty()) {
 
         }
         categoryService.delete(id);

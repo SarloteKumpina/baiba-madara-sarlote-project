@@ -53,4 +53,8 @@ public class CategoryService {
         mapper.delete(findOne(id));
     }
 
+    int findHowManyTimesCategoryNameAppears(String name){
+        return mapper.findHowManyTimesCategoryNameAppears(name);
+    }
+
 }
