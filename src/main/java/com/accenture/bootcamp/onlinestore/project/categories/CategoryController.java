@@ -70,13 +70,19 @@ public class CategoryController {
     }
 
     @GetMapping("/admin/categories/delete/{id}")
-    public String deleteCategory(@PathVariable("id") Long id) {
+    public String deleteCategory(Model model, @PathVariable("id") Long id) {
         List<Product> productsForCategory = productRepository.getProductsForCategory(id);
-        if (productsForCategory.isEmpty()) {
-
+        if (!productsForCategory.isEmpty()) {
+            List<Category> allCategories = categoryService.findAll();
+            Category categoryToDelete = categoryService.findOne(id);
+            model.addAttribute("allCategories", allCategories);
+            model.addAttribute("isError1", true);
+            model.addAttribute("errorCategoryName", categoryToDelete.getName());
+            model.addAttribute("productCount", productsForCategory.size());
+            return "cms/categories/categories";
+        } else {
+            categoryService.delete(id);
+            return "redirect:/admin/categories";
         }
-        categoryService.delete(id);
-        return "redirect:/admin/categories";
     }
-
 }

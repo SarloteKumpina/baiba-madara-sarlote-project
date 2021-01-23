@@ -53,7 +53,9 @@
                             th:value="${{category.id}}">Category
                     </option>
                 </select>
+                <div th:if="${#fields.hasErrors('categoryIds')}" th:errors="*{categoryIds}">CategoryIds Error</div>
             </div>
+            <p></p>
             <button type="submit" class="btn btn-primary product-create-btn">Edit</button>
             <a class="btn btn-secondary" href="/admin/products" role="button">Cancel</a>
         </form>
