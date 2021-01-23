@@ -1,6 +1,5 @@
 package com.accenture.bootcamp.onlinestore.project.search;
 
-import com.sun.xml.bind.v2.TODO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +20,4 @@ public class SearchProductController {
         model.addAttribute("searchResults", searchService.getSearchBarResults(query));
         return "shop/search";
     }
-
-//    TODO add search function to products by categories html
 }
