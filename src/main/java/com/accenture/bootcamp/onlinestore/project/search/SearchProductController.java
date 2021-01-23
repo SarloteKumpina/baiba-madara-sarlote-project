@@ -22,5 +22,5 @@ public class SearchProductController {
         return "shop/search";
     }
 
-//    TODO work on searchResults style
+//    TODO add search function to products by categories html
 }
