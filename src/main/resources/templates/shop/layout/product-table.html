@@ -1,26 +1,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="product-table(products)">
-    <table class="table table-hover table-striped table-responsive-md">
-        <thead>
-        <tr>
-            <th>Images</th>
-            <th>Product name</th>
-            <th>Product description</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="product: ${products}">
-            <td>
-                <a th:href="@{/product/{product}(product=${product.id})}" >
-                    <img th:src="${product.imageUri}" class="table-poster"/>
-                </a>
-            </td>
-            <td th:text="${product.name}"></td>
-            <td align="justify" th:text="${product.description}"></td>
-            <td th:text="${product.price}"></td>
-        </tr>
-        </tbody>
-    </table>
+
+    <!-- Start Search Result Table -->
+    <div class="container">
+        <div class="row">
+            <table class="table table-hover table-striped table-responsive-md">
+                <thead>
+                    <tr>
+                    <th>Images</th>
+                    <th>Product name</th>
+                    <th>Product description</th>
+                    <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product: ${products}">
+                    <td>
+                    <a th:href="@{/product/{product}(product=${product.id})}" >
+                        <img th:src="${product.imageUri}" height="100"/>
+                    </a>
+                    </td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.description}"></td>
+                    <td th:text="${product.price}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- End Search Result Table -->
 </th:block>
 </html>

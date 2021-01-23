@@ -36,8 +36,8 @@ public class Product {
     @Min(value = 0, message = "Quantity cannot be less than 0.")
     private Integer stock;
 
-    @NotBlank(message = "ImageUri is mandatory.")
-    @Size(min = 3, max = 255, message = "ImageUri size must be between 3 and 255 characters long.")
+    @NotBlank(message = "Image URI is mandatory.")
+    @Size(min = 3, max = 255, message = "Image URI size must be between 3 and 255 characters long.")
     private String imageUri;
 
     private List<Category> categories = new ArrayList<>();

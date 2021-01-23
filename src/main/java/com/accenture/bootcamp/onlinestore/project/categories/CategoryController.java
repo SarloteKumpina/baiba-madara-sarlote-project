@@ -36,7 +36,7 @@ public class CategoryController {
     public String createCategory(@Valid Category category, BindingResult result) {
         String name = category.getName();
         int categoryNameCount = categoryService.findHowManyTimesCategoryNameAppears(name);
-        if (category.categoryIsNew() && categoryNameCount > 0) {
+            if (category.categoryIsNew() && categoryNameCount > 0) {
             result.rejectValue("name", "duplicate", "Category with this name already exists.");
             return "cms/categories/create-category";
         } else if (result.hasErrors()) {
@@ -58,8 +58,10 @@ public class CategoryController {
         String name = category.getName();
         Category currentCategory = categoryService.findOne(category.getId());
         String currentCategoryName = currentCategory.getName();
-        List<String> allNamesForCategories = categoryService.findAllNames();
-        if (!name.equals(currentCategoryName) && allNamesForCategories.contains(name)) {
+        int categoryNameCount = categoryService.findHowManyTimesCategoryNameAppears(name);
+//        List<String> allNamesForCategories = categoryService.findAllNames();
+//        if (!name.equals(currentCategoryName) && allNamesForCategories.contains(name)) {
+            if (!name.equals(currentCategoryName) && categoryNameCount > 0) {
             result.rejectValue("name", "duplicate", "Category with this name already exists.");
             return "cms/categories/update-category";
         } else if (result.hasErrors()) {

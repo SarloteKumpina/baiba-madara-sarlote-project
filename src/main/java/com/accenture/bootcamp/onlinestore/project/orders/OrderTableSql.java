@@ -4,7 +4,7 @@ public final class OrderTableSql {
 
     public static final String SELECT_FROM_ORDER = "select o.id, o.order_time, SUM(products.price * op.quantity) as orderTotalSum,\n" +
             " s.name as statusName, c.id, c.first_name,\n" +
-            " c.last_name, c.address, c.phone_number \n" +
+            " c.last_name, c.email, c.address, c.phone_number \n" +
             " from orders as o\n" +
             " left join orders_products as op on op.order_id = o.id\n" +
             " left join products on products.id = op.product_id\n" +
