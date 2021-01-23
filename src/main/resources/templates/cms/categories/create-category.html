@@ -26,6 +26,7 @@
                 <input type="text" th:field="*{imageUri}" class="form-control" id="imageUri" placeholder="Image URI">
                 <div th:if="${#fields.hasErrors('imageUri')}" th:errors="*{imageUri}" class="validation-error">ImageUri Error</div>
             </div>
+            <p></p>
             <button type="submit" class="btn btn-primary category-create-btn">Save</button>
             <a class="btn btn-secondary" href="/admin/categories" role="button">Cancel</a>
         </form>
