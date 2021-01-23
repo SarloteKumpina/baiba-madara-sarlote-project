@@ -42,9 +42,6 @@ public class CategoryService {
     }
 
     public Category update(Category category) {
-       /* Category existing = findOne(id);
-        existing.setName(category.getName());
-        existing.setImageUri(category.getImageUri());*/
         mapper.update(category);
         return category;
     }

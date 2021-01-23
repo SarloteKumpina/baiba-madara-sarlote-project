@@ -23,63 +23,59 @@
     </div>
 </div>
 
-    <div class="shop-detail-box-main">
-        <div class="container">
-            <div th:if="${isSuccess}" class="row alert alert-success">
-                <strong>Success!</strong>&nbsp;<span>Product was added to cart!</span>
-            </div>
-            <div th:if="${isError1}" class="row alert alert-danger">
-                <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please specify quantity!</span>
-            </div>
-            <div th:if="${isError2}" class="row alert alert-danger">
-                <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please check how many items
+<div class="shop-detail-box-main">
+    <div class="container">
+        <div th:if="${isSuccess}" class="row alert alert-success">
+            <strong>Success!</strong>&nbsp;<span>Product was added to cart!</span>
+        </div>
+        <div th:if="${isError1}" class="row alert alert-danger">
+            <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please specify quantity!</span>
+        </div>
+        <div th:if="${isError2}" class="row alert alert-danger">
+            <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please check how many items
                 of this product was already added to cart and totally add no more items than available!</span>
+        </div>
+        <div th:if="${isError3}" class="row alert alert-danger">
+            <strong>Sorry could not add product to
+                cart!</strong>&nbsp;<span>Please add no more items than available!</span>
+        </div>
+        <div class="row">
+
+            <div class="col-xl-5 col-lg-5 col-md-6">
+                <img th:src="${product.imageUri}" class="image" alt="Image" height="" width="300"/>
             </div>
-            <div th:if="${isError3}" class="row alert alert-danger">
-                <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please add no more items than available!</span>
-            </div>
-            <div class="row">
+            <div class="col-xl-7 col-lg-7 col-md-6">
+                <div class="single-product-details">
+                    <h2 th:text="${product.name}"></h2>
 
-                <div class="col-xl-5 col-lg-5 col-md-6">
-                    <img th:src="${product.imageUri}" class="image" alt="Image" height="" width="300"/>
-                </div>
-                <div class="col-xl-7 col-lg-7 col-md-6">
-                    <div class="single-product-details">
-                        <h2 th:text="${product.name}"></h2>
-
-                        <h5 th:text="${product.price} + ' €'"></h5>
-                        <p th:text="${product.stock} + ' available'" class="available-stock">
-                        <p>
-                        <h4>Short Description:</h4>
-                        <p th:text="${product.description}"></p>
-
-                        <form th:action="@{/product/{productId}(productId=${product.id})}"
-                              th:object="${productForm}"
-                                method="post" >
-                            <ul>
-                                <li>
-                                    <div class="form-group quantity-box">
-                                        <label class="control-label">Quantity</label>
-                                        <input th:field="${productForm.quantity}"
-                                               th:value="${productForm.quantity}"
-                                               class="form-control" min="1" max="20" type="number">
-                                        <div th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Name Error</div>
-
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="price-box-bar">
-                                <div class="cart-and-bay-btn">
-                                    <button type="submit" class="btn hvr-hover" data-fancybox-close="" >Add to cart</button>
+                    <h5 th:text="${product.price} + ' €'"></h5>
+                    <p th:text="${product.stock} + ' available'" class="available-stock">
+                    <p>
+                    <h4>Short Description:</h4>
+                    <p th:text="${product.description}"></p>
+                    <form th:object="${productForm}"
+                          method="post">
+                        <ul>
+                            <li>
+                                <div class="form-group quantity-box">
+                                    <label class="control-label">Quantity</label>
+                                    <input th:field="${productForm.quantity}"
+                                           th:value="${productForm.quantity}"
+                                           class="form-control" min="1" type="number">
                                 </div>
+                            </li>
+                        </ul>
+                        <div class="price-box-bar">
+                            <div class="cart-and-bay-btn">
+                                <button type="submit" class="btn hvr-hover" data-fancybox-close="">Add to cart</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-<!--</form>-->
+</div>
 
 <div th:replace="~{shop/layout/footer :: footer}"></div>
 

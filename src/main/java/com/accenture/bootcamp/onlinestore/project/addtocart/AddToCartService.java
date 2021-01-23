@@ -5,6 +5,7 @@ import com.accenture.bootcamp.onlinestore.project.orderproduct.OrderProductServi
 import com.accenture.bootcamp.onlinestore.project.orders.Order;
 import com.accenture.bootcamp.onlinestore.project.orders.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
@@ -14,6 +15,7 @@ import java.util.UUID;
 import static com.accenture.bootcamp.onlinestore.project.cookies.Cookies.USER_ID_COOKIE_NAME;
 import static com.accenture.bootcamp.onlinestore.project.orders.OrdersOrderStatus.ORDER_IN_PROGRESS_STATUS_ID;
 
+@Component
 @Service
 @AllArgsConstructor
 public class AddToCartService {
@@ -22,9 +24,9 @@ public class AddToCartService {
     private final OrderProductService orderProductService;
 
     public void addProductToCart(Long productId, String userId, AddToCartForm form,
-                                 HttpServletResponse response){
+                                 HttpServletResponse response) {
         Long orderId;
-        if (userId == null){
+        if (userId == null) {
             userId = UUID.randomUUID().toString();
             addShoppingCartCookieToResponse(response, userId);
             Order order = orderService.createNewOrder(ORDER_IN_PROGRESS_STATUS_ID, userId);
@@ -35,7 +37,7 @@ public class AddToCartService {
             }
             orderId = orderService.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, ORDER_IN_PROGRESS_STATUS_ID);
         }
-        if(orderProductService.userHasThisProductInCart(orderId, productId)){
+        if (orderProductService.userHasThisProductInCart(orderId, productId)) {
             int productQuantityInCart = orderProductService.getProductQuantityFromOrder(orderId, productId);
             productQuantityInCart += form.getQuantity();
             orderProductService.updateProductQuantityInOrder(productQuantityInCart, orderId, productId);

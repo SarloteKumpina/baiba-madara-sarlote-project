@@ -1,9 +1,5 @@
 package com.accenture.bootcamp.onlinestore.project.categories;
 
-import org.apache.ibatis.annotations.*;
-
-import java.util.List;
-
 public final class CategoryTableSql {
 
     public static final String FIND_ONE = "select id, name, imageUri from categories where id = #{id}";
