@@ -24,7 +24,7 @@ public final class OrderTableSql {
     public static final String SELECT_FROM_STATUS = "select s.id as statusId, s.name as statusName\n" +
             "from status as s;";
     public static final String UPDATE_ORDER_STATUS = "UPDATE orders SET status_id = #{statusId} where id = #{id}";
-    public static final String UPDATE_ORDER_WITH_CUSTOMER_ID = "update orders set customer_id = #{id} where id = #{id};";
+    public static final String UPDATE_ORDER_WITH_CUSTOMER_ID = "update orders set customer_id = #{customerId} where id = #{id};";
 
     public static final String CREATE_CUSTOMER = "insert into customers(first_name, last_name, phone_number, email, address)" +
             " values(#{firstName}, #{lastName}, #{phoneNumber}, #{email}, #{address})";
