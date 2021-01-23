@@ -58,7 +58,7 @@ public class ProductController {
 
     @PostMapping("/admin/products/new")
     public String saveProduct(Model model, @Valid Product product, BindingResult result) {
-        String name = product.getName();
+        String name = product.getName().trim();
         List<String> allNamesForProducts = productRepository.findAllNames();
         if(product.productIsNew() && allNamesForProducts.contains(name)){
             result.rejectValue("name", "duplicate", "Product with this name already exists.");
