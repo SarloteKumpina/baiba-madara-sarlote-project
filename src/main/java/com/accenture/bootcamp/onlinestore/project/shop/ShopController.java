@@ -53,9 +53,4 @@ public class ShopController {
             return "shop/products-by-categories";
         }
     }
-
-    @GetMapping("/our-service")
-    public String ShopService() {
-        return "shop/service";
-    }
 }
