@@ -4,48 +4,41 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+import static com.accenture.bootcamp.onlinestore.project.products.ProductTableSql.*;
+
 @Mapper
 public interface ProductMapper {
 
-    @Select("select id, name, price, description, stock, imageUri from products where id = #{id}")
+    @Select(FIND_ONE)
     Product findOne(Long id);
 
-    @Select("select id, name, price, description, stock, imageUri from products")
+    @Select(FIND_ALL)
     List<Product> findAll();
 
-    @Select("select name from products")
+    @Select(FIND_ALL_NAMES)
     List<String> findAllNames();
 
-    @Select("SELECT * FROM categories WHERE id IN (#{id})")
+    @Select(FIND_SELECTED_CATEGORY_ID)
     Long findSelectedCategoryId(long categoryId);
 
-    @Select("select products.id, products.name, products.price, products.description," +
-            "products.stock, products.imageUri\n" +
-            "from products\n" +
-            "inner join products_categories\n" +
-            "on products_categories.product_id = products.id\n" +
-            "where #{category_id} IS NULL OR (products_categories.category_id = #{category_id})")
+    @Select(GET_PRODUCTS_FOR_CATEGORY)
     List<Product> getProductsForCategory(Long categoryId);
 
-    @Update("UPDATE products SET name = #{name}, price = #{price}," +
-            "description = #{description}, stock = #{stock}, imageUri = #{imageUri}" +
-            " WHERE id = #{id}")
+    @Update(UPDATE)
     void update(Product product);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
-    @Insert("insert into products(name, price, description, stock, imageUri)" +
-            " values(#{name},#{price},#{description},#{stock},#{imageUri})")
+    @Insert(INSERT_PRODUCT)
     void insertProduct(Product product);
 
-    @Insert("insert into products_categories(product_id, category_id)" +
-            " values(#{productId},#{categoryId})")
+    @Insert(INSERT_PRODUCT_CATEGORY)
     void insertProductCategory(Long productId, Long categoryId);
 
-    @Delete("delete from products where id=#{productId}")
+    @Delete(DELETE)
     void delete(Long productId);
 
-    @Delete("delete from products_categories where product_id=#{productId}")
+    @Delete(DELETE_PRODUCT_CATEGORIES)
     void deleteProductCategories(Long productId);
 }

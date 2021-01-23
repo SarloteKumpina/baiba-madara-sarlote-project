@@ -12,6 +12,7 @@
         <button type="button" class="btn btn-primary category-create-btn"
                 onclick="location.href = '/admin/categories/create'">Create category
         </button>
+        <p></p>
         <div th:if="${isError1}" class="row alert alert-danger">
             <strong th:text="'Sorry could not delete category ' + ${errorCategoryName} + '!'"></strong>
             <span th:text="'The category is assigned to ' + ${productCount} + ' product(s)! '"></span>

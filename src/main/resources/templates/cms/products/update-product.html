@@ -14,7 +14,7 @@
               th:object="${product}">
             <div class="validation-error"
                  th:if="${#fields.hasErrors()}">
-                Please correct the problems below and resubmit.
+                <strong>Please correct the problems below and resubmit.</strong>
             </div>
             <div class="form-group">
                 <label for="id">ID</label>
@@ -23,27 +23,27 @@
             <div class="form-group">
                 <label for="imageUri">Image URL</label>
                 <input type="text" th:field="*{imageUri}" class="form-control" id="imageUri" placeholder="Image URI">
-                <div th:if="${#fields.hasErrors('imageUri')}" th:errors="*{imageUri}">ImageUri Error</div>
+                <div th:if="${#fields.hasErrors('imageUri')}" th:errors="*{imageUri}" class="validation-error">ImageUri Error</div>
             </div>
             <div class="form-group">
                 <label for="quantity">Quantity</label>
                 <input type="number" th:field="*{stock}" class="form-control" id="quantity" placeholder="Quantity">
-                <div th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">Quantity Error</div>
+                <div th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="validation-error">Quantity Error</div>
             </div>
             <div class="form-group">
                 <label for="quantity">Price</label>
                 <input type="number" step=".01" min="0" th:field="*{price}" class="form-control" id="price" placeholder="Price">
-                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</div>
+                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="validation-error">Price Error</div>
             </div>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="name">
-                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation-error">Name Error</div>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea th:field="*{description}" class="form-control" id="description" rows="3"></textarea>
-                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
+                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="validation-error">Description Error</div>
             </div>
             <div class="form-group">
                 <label for="categories">Categories</label>
@@ -53,7 +53,7 @@
                             th:value="${{category.id}}">Category
                     </option>
                 </select>
-                <div th:if="${#fields.hasErrors('categoryIds')}" th:errors="*{categoryIds}">CategoryIds Error</div>
+                <div th:if="${#fields.hasErrors('categoryIds')}" th:errors="*{categoryIds}" class="validation-error">CategoryIds Error</div>
             </div>
             <p></p>
             <button type="submit" class="btn btn-primary product-create-btn">Edit</button>
