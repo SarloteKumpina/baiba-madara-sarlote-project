@@ -1,7 +1,10 @@
 package com.accenture.bootcamp.onlinestore.project.orderproduct;
 
+import com.accenture.bootcamp.onlinestore.project.products.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -29,5 +32,13 @@ public class OrderProductService {
 
     public void updateProductQuantityInOrder(int quantity, Long orderId, Long productId){
         mapper.updateProductQuantityInOrder(quantity, orderId, productId);
+    }
+
+    public List<Product> getProductsForOrderInStatusShoppingCart(Long orderId, int statusId) {
+        return mapper.getProductsForOrderInStatusShoppingCart(orderId, statusId);
+    }
+
+    public void removeProductFromShoppingCart(Long productId, Long orderId) {
+        mapper.removeProductFromShoppingCart(productId, orderId);
     }
 }
