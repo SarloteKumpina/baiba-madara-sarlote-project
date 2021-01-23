@@ -21,8 +21,8 @@ public class Category {
     @Size(min = 3, max = 255, message = "Name size must be between 3 and 255 characters long.")
     private String name;
 
-    @NotBlank(message = "ImageUri is mandatory.")
-    @Size(min = 3, max = 255, message = "ImageUri size must be between 3 and 255 characters long.")
+    @NotBlank(message = "Image URI is mandatory.")
+    @Size(min = 3, max = 255, message = "Image URI size must be between 3 and 255 characters long.")
     private String imageUri;
 
     private List<Product> products = new ArrayList<>();

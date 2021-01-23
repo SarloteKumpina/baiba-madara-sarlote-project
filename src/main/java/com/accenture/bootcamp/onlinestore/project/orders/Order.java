@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -15,6 +16,8 @@ public class Order {
     private Long id;
     private Long customerId;
     private LocalDateTime orderTime;
+
+    @NotBlank(message = "Status must be selected.")
     private int statusId;
     private String userId;
 
@@ -24,6 +27,7 @@ public class Order {
     //Customer information
     private String firstName;
     private String lastName;
+    private String email;
     private String phoneNumber;
     private String address;
     private BigDecimal orderTotalSum;
