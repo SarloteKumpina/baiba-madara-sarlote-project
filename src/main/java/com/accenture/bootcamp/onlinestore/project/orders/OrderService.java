@@ -35,11 +35,11 @@ public class OrderService {
         return mapper.findAllStatuses();
     }
 
-    public Order updateOrderCustomerId(Long id, Long customerId, Order order) {
+    public Order updateOrderCustomerId(Long id, Long customerId) {
         Order existing = findOrderById(id);
-        existing.setCustomerId(order.getCustomerId());
+        existing.setCustomerId(customerId);
         mapper.updateOrderCustomerId(existing);
-        return order;
+        return existing;
     }
 
     public Order updateOrderStatus(Long id, int statusId, Order order) {
@@ -81,30 +81,30 @@ public class OrderService {
         return order;
     }
 
-    //returns true if we have enough products in stock
-    //compare ordered product quantity with product stock quantity
-    //for each product in this particular order
-//        if (orderService.verifyProductCount(order.getId())) {
-//            return;
+//    //TODO just example method. You can change the value between true / false
+//    //and this will change the result of your product being added to cart.
+//    public boolean isProductAvailableInStock(Long productId, Integer requiredAmount) {
+//
+//        return false;
+//    }
+//
+//    public boolean isProductAvailableInStock(Long id,Long productId, Integer requiredAmount) {
+//        List<Order> orderedProducts = mapper.orderedProducts(id);
+//        for (Order product : orderedProducts) {
+//            requiredAmount = product.getStock();
+//            if (product.getQuantity() > requiredAmount)
+//                productId = product.getProductId();{
+//                return false;
+//            }
 //        }
+//        return true;
+//    }
 
-    public boolean verifyProductCount(Long id) {
-        List<Order> orderedProducts = mapper.orderedProducts(id);
-        for (Order product : orderedProducts) {
-            if (product.getQuantity() < product.getStock()) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-        return true;
-    }
-
-        public Order minusFromStock(Long id, Long ProductId, Order order) {
+        public Order minusFromStock(Long id, Long productId, Order order) {
         List<Order> orderedProducts = mapper.orderedProducts(id);
         for (Order product : orderedProducts) {
             int stockUpdate = product.getStock() - product.getQuantity();
-            ProductId = product.getProductId();
+            productId = product.getProductId();
             product.setStock(stockUpdate);
             mapper.updateProductStock(product);
         }
