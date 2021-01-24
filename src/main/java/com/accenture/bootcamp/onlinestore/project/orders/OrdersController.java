@@ -3,8 +3,8 @@ package com.accenture.bootcamp.onlinestore.project.orders;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Controller
@@ -34,7 +34,13 @@ public class OrdersController {
     }
 
     @PostMapping("/admin/orders/update-status/{id}")
-    public String updateOrderStatus(@PathVariable("id") Long id, int statusId, Order order) {
+    public String updateOrderStatus(@PathVariable("id") Long id, Integer statusId,
+                                    Order order, BindingResult result, Model model) {
+        if(result.hasErrors()){
+            List<Order> statuses = orderService.findAllStatuses();
+            model.addAttribute("statuses", statuses);
+            return "cms/orders/order-update";
+        }
         orderService.updateOrderStatus(id, statusId, order);
         return "redirect:/admin/orders";
     }
