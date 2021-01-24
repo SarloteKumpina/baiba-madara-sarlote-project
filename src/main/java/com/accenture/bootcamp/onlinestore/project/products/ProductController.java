@@ -103,7 +103,6 @@ public class ProductController {
             return "cms/products/update-product";
         } else if (result.hasErrors()){
             List<Category> categories = categoryService.findAll();
-            //model.addAttribute("productForUpdate", product);
             model.addAttribute("categories", categories);
             return "cms/products/update-product";
         }

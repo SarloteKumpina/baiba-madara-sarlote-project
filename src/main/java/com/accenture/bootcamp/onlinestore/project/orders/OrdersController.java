@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -35,7 +37,7 @@ public class OrdersController {
 
     @PostMapping("/admin/orders/update-status/{id}")
     public String updateOrderStatus(@PathVariable("id") Long id, Integer statusId,
-                                    Order order, BindingResult result, Model model) {
+                                    @Valid Order order, BindingResult result, Model model) {
         if(result.hasErrors()){
             List<Order> statuses = orderService.findAllStatuses();
             model.addAttribute("statuses", statuses);
@@ -49,7 +51,7 @@ public class OrdersController {
     public String showOrderEditForm(@PathVariable("id") Long id, Model model) {
         Order orderForUpdate = orderService.findOrderById(id);
         List<Order> statuses = orderService.findAllStatuses();
-        model.addAttribute("orderForUpdate", orderForUpdate);
+        model.addAttribute("order", orderForUpdate);
         model.addAttribute("statuses", statuses);
         return "cms/orders/order-update";
     }

@@ -9,14 +9,14 @@
     <div class="py-5 px-3">
         <h3 class="main-heading">Edit Order</h3>
         <form method="post"
-              th:object="${orderForUpdate}">
+              th:object="${order}">
              <div class="form-group">
                 <label for="statuses">Order "Status"</label>
                      <p></p>
-                <select multiple class="form-control" id="statuses" th:field="${orderForUpdate.statusId}">
-                    <option th:each="order : ${statuses}"
-                            th:text="${order.statusName}"
-                            th:value="${{order.statusId}}">OrderStatus
+                <select multiple class="form-control" id="statuses" th:field="${order.statusId}">
+                    <option th:each="status : ${statuses}"
+                            th:text="${status.statusName}"
+                            th:value="${{status.statusId}}">OrderStatus
                     </option>
                 </select>
             </div>
