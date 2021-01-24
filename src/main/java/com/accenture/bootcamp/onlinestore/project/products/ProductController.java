@@ -3,7 +3,6 @@ package com.accenture.bootcamp.onlinestore.project.products;
 import com.accenture.bootcamp.onlinestore.project.categories.Category;
 import com.accenture.bootcamp.onlinestore.project.categories.CategoryService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,12 +17,6 @@ public class ProductController {
 
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
-
-/*    @Autowired
-    public ProductController(ProductRepository repository, CategoryService categoryService) {
-        this.productRepository = repository;
-        this.categoryService = categoryService;
-    }*/
 
     @GetMapping("/{id}")
     public Product findOne(@PathVariable Long id) {
@@ -49,9 +42,7 @@ public class ProductController {
 
     @GetMapping("/admin/products/new")
     public String showProductForm(Model model, Product product) {
-//        Product product = new Product();
         List<Category> categories = categoryService.findAll();
-//        model.addAttribute("productToCreate", product);
         model.addAttribute("categories", categories);
         return "cms/products/create-product";
     }
@@ -73,11 +64,6 @@ public class ProductController {
         productRepository.insertProduct(product);
         return "redirect:/admin/products";
     }
-
-//    @PostMapping("/category")
-//    public void insertCategoryIds(@RequestBody long productId, List<Long> categoryIds) {
-//        repository.insertProductCategory(productId, categoryIds);
-//    }
 
     @GetMapping("/admin/products/update/{id}")
     public String displayProductUpdateForm(@PathVariable("id") Long id, Model model, Product product) {
