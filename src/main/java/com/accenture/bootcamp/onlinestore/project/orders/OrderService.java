@@ -42,14 +42,14 @@ public class OrderService {
         return existing;
     }
 
-    public Order updateOrderStatus(Long id, int statusId, Order order) {
+    public Order updateOrderStatus(Long id, Integer statusId, Order order) {
         Order existing = findOrderById(id);
         existing.setStatusId(order.getStatusId());
         mapper.updateOrderStatus(existing);
         return existing;
     }
 
-    public Order createNewOrder(int statusId, String userId) {
+    public Order createNewOrder(Integer statusId, String userId) {
         Order order = new Order();
         order.setOrderTime(LocalDateTime.now());
         order.setStatusId(statusId);
@@ -62,20 +62,20 @@ public class OrderService {
         return mapper.findOrderIdByUserId(userId);
     }
 
-    public Order findOrderByUserIdAndStatusId(String userId, int statusId) {
+    public Order findOrderByUserIdAndStatusId(String userId, Integer statusId) {
         return mapper.findOrderByUserIdAndStatusId(userId, statusId);
     }
 
-    public Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, int statusId) {
+    public Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, Integer statusId) {
         return mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
     }
 
-    public boolean userHasOrderWithStatusShoppingCart(String userId, int statusId) {
+    public boolean userHasOrderWithStatusShoppingCart(String userId, Integer statusId) {
         Long orderId = mapper.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, statusId);
         return orderId != null;
     }
 
-    public Order updateOrderStatusToPending(Long id, int statusId, Order order) {
+    public Order updateOrderStatusToPending(Long id, Integer statusId, Order order) {
         order.setStatusId(statusId);
         mapper.updateOrderStatusToPending(order);
         return order;

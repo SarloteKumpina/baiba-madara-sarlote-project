@@ -20,6 +20,7 @@
                     </option>
                 </select>
             </div>
+            <div th:if="${#fields.hasErrors('statusId')}" th:errors="*{statusId}" class="validation-error">Status Error</div>
             <p></p>
             <button type="submit" class="btn btn-primary order-create-btn">Edit</button>
             <a class="btn btn-secondary" href="/admin/orders" role="button">Cancel</a>

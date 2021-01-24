@@ -4,11 +4,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode
 public class OrderStatus {
 
-    private int orderStatusId;
+    @NotEmpty(message = "Status must be selected.")
+    private Integer id;
     private String name;
 }
