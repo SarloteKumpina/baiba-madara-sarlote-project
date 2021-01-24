@@ -19,11 +19,16 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="/index">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/about-us">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/products">Products</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/checkout">Checkout</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/index' ? 'active':''}">
+                            <a th:href="@{/index}">Home</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/about-us' ? 'active':''}">
+                            <a th:href="@{/about-us}">About Us</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/products' ? 'active':''}">
+                            <a th:href="@{/products}">Products</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/cart' ? 'active':''}">
+                            <a th:href="@{/cart}">Cart</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/checkout' ? 'active':''}">
+                            <a th:href="@{/checkout}">Checkout</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
