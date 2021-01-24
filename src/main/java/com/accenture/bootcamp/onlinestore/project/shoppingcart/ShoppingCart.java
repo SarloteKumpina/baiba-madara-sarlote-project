@@ -9,38 +9,23 @@ import java.util.Objects;
 
 public class ShoppingCart {
 
-    private Long shoppingCartId;
     private Long id;
     private String imageUri;
     private String name;
     private BigDecimal price;
     private int quantity;
     private BigDecimal total;
-    private BigDecimal grandtotal;
-
-    private List<Product> products = new ArrayList<>();
 
     public ShoppingCart() {
     }
 
     public ShoppingCart(Long shoppingCartId, Long id, String imageUri, String name, BigDecimal price, int quantity, BigDecimal total, BigDecimal grandtotal, List<Product> products) {
-        this.shoppingCartId = shoppingCartId;
         this.id = id;
         this.imageUri = imageUri;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.total = total;
-        this.grandtotal = grandtotal;
-        this.products = products;
-    }
-
-    public Long getShoppingCartId() {
-        return shoppingCartId;
-    }
-
-    public void setShoppingCartId(Long shoppingCartId) {
-        this.shoppingCartId = shoppingCartId;
     }
 
     public Long getId() {
@@ -91,21 +76,6 @@ public class ShoppingCart {
         this.total = total;
     }
 
-    public BigDecimal getGrandtotal() {
-        return grandtotal;
-    }
-
-    public void setGrandtotal(BigDecimal grandtotal) {
-        this.grandtotal = grandtotal;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -113,18 +83,15 @@ public class ShoppingCart {
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingCart that = (ShoppingCart) o;
         return quantity == that.quantity &&
-                Objects.equals(shoppingCartId, that.shoppingCartId) &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(imageUri, that.imageUri) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(price, that.price) &&
-                Objects.equals(total, that.total) &&
-                Objects.equals(grandtotal, that.grandtotal) &&
-                Objects.equals(products, that.products);
+                Objects.equals(total, that.total);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(shoppingCartId, id, imageUri, name, price, quantity, total, grandtotal, products);
+        return Objects.hash(id, imageUri, name, price, quantity, total);
     }
 }

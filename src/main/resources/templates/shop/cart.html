@@ -33,12 +33,20 @@
     <!-- Start Cart  -->
     <div class="cart-box-main">
         <div class="container">
-<!--produktu saraksts-->
+            <div th:if="${isSuccess}" class="row alert alert-success">
+                <strong>Ok!</strong>&nbsp;<span>Quantity updated!</span>
+            </div>
+            <div th:if="${isError1}" class="row alert alert-danger">
+                <strong>Sorry could not set product quantity!</strong>&nbsp;<span>Please specify quantity by integer!</span>
+            </div>
+            <div th:if="${isError3}" class="row alert alert-danger">
+                <strong>Can't add products more than available!</strong>&nbsp;<span
+                    th:text="'Maximum available quantity of ' + ${productName} + ' is ' + ${productStock} + '! '"></span>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-main table-responsive">
                         <table class="table">
-<!--tabulas visraksta rinda -->
                             <thead>
                                 <tr>
                                     <th>Images</th>
@@ -50,7 +58,6 @@
                                     <th>Remove</th>
                                 </tr>
                             </thead>
-<!--tabulā produktu saraksts-->
                             <tbody>
                                 <tr th:each="product: ${products}" >
                                     <td class="thumbnail-img">
@@ -66,18 +73,14 @@
                                     <td class="price-pr">
                                             <p th:text="${product.price}"></p>
                                     </td>
-<!--this works fine without quantity-box-->
-<!--                                    <td class="quantity-pr">-->
-<!--                                        <p th:text="${product.quantity}">quantity</p>-->
-<!--                                    </td>-->
-<!--this works fine with quantity-box and update button-->
                                     <form action="#"
                                           th:action="@{/cart/update/{productId}(productId=${product.id})}"
                                           method="post">
                                         <td class="quantity-pr">
                                             <input type="hidden" th:value="${product.id}" name="productId"/>
                                             <input
-                                                    class="form-control" type="number" min="1" th:value="${product.quantity}" name="quantity" />
+                                                    class="form-control" type="number" min="1" max="20"
+                                                    th:value="${product.quantity}" name="quantity" />
                                         <td class="asd">
                                             <button value="update" type="submit" >Update</button>
                                         </td>
@@ -97,19 +100,12 @@
                     </div>
                 </div>
             </div>
-<!--coupon un update cart-->
             <div class="row my-5">
-<!--coupon-->
                 <div class="col-lg-6 col-sm-6">
                 </div>
-<!--update cart-->
                 <div class="col-lg-6 col-sm-6">
-                    <div class="update-box">
-                        <input value="Update Cart" type="submit">
-                    </div>
                 </div>
             </div>
-<!--order summary-->
             <div class="row my-5" style="margin-top: 0 !important;">
                 <div class="col-lg-8 col-sm-12"></div>
                 <div class="col-lg-4 col-sm-12">
@@ -126,7 +122,7 @@
                             <div th:text="${#aggregates.sum(products.![total])}" class="ml-auto h5"></div>
                         </div>
                         <hr> </div>
-                </div>
+                    </div>
                 <div class="col-12 d-flex shopping-box"><a href="/checkout" class="ml-auto btn hvr-hover">Checkout</a> </div>
             </div>
         </div>
