@@ -20,7 +20,7 @@ public class Product {
     @Size(min = 3, max = 255, message = "Name size must be between 3 and 255 characters long.")
     private String name;
 
-    @NotEmpty(message = "The product has to assigned to a category.")
+    @NotEmpty(message = "The product has to be assigned to a category.")
     private List<Long> categoryIds = new ArrayList<>();
 
     @DecimalMin(value = "0.01", inclusive = true, message = "The price cannot be lower than 0.01.")

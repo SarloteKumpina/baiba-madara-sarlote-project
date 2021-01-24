@@ -37,10 +37,10 @@ public interface OrderMapper {
     Long findOrderIdByUserId(String userId);
 
     @Select(FIND_ORDER_BY_USER_ID_AND_STATUS_ID)
-    Order findOrderByUserIdAndStatusId(String userId, int statusId);
+    Order findOrderByUserIdAndStatusId(String userId, Integer statusId);
 
     @Select(FIND_ORDER_BY_USER_ID_AND_STATUS_ID)
-    Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, int statusId);
+    Long findOrderIdByUserIdWhereStatusIsShoppingCart(String userId, Integer statusId);
 
     @Update(UPDATE_ORDER_STATUS)
     void updateOrderStatusToPending(Order order);

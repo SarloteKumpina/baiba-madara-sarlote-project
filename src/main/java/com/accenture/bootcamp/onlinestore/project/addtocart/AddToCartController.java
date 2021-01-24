@@ -7,7 +7,6 @@ import com.accenture.bootcamp.onlinestore.project.products.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,10 +40,10 @@ public class AddToCartController {
     @PostMapping("/product/{productId}")
     public String addProductToCart(@PathVariable Long productId,
                                    @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
+                                   Model model,
                                    @Valid AddToCartForm form,
-                                   BindingResult result,
-                                   HttpServletResponse response,
-                                   Model model) {
+                                   HttpServletResponse response) {
+
         Product product = productRepository.findOne(productId);
         Integer productInStock = product.getStock();
         Long orderId = orderService.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, ORDER_IN_PROGRESS_STATUS_ID);
@@ -53,7 +52,6 @@ public class AddToCartController {
 
         if (form.getQuantity() == null) {
             model.addAttribute("isError1", true);
-//            return "shop/product-details";
         } else if (orderId != null && orderProductService.userHasThisProductInCart(orderId, productId)) {
             int productQuantityInCart = orderProductService.getProductQuantityFromOrder(orderId, productId);
             int totalQuantityToAddToCart = productQuantityInCart + form.getQuantity();
@@ -65,13 +63,8 @@ public class AddToCartController {
             }
         } else if (form.getQuantity() > productInStock) {
             model.addAttribute("isError3", true);
-            result.rejectValue("quantity", "too_large", "Please check quantity, you cannot add more items than available.");
-        } else if (result.hasErrors()) {
-            model.addAttribute("isError4", true);
-            return "shop/product-details";
         } else {
             addToCartService.addProductToCart(productId, userId, form, response);
-//        model.addAttribute("productForm", new AddToCartForm());
             model.addAttribute("isSuccess", true);
         }
         return "shop/product-details";

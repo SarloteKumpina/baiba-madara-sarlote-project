@@ -36,7 +36,7 @@ public class CheckoutService {
         Customer customer = createCustomer(form);
         customerRepository.insert(customer);
         //updates order entry in database (sets customerId)
-        orderService.updateOrderCustomerId(order.getId(), customer.getId(), order);
+        orderService.updateOrderCustomerId(order.getId(), customer.getId());
         //updates order status to PENDING
         //and updates product count in stock
         orderService.updateOrderStatusToPending(order.getId(), ORDER_PENDING_FOR_APPROVAL_STATUS_ID, order);

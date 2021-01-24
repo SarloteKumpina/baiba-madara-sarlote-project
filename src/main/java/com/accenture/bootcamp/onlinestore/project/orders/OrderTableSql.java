@@ -3,7 +3,7 @@ package com.accenture.bootcamp.onlinestore.project.orders;
 public final class OrderTableSql {
 
     public static final String SELECT_FROM_ORDER = "select o.id, o.order_time, SUM(products.price * op.quantity) as orderTotalSum,\n" +
-            " s.name as statusName, c.id, c.first_name,\n" +
+            " s.name as statusName, c.id as customerId, c.first_name,\n" +
             " c.last_name, c.email, c.address, c.phone_number \n" +
             " from orders as o\n" +
             " left join orders_products as op on op.order_id = o.id\n" +
@@ -24,7 +24,7 @@ public final class OrderTableSql {
     public static final String SELECT_FROM_STATUS = "select s.id as statusId, s.name as statusName\n" +
             "from status as s;";
     public static final String UPDATE_ORDER_STATUS = "UPDATE orders SET status_id = #{statusId} where id = #{id}";
-    public static final String UPDATE_ORDER_WITH_CUSTOMER_ID = "update orders set customer_id = #{id} where id = #{id};";
+    public static final String UPDATE_ORDER_WITH_CUSTOMER_ID = "update orders set customer_id = #{customerId} where id = #{id};";
 
     public static final String CREATE_CUSTOMER = "insert into customers(first_name, last_name, phone_number, email, address)" +
             " values(#{firstName}, #{lastName}, #{phoneNumber}, #{email}, #{address})";
