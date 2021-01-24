@@ -7,11 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import static com.accenture.bootcamp.onlinestore.project.cookies.Cookies.USER_ID_COOKIE_NAME;
+import static com.accenture.bootcamp.onlinestore.project.orders.OrdersOrderStatus.ORDER_IN_PROGRESS_STATUS_ID;
 
 import lombok.RequiredArgsConstructor;
-
 import java.util.List;
 
 @Controller
@@ -22,11 +21,11 @@ public class CheckoutController {
     private final ShoppingCartRepository shoppingCartRepository;
 
     @GetMapping("/checkout")
-    public String checkout(Model model,
+    public String getProductDetailsInCheckout(Model model,
                            @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId) {
         model.addAttribute("checkoutForm", new CheckoutForm());
-        Long orderId = shoppingCartRepository.getOrderIdByCookieAndStatusShoppingCart(userId);
-        List<ShoppingCart> products = shoppingCartRepository.getProductsForOrderStatusShoppingCart(orderId);
+        Long orderId = shoppingCartRepository.getOrderIdByCookieAndStatusShoppingCart(userId, ORDER_IN_PROGRESS_STATUS_ID);
+        List<ShoppingCart> products = shoppingCartRepository.getProductsForOrderStatusShoppingCart(orderId, ORDER_IN_PROGRESS_STATUS_ID);
         model.addAttribute("products", products);
         return "shop/checkout/checkout";
     }
