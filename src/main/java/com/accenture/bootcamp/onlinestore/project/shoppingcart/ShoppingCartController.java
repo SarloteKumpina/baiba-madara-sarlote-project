@@ -51,25 +51,17 @@ public class ShoppingCartController {
                              Model model) {
         Product product = productRepository.findOne(productId);
         Integer productInStock = product.getStock();
-
         Long orderId = shoppingCartRepository.getOrderIdByCookieAndStatusShoppingCart(userId, ORDER_IN_PROGRESS_STATUS_ID);
         if(orderProductService.userHasThisProductInCart(orderId, productId)){
             int productQuantityInCart = orderProductService.getProductQuantityFromOrder(orderId, productId);
             productQuantityInCart = quantity;
-
-            //TODO don't update if not set quantity - doesn't work for now
-            //don't update if not set quantity
             if (productForm.getQuantity() == null) {
                 model.addAttribute("isError1", true);
-
-            //don't update if quantity > stock
             } else if (productForm.getQuantity() > productInStock) {
                 model.addAttribute("isError3", true);
                 model.addAttribute("productStock", product.getStock());
                 model.addAttribute("productName", product.getName());
             } else {
-
-            //update if quantity <= stock
                 orderProductService.updateProductQuantityInOrder(productQuantityInCart, orderId, productId);
                 model.addAttribute("isSuccess", true);
             }
