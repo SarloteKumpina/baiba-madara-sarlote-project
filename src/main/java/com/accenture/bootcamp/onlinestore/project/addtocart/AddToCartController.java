@@ -50,7 +50,10 @@ public class AddToCartController {
         model.addAttribute("product", product);
         model.addAttribute("productForm", form);
 
+
         if (form.getQuantity() == null) {
+            model.addAttribute("isError", true);
+        } else if (form.getQuantity() < 1) {
             model.addAttribute("isError1", true);
         } else if (orderId != null && orderProductService.userHasThisProductInCart(orderId, productId)) {
             int productQuantityInCart = orderProductService.getProductQuantityFromOrder(orderId, productId);
@@ -61,8 +64,10 @@ public class AddToCartController {
                 addToCartService.addProductToCart(productId, userId, form, response);
                 model.addAttribute("isSuccess", true);
             }
-        } else if (form.getQuantity() > productInStock) {
+        } else if (productInStock == 0) {
             model.addAttribute("isError3", true);
+        } else if (form.getQuantity() > productInStock) {
+            model.addAttribute("isError4", true);
         } else {
             addToCartService.addProductToCart(productId, userId, form, response);
             model.addAttribute("isSuccess", true);

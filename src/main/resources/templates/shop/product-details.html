@@ -28,16 +28,26 @@
         <div th:if="${isSuccess}" class="row alert alert-success">
             <strong>Success!</strong>&nbsp;<span>Product was added to cart!</span>
         </div>
+        <div th:if="${isError}" class="row alert alert-danger">
+            <strong>Sorry could not add product to
+                cart!</strong>&nbsp;<span>Please specify quantity (cannot be empty)!</span>
+        </div>
         <div th:if="${isError1}" class="row alert alert-danger">
-            <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please specify quantity!</span>
+            <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please specify quantity (cannot be less than 1)!</span>
         </div>
         <div th:if="${isError2}" class="row alert alert-danger">
             <strong>Sorry could not add product to cart!</strong>&nbsp;<span>Please check how many items
                 of this product was already added to cart and totally add no more items than available!</span>
         </div>
         <div th:if="${isError3}" class="row alert alert-danger">
+            <strong>Sorry this product is not available now!</strong>&nbsp;<span>Please choose another one!</span>
+        </div>
+        <div th:if="${isError4}" class="row alert alert-danger">
             <strong>Sorry could not add product to
                 cart!</strong>&nbsp;<span>Please add no more items than available!</span>
+        </div>
+        <div th:if="${isError4}" class="row alert alert-danger">
+            <strong>Sorry this product is not available now!</strong>&nbsp;<span>Please choose another one!</span>
         </div>
         <div class="row">
 
@@ -53,7 +63,8 @@
                     <p>
                     <h4>Short Description:</h4>
                     <p th:text="${product.description}"></p>
-                    <form th:object="${productForm}"
+                    <form th:action="@{/product/{productId}(productId=${product.id})}"
+                          th:object="${productForm}"
                           method="post">
                         <ul>
                             <li>
@@ -61,7 +72,8 @@
                                     <label class="control-label">Quantity</label>
                                     <input th:field="${productForm.quantity}"
                                            th:value="${productForm.quantity}"
-                                           class="form-control" min="1" type="number">
+                                           class="form-control" type="number">
+                                    <!--                                    min="1"-->
                                 </div>
                             </li>
                         </ul>

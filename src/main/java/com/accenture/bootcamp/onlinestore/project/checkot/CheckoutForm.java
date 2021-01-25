@@ -1,4 +1,5 @@
 package com.accenture.bootcamp.onlinestore.project.checkot;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,8 @@ public class CheckoutForm {
     private String lastName;
     private String email;
     private String address;
-    private String phoneNumber;;
+    private String phoneNumber;
+
 
     @Override
     public String toString() {

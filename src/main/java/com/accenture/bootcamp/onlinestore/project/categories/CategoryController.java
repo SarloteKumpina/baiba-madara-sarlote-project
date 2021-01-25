@@ -58,8 +58,8 @@ public class CategoryController {
         String name = category.getName();
         Category currentCategory = categoryService.findOne(category.getId());
         String currentCategoryName = currentCategory.getName();
-        int categoryNameCount = categoryService.findHowManyTimesCategoryNameAppears(name);
-        if (!name.equals(currentCategoryName) && categoryNameCount > 0) {
+        List<String> allNamesForCategories = categoryService.findAllNames();
+        if (!name.equals(currentCategoryName) && allNamesForCategories.contains(name)) {
             result.rejectValue("name", "duplicate", "Category with this name already exists.");
             return "cms/categories/update-category";
         } else if (result.hasErrors()) {
