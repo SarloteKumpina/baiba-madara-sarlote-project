@@ -46,11 +46,7 @@
             <strong>Sorry could not add product to
                 cart!</strong>&nbsp;<span>Please add no more items than available!</span>
         </div>
-        <div th:if="${isError4}" class="row alert alert-danger">
-            <strong>Sorry this product is not available now!</strong>&nbsp;<span>Please choose another one!</span>
-        </div>
         <div class="row">
-
             <div class="col-xl-5 col-lg-5 col-md-6">
                 <img th:src="${product.imageUri}" class="image" alt="Image" height="" width="300"/>
             </div>
