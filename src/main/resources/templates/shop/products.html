@@ -37,22 +37,12 @@
             <!--kreisā kolonna-->
             <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
                 <div class="product-categori">
-                    <!--search box original-->
-                    <!--                        <div class="search-product">-->
-                    <!--                            <form action="#">-->
-                    <!--                                <input class="form-control" placeholder="Search here..." type="text">-->
-                    <!--                                <button type="submit"> <i class="fa fa-search"></i> </button>-->
-                    <!--                            </form>-->
-                    <!--                        </div>-->
-
-                    <!--my search-->
                     <div class="search-product">
                         <form th:action="@{/search-result}">
                             <input required type="text" class="form-control" placeholder="Search here..." name="search">
                             <button class="btn btn-default" type="submit"> <i class="fa fa-search"></i> </button>
                         </form>
                     </div>
-                    <!--kategoriju nosaukumi-->
                     <div class="filter-sidebar-left">
                         <div class="title-left">
                             <h3><a href="/categories">Categories</a></h3>
@@ -61,7 +51,6 @@
                             <ul>
                                 <li th:each="category: ${allCategories}"> <a th:href="@{/categories/{category}(category=${category.id})}"
                                                                              th:text="${category.name}">
-                                    <!-- plus skaits kategorijā?-->
                                 </a> </li>
                             </ul>
                         </div>
@@ -69,31 +58,16 @@
 
                 </div>
             </div>
-            <!--labā kolonna-->
             <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
                 <div class="right-product-box">
-                    <!--Sort by filter-->
                     <div class="product-item-filter row">
-                        <!--augšējā rinda sadalīta divās daļās-->
-                        <!--kreisā - sort by un showing-->
                         <div class="col-12 col-sm-8 text-center text-sm-left">
                             <div class="toolbar-sorter-right">
-                                <span>Sort by </span>
-                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                                    <option data-display="Select">Nothing</option>
-                                    <option value="1">Popularity</option>
-                                    <option value="2">High Price → High Price</option>
-                                    <option value="3">Low Price → High Price</option>
-                                    <option value="4">Best Selling</option>
-                                </select>
                             </div>
-                            <p>Showing all 4 results</p>
-                            <!--jāmaina uzraksts no 4 vienībām uz atlasīto count-->
+                            <div th:text="'Showing all ' + ${#lists.size(products)} + ' results'" style="text-align: center;" class="ml-auto font-weight-bold"></div>
                         </div>
-                        <!--labā - grid vai list-->
                         <div class="col-12 col-sm-4 text-center text-sm-right">
                             <ul class="nav nav-tabs ml-auto">
-                                <!--grid un list view ikonas-->
                                 <li>
                                     <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
                                 </li>
@@ -103,28 +77,22 @@
                             </ul>
                         </div>
                     </div>
-                    <!--Products-->
                     <div class="row product-categorie-box">
                         <div class="tab-content">
-                            <!--Products in grid-view-->
                             <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                                 <div class="row">
-                                    <!--Bootstrap 4 Grid-->
                                     <div th:each="product: ${products}" class="col-sm-6 col-md-6 col-lg-4 col-xl-4" >
                                         <div class="products-single fix">
                                             <div class="box-img-hover">
                                                 <div class="type-lb">
                                                     <p class="new">New</p>
                                                 </div>
-                                                <!--bilde virs galvenā rāmīša-->
                                                 <img th:src="${product.imageUri}" class="image" alt="Image" height="100" width="" />
 
-                                                <!--papildus mazās podziņas, pievienot wishlist utt-->
                                                 <div class="mask-icon">
                                                     <a class="cart" th:href="@{/product/{product}(product=${product.id})}">View product</a>
                                                 </div>
                                             </div>
-                                            <!--galvenais rāmītis-->
                                             <div class="why-text">
                                                 <h4 th:text="${product.name}"></h4>
                                                 <hr>
@@ -134,7 +102,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--Products in list-view-->
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <div class="list-view-box">
                                     <div th:each="product: ${products}" class="row">
