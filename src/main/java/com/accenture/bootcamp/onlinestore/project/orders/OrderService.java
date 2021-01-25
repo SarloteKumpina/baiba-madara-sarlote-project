@@ -1,11 +1,8 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
 import com.accenture.bootcamp.onlinestore.project.exceptions.NotFoundException;
-import com.accenture.bootcamp.onlinestore.project.products.Product;
-import com.accenture.bootcamp.onlinestore.project.products.ProductMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -81,26 +78,7 @@ public class OrderService {
         return order;
     }
 
-//    //TODO just example method. You can change the value between true / false
-//    //and this will change the result of your product being added to cart.
-//    public boolean isProductAvailableInStock(Long productId, Integer requiredAmount) {
-//
-//        return false;
-//    }
-//
-//    public boolean isProductAvailableInStock(Long id,Long productId, Integer requiredAmount) {
-//        List<Order> orderedProducts = mapper.orderedProducts(id);
-//        for (Order product : orderedProducts) {
-//            requiredAmount = product.getStock();
-//            if (product.getQuantity() > requiredAmount)
-//                productId = product.getProductId();{
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-
-        public Order minusFromStock(Long id, Long productId, Order order) {
+    public Order minusFromStock(Long id, Long productId, Order order) {
         List<Order> orderedProducts = mapper.orderedProducts(id);
         for (Order product : orderedProducts) {
             int stockUpdate = product.getStock() - product.getQuantity();

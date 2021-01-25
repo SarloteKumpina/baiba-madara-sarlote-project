@@ -28,6 +28,13 @@
 <!-- Start Cart  -->
 <div class="cart-box-main">
     <div class="container">
+        <div th:each="product: ${productName}" class="rounded p-2 bg-light">
+        <div th:if="${isError3}" class="row alert alert-danger">
+            <strong>Sorry!</strong>&nbsp;
+            <td th:text="${product}"></td>
+            <span>...no longer available</span>
+        </div>
+        </div>
         <form method="POST" th:object="${checkoutForm}" class="row">
 
             <div class="col-sm-6 col-lg-6 mb-3">
@@ -79,7 +86,6 @@
                     </div>
                 </div>
             </div>
-
 <!--Shopping cart part - products-->
             <div class="col-sm-6 col-lg-6 mb-3">
                 <div class="row">
