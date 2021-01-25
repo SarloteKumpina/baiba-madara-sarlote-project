@@ -39,7 +39,7 @@ public class OrderService {
         return existing;
     }
 
-    public Order updateOrderStatus(Long id, Integer statusId, Order order) {
+    public Order updateOrderStatus(Long id, Order order) {
         Order existing = findOrderById(id);
         existing.setStatusId(order.getStatusId());
         mapper.updateOrderStatus(existing);

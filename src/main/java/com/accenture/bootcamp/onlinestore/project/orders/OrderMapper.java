@@ -1,6 +1,5 @@
 package com.accenture.bootcamp.onlinestore.project.orders;
 
-import com.accenture.bootcamp.onlinestore.project.products.Product;
 import org.apache.ibatis.annotations.*;
 import java.util.List;
 

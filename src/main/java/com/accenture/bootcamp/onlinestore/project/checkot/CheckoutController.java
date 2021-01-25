@@ -39,7 +39,7 @@ public class CheckoutController {
     @PostMapping("/checkout")
     public String submitCheckoutForm(@CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
                                      Model model, @Valid CheckoutForm checkoutForm) {
-        Long id = orderService.findOrderIdByUserId(userId);
+        Long id = orderService.findOrderIdByUserIdWhereStatusIsShoppingCart(userId, ORDER_IN_PROGRESS_STATUS_ID);
         List<Order> orderedProducts = orderService.orderedProducts(id);
         for (Order product : orderedProducts)
             if (product.getQuantity() > product.getStock()) {

@@ -36,14 +36,14 @@ public class OrdersController {
     }
 
     @PostMapping("/admin/orders/update-status/{id}")
-    public String updateOrderStatus(@PathVariable("id") Long id, Integer statusId,
+    public String updateOrderStatus(@PathVariable("id") Long id,
                                     @Valid Order order, BindingResult result, Model model) {
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             List<Order> statuses = orderService.findAllStatuses();
             model.addAttribute("statuses", statuses);
             return "cms/orders/order-update";
         }
-        orderService.updateOrderStatus(id, statusId, order);
+        orderService.updateOrderStatus(id, order);
         return "redirect:/admin/orders";
     }
 
@@ -55,5 +55,4 @@ public class OrdersController {
         model.addAttribute("statuses", statuses);
         return "cms/orders/order-update";
     }
-
 }
