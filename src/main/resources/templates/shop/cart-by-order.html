@@ -9,7 +9,6 @@
     <div th:replace="~{shop/layout/navigation :: navigation}"></div>
     <!-- End Main Top -->
 
-<!--Ritvars ir noņēmis šo-->
     <!-- Start Top Search -->
     <div th:replace="~{shop/layout/topsearch :: topsearch}"></div>
     <!-- End Top Search -->
@@ -33,12 +32,10 @@
     <!-- Start Cart  -->
     <div class="cart-box-main">
         <div class="container">
-<!--produktu saraksts-->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-main table-responsive">
                         <table class="table">
-<!--tabulas visraksta rinda -->
                             <thead>
                                 <tr>
                                     <th>Images</th>
@@ -46,11 +43,9 @@
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
-<!--Ritvars noņēmis remove-->
                                     <th>Remove</th>
                                 </tr>
                             </thead>
-<!--tabulā produktu saraksts-->
                             <tbody>
                                 <tr th:each="product: ${products}" >
                                     <td class="thumbnail-img">
@@ -66,34 +61,14 @@
                                     <td class="price-pr">
                                             <p th:text="${product.price}"></p>
                                     </td>
-<!--Ritvara-->
-<!--                                    <td class="quantity-box">-->
-<!--                                        1-->
-<!--                                    </td>-->
-<!--Ritvara-->
                                     <td class="quantity-pr">
                                         <p th:text="${product.quantity}">quantity</p>
                                     </td>
-<!--                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>-->
                                     <td class="total-pr">
                                         <p th:text="${product.total}">total</p>
 
                                     </td>
-<!--Ritvars noņēma remove-->
                                     <td class="remove-pr">
-<!--                                        <a th:href="@{/cart/{orderId}/delete/{id}(orderId= ${order.id}, id=${product.id})}">-->
-<!--                                            <p> remove </p>-->
-<!--                                        </a>-->
-<!--                                        <a href="#">-->
-<!--                                        <a th:href="@{/cart/{orderId}/delete/{id}(orderId= ${order.id}, id=${product.id})}">-->
-<!-- pielieku vēl klases klāt, bet tāpat nestrādā podziņa <i class="icon btn fas fa-times"></i>-->
-
-
-<!--šāda podziņa products admin delete-->
-<!--                                        <a th:href="@{/admin/products/delete/{id}(id=${product.id})}">Delete</a>-->
-<!--šāda podziņa products admin delete-->
-
-
 									<i class="fas fa-times"></i>
 								</a>
                                     </td>
@@ -103,29 +78,12 @@
                     </div>
                 </div>
             </div>
-<!--coupon un update cart-->
             <div class="row my-5">
-
-<!--coupon-->
                 <div class="col-lg-6 col-sm-6">
-<!--                    <div class="coupon-box">-->
-<!--                        <div class="input-group input-group-sm">-->
-<!--                            <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">-->
-<!--                            <div class="input-group-append">-->
-<!--                                <button class="btn btn-theme" type="button">Apply Coupon</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
                 </div>
-<!--update cart-->
                 <div class="col-lg-6 col-sm-6">
-<!--                    <div class="update-box">-->
-<!--                        <input value="Update Cart" type="submit">-->
-<!--                    </div>-->
                 </div>
             </div>
-<!--order summary-->
-<!--            <div class="row my-5">-->
             <div class="row my-5" style="margin-top: 0 !important;">
                 <div class="col-lg-8 col-sm-12"></div>
                 <div class="col-lg-4 col-sm-12">
