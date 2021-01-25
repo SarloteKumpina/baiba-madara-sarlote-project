@@ -1,10 +1,6 @@
 package com.accenture.bootcamp.onlinestore.project.shoppingcart;
 
-import com.accenture.bootcamp.onlinestore.project.products.Product;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class ShoppingCart {
@@ -19,7 +15,7 @@ public class ShoppingCart {
     public ShoppingCart() {
     }
 
-    public ShoppingCart(Long shoppingCartId, Long id, String imageUri, String name, BigDecimal price, int quantity, BigDecimal total, BigDecimal grandtotal, List<Product> products) {
+    public ShoppingCart(Long id, String imageUri, String name, BigDecimal price, int quantity, BigDecimal total) {
         this.id = id;
         this.imageUri = imageUri;
         this.name = name;
